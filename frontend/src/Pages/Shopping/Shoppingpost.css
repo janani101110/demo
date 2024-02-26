@@ -68,3 +68,21 @@
 .shopadver{
     margin-left: 100px;
 }
+
+
+/*...................productdescription css................*/
+.pdescrip{
+    
+}
+.pdescrip h2{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.pdetails{
+    border: 1px solid gray;
+    width: 1225px;
+    height: 1000px;
+    margin-left: 150px;
+    margin-bottom: 25px;
+}
