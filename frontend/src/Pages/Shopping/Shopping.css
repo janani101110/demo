@@ -17,6 +17,39 @@
     background-color: rgb(114, 54, 114);
     color: white;
 }
-.shopmain {
+.postsection{
+    
+    margin-left: 200px;
+    width: 1225px;
+    display: grid;
+    grid-template-columns: 250px 250px 250px;
+    column-gap: 150px;
+    
+}
+/*.............shopcard css..................*/
+.shopup {
     display: flex;
+}
+.shoppingcard{
+    height: 200px;
+    width: 200px;
+   
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
+}
+.shoppingcard:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+     border: 2px solid purple;
+    
+}
+.shoppingcard img{
+    width: 190px;
+    height: 150px;
+    border-bottom: 1px solid grey;
+}
+.shopcardtext{
+    background-color:whitesmoke;
+    text-align: center;
+    text-decoration: none;
 }

@@ -13,10 +13,12 @@ import {Shopping} from './Pages/Shopping/Shopping';
 import {Forum} from './Pages/Forum/Forum';
 import {AboutUs} from './Pages/AboutUs/AboutUs';
 import { Footer } from './Component/Footer/Footer';
-import {Shoppingpost} from './Pages/Shoppingpost/Shoppingpost';
+import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
 import SignUp from './Pages/LogIn/SignUp';
 import Login from './Pages/LogIn/LogIn';
 import { UserContextProvider } from './Context/UserContext';
+import Productdescription from './Pages/Shopping/Productdescription';
+import Profile from './Pages/Profile/Profile';
 
 
 function App() {
@@ -41,7 +43,8 @@ function App() {
           <Route path='/signup'element={<SignUp/>}/>
           <Route path='/login'element={<Login/>}/>
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
-
+          <Route path='/productdescription' element={<Productdescription/>}/>
+          <Route path='/profile' element={<Profile/>}/>
           <Route path='/' element={<Navigate to="/home" />}/>
           
       </Routes>
