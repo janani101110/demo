@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
 }
 @media (max-width: 600px) {
   .App-header {
