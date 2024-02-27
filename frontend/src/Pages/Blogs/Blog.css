@@ -2,7 +2,7 @@
     display: flex;
     padding-left: 200px;
     font-size: 60px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
     margin-top: 50px;
     margin-bottom: 50px;
     color: rgb(95, 20, 64);
@@ -24,7 +24,7 @@
     color: rgb(83, 47, 68);
     text-decoration: none;
     font-size: 25px;
-    font-family: cursive;
+    font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
   
    
     
@@ -59,7 +59,7 @@
     background-color: #fff;
     padding: 20px;
     font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
     height:fit-content;
     width: 1225px;
     display: grid;
@@ -81,10 +81,8 @@
   }
   
   .postCard:hover{
-   border: 10px solid;
    border-radius: 25px;
-   background: linear-gradient(0deg, rgba(105,47,89,1) 0%, rgba(61,3,48,1) 100%);
-   color: #fff;
+   border: solid #532f44;
    cursor: pointer;
   }
   
@@ -96,7 +94,7 @@
   }
   .postTitle{
     font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
     font-weight: bold;
     text-transform: uppercase;
     justify-content: center;
@@ -106,6 +104,6 @@
   
   .postDescription{
     font-size: 15px;
-    font-family:cursive;
+    font-family:'https://fonts.googleapis.com/css?family=PT Sans';
   }
     
