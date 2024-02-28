@@ -79,6 +79,10 @@
     width: 350px;
     
   }
+
+  .blogcard{
+    text-decoration: none;
+  }
   
   .postCard:hover{
    border: 10px solid;
@@ -109,3 +113,110 @@
     font-family:cursive;
   }
     
+
+  /**--------------create blog posts -------------------------**/
+  .createBlog{
+    height: 150vh;
+    width: 100vw;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    font-size: 30px;
+
+}
+
+.createBlogDiv{
+    height: 700px;
+    width: 700px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.blogImage{
+    height: auto;
+    width:400px;
+    margin-top: 20px;
+}
+.CreateBlogTextdiv{
+    margin-left: 10px;
+    
+}
+
+.createBlogSubmit{
+    height: 40px;
+    width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: solid 2px #532f44;
+    font-size: 20px;
+    font-family: cursive;
+    color: #000;
+    cursor: pointer;
+}
+
+.createBlogSubmit:hover{
+    background-color: #532f44;
+    color: #fff;
+}
+.WriteBlog{
+  border: 1px solid purple;
+  border-radius: 20px;
+  height: fit-content;
+  width: 900px;
+  margin-top: 25px;
+  margin-left: 235px;
+  margin-bottom: 25px;
+  padding-top: 20px;
+
+}
+
+.createBlogForm{
+  padding: 25px;  
+  margin-bottom: 10px; 
+  padding : 25px;
+
+}
+
+.createBlogTitle{
+  text-align: center;
+  font-size: 40px;
+  font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
+  color: rgb(95, 20, 64);
+  margin-top: 10px;
+}
+
+.createBlogTextbox{
+  padding: 5px;
+  height: auto;
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 0.5px solid ;
+}
+.createBlogTextbox:hover{
+  border: #532f44 solid 2px;
+}
+
+.createBlogEnterImage{
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  
+}
+.createBlogTextArea{
+  height: auto;
+  width: 500px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.createBlogTextArea:hover{
+  border: #532f44 solid 2px;
+}
