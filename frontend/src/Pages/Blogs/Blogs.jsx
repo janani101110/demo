@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
  
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
-import Profile from '../Profile/Profile';
 export const Blogs = () => {
   return (
     <div className="Blog">
@@ -31,7 +30,6 @@ export const Blogs = () => {
 
             </div>
 
-      <Profile/>
 
     </div>
   ) 
