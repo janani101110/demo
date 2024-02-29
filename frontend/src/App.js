@@ -14,7 +14,7 @@ import {Forum} from './Pages/Forum/Forum';
 import {AboutUs} from './Pages/AboutUs/AboutUs';
 import { Footer } from './Component/Footer/Footer';
 
-import {Shoppingpost} from './Pages/Shoppingpost/Shoppingpost';
+import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
 import Profile from './Pages/Profile/Profile';
 import SignUp from './Pages/LogIn/SignUp';
 import Login from './Pages/LogIn/LogIn';
@@ -23,12 +23,8 @@ import {WriteBlog} from './Pages/Blogs/WriteBlog';
 import {InsidePost} from './Pages/Blogs/InsidePost';
 
 
-import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
-import SignUp from './Pages/LogIn/SignUp';
-import Login from './Pages/LogIn/LogIn';
-import { UserContextProvider } from './Context/UserContext';
 import Productdescription from './Pages/Shopping/Productdescription';
-import Profile from './Pages/Profile/Profile';
+
 
 
 
