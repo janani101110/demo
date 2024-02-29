@@ -1,12 +1,7 @@
 .blogTitle{
     display: flex;
     padding-left: 200px;
-
     font-size: 100px;
-
-    font-size: 60px;
-    font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
-
     margin-top: 50px;
     margin-bottom: 50px;
     color: rgb(95, 20, 64);
@@ -58,12 +53,11 @@
   
   /*---------------Post ---------------------------*/
   .bpost{
-    margin-left: 0px;
-    margin-right: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #fff;
-    padding: 20px;
     font-size: 20px;
 
     font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
@@ -76,8 +70,8 @@
   }
   
   .postCard{
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
     background-color: #fff;
     color:#000;
@@ -97,17 +91,14 @@
   }
   
   .postImage{
-    height: 220px;
-    padding: 0;
-    margin: 0;
+    height: 100px;
     width: auto;
-    justify-content: center;
     
   }
   .postTitle{
     font-size: 20px;
-
     font-weight: bold;
+    text-decoration: none;
     text-transform: uppercase;
     justify-content: center;
     text-align: center;
