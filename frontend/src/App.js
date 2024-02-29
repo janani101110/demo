@@ -18,13 +18,9 @@ import Profile from './Pages/Profile/Profile';
 import SignUp from './Pages/LogIn/SignUp';
 import Login from './Pages/LogIn/LogIn';
 import { UserContextProvider } from './Context/UserContext';
-<<<<<<< Updated upstream
-=======
-import Productdescription from './Pages/Shopping/Productdescription';
-import Profile from './Pages/Profile/Profile';
 import {WriteBlog} from './Pages/Blogs/WriteBlog';
 import {InsidePost} from './Pages/Blogs/InsidePost';
->>>>>>> Stashed changes
+
 
 
 function App() {
@@ -50,13 +46,12 @@ function App() {
           <Route path='/login'element={<Login/>}/>
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
           <Route path='/profile' element={<Profile/>}/>
-<<<<<<< Updated upstream
-
-=======
           <Route path='/WriteBlog' element={<WriteBlog/>}/>
           <Route path='/InsidePost' element={<InsidePost/>}/>
+
+       
          
->>>>>>> Stashed changes
+         
           <Route path='/' element={<Navigate to="/home" />}/>
           
       </Routes>
