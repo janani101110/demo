@@ -10,7 +10,7 @@ const Productdescription = () => {
           <p>Component Name: </p>
           <p>Description: </p>
           <p>Price:</p>
-          <p>Contact: </p>
+          <p>Contact:fff</p>
         </div>
           
     </div>
