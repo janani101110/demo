@@ -1,10 +1,12 @@
-import React from "react";
-import "./Profile.css";
 
 
-function Profile() {
-    return (
-        <div className="profile">
+import React from 'react';
+import './Profile.css';
+
+const Profile = () => {
+  return (
+    <div className="profile">
+
             <div className="profile-header">
                 <div className="profile-header-info">
                 </div>
@@ -40,7 +42,9 @@ function Profile() {
 
             </div>
         </div>
-    );
+
+  )
 }
 
-export default Profile;
+export default Profile
+

@@ -83,7 +83,7 @@
     margin-bottom: 20px;
     background-color: #fff;
     font-size: 20px;
-    font-family: cursive;
+
     height: fit-content;
 
 }
@@ -93,7 +93,7 @@
     margin-bottom: 20px;
     background-color: #fff;
     font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
+
     height: fit-content;
     display: grid;
     grid-template-columns: 350px 350px;

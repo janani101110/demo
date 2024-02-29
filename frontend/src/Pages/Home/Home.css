@@ -3,7 +3,7 @@
     margin-bottom: 225px;
 }
 .home-right{
-    margin-left: 300px;
+    margin-left: 100px;
     margin-top: 180px;
     
 }
@@ -16,4 +16,8 @@
 .home-left h1{
     margin-left: 300px;
     margin-top: 180px;
+}
+.homeimg{
+    width: 200px;
+    height: 300px;
 }
