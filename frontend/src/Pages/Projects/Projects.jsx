@@ -143,7 +143,7 @@ export const Projects = () =>{
           <table frame="box" className="frame_box_center">
             <div className="fill">
               <div className="field">
-                <label>Your name</label>
+                <label>Your full name</label>
                 <input
                   type="text"
                   name="name"
