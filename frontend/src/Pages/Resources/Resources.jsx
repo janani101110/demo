@@ -1,6 +1,5 @@
 import React from 'react'
 import './Resources.css'
-import './Sensors/Sensors'
 
 import sensors from '../Resources/Assets/sensors.png'
 import pcb from '../Resources/Assets/pcb.png'
@@ -9,14 +8,16 @@ import code from '../Resources/Assets/code.png'
 import communi from '../Resources/Assets/com.png'
 import power from '../Resources/Assets/power.png'
 import proto from '../Resources/Assets/proto.png'
+import cases from '../Resources/Assets/cases.jpg'
+import network from '../Resources/Assets/network.png'
+import security from '../Resources/Assets/security.png'
 
 import { Link } from 'react-router-dom';
-import { Search } from '../../Component/Search/Search'
 
 export const Resources = () => {
   return (
     <div className='resoCollect'>
-        <Search/>
+
       <div className='collect' id='collect1'>
           <div className='resoimg'>
               <img src={sensors} alt="" className='resoimg'/> 
@@ -144,7 +145,7 @@ export const Resources = () => {
 
       <div className='collect' id='collect8'>
           <div className='resoimg'>
-              <img src={pcb} alt="" className='resoimg'/> 
+              <img src={cases} alt="" className='resoimg'/> 
           </div>
           <div className='resopara'>
               <h3>Enclosures and Cases :</h3>
@@ -162,7 +163,7 @@ export const Resources = () => {
 
       <div className='collect' id='collect9'>
           <div className='resoimg'>
-              <img src={sensors} alt="" className='resoimg'/> 
+              <img src={network} alt="" className='resoimg'/> 
           </div>
           <div className='resopara'>
               <h3>Networking :</h3>
@@ -180,7 +181,7 @@ export const Resources = () => {
 
       <div className='collect' id='collect10'>
           <div className='resoimg'>
-              <img src={pcb} alt="" className='resoimg'/> 
+              <img src={security} alt="" className='resoimg'/> 
           </div>
           <div className='resopara'>
               <h3>Security :</h3>

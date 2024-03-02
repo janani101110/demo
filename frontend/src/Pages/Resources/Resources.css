@@ -1,45 +1,74 @@
-.collect{
+.collect {
+    position: relative; /* Add position relative */
     margin: 0 auto;
     width: 70%;
-    height: 250px;
-    background-color: rgb(70, 3, 70);
+    min-height: 250px; /* Change height to auto to accommodate variable content */
+    background-color: #C332FB;
     padding: 20px;
     border-radius: 20px;
     justify-content: space-between;
     margin: 3rem auto;
 }
-.resoimg{
+
+.resoimg {
     width: 220px;
     height: 210px;
     float: left;
     border-radius: 20px;
     margin-right: 20px;  
 }
-.resopara{
+
+.resopara {
     margin-top: 30px;
     margin-right: 30px;
-    color: white;
+    color: black;
     line-height: 21px;
     text-align: justify;
 }
-.seemore button{
+
+.seemore {
+    position: absolute; /* Position the entire seemore div */
+    bottom: 20px; /* Adjust bottom spacing */
+    right: 45px; /* Adjust right spacing */
+}
+
+.seemore button {
     outline: none;
     width: 80px;
     height: 25px;
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
-    background-color: rgb(70, 3, 70);
-    color: white;
-    margin-top: 30px;
-    margin-left: 565px;
-}
-.seemore button:active{
-    background: white;
+    background-color: #C332FB;
     color: black;
-    font-weight: 600;
 }
 
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .collect {
+        width: 90%; /* Adjust width for smaller screens */
+        height: auto;
+    }
 
+    .resoimg {
+        width: 100%; /* Make images fluid */
+        height: auto; /* Ensure aspect ratio is maintained */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 20px; /* Add some bottom margin for spacing */
+        float: none; /* Remove float */
+    }
 
+    .seemore {
+        position: relative; /* Reset position */
+        bottom: auto; /* Reset bottom */
+        right: auto; /* Reset right */
+        margin-left: auto; /* Center the seemore div */
+        margin-right: auto; /* Center the seemore div */
+        text-align: right; /* Center button */
+    }
 
+    .seemore button {
+        margin: auto;
+}
+
+}

@@ -5,10 +5,10 @@ import './Sidebar.css'
 export const Sidebar = () => {
   return (
     <div className='sidebar'>
-          <table className='restable'>
+          <table>
           <thead>
             <tr>
-              <td >All Categories</td>
+              <th>All Categories</th>
             </tr>
           </thead>
           <tbody>
