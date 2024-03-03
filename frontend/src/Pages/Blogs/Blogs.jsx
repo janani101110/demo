@@ -2,7 +2,7 @@ import React from 'react'
 import "./Blog.css";
 import {Link} from "react-router-dom";
 
- 
+
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
 export const Blogs = () => {

@@ -9,15 +9,6 @@ import googleIcon from "../LogIn/images/googleIcon.png";
 const Signup=() => {
 
  
- 
-  
-
-  
-
-
-
-  
-
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");

@@ -70,8 +70,8 @@
   }
   
   .postCard{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
     margin-top: 20px;
     background-color: #fff;
     color:#000;
@@ -91,8 +91,8 @@
   }
   
   .postImage{
-    height: 100px;
-    width: auto;
+    max-width: 100%;
+    height: auto;
     
   }
   .postTitle{
@@ -134,13 +134,6 @@
     justify-content: center;
     align-items: center;
 }
-
-.blogImage{
-    height: auto;
-    width:400px;
-    margin-top: 20px;
-    justify-content: center;
-}
 .CreateBlogTextdiv{
     margin-left: 10px;
     
@@ -157,6 +150,9 @@
     font-family: cursive;
     color: #000;
     cursor: pointer;
+}
+.bpost{
+  text-decoration: none;
 }
 
 .createBlogSubmit:hover{
