@@ -5,7 +5,7 @@ export const WriteBlog = () => {
     <div className="createBlog"> 
    <div className="CreateBlogTextdiv">
   </div>
-  <div className="CreateBlogTextdiv"> 
+  <div className="CreateBlogTextdiv">
   <h1 className='createBlogTitle'>Create a Blog Post</h1>
         <form className='createBlogFormBody'>
           <input type="text" placeholder='Enter post title' className='createBlogTextbox'/>

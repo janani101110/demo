@@ -7,9 +7,9 @@
     background-color: rgba(66, 4, 63, 0.753);
     margin-left: 200px;
     margin-right: 100px;
-    height: 50px;
+    height: 60px;
     width: 850px;
-    border-radius: 10px;
+    border-radius: 30px;
     margin-bottom: 50px;
   }
   
@@ -17,9 +17,9 @@
     position: absolute;
     font-family: cursive;
     font-size: 15px;
-    height: 30px;
+    height: 40px;
     width: 800px;
-    border-radius: 20px;
+    border-radius: 25px;
     padding-left: 20px;
   }
   

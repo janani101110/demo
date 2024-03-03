@@ -1,37 +1,52 @@
 import React from 'react'
 import "./Blog.css";
 import {Link} from "react-router-dom";
-
+import blogBanner from "../Home/Assets/octopus.png";
 
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
 export const Blogs = () => {
   return (
-    <div className="Blog">
-            <div className='blog-post'>
-                <h1 className = "blogTitle"> TRIVIA BLOGS </h1>
-                <Search />
-            </div>
-            <div className = "create">
+    <div className="BlogHome">
+
+
+      <div className='blogBanner'>
+        <div className='bannerSection'>
+         <p classname ="blogQuote"> Join the community, Explore, Learn, Create - Your hub for all things electronic, 
+          empowering every step of your IoT journey with Trivia, and share your own insights with just a click!! </p>
+        <br/>
+        <div className = "Bannercreate">
                 <Link to = "/WriteBlog" className = "createLink"> Create </Link>
             </div>
-            <div className='bpost'>
-             <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Blogspost/>
+        </div>
+        
+      </div>
 
-              <Blogspost/>
 
-              <Blogspost/>
-
-              <Blogspost/>
-              <Blogspost/>
-
-              <Blogspost/>
-
+            <div className='blog-post'>
+                <Search />
             </div>
 
+          <div className='blogFilters'> 
+            <div class ="filterButton">
+              Popular
+            </div>
 
-    </div>
+            <div class ="filterButton">
+              Latest
+            </div>
+          </div>
+
+            <div className='bpost'>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+            </div>
+          </div>
+          
   ) 
 }
 

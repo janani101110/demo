@@ -6,7 +6,7 @@ const Blogspost = () => {
     <div className="postCard">
             
         
-            <img src={PostImage} alt="" className="postImage"/> 
+            <img src={PostImage} alt="" className="blogPostImage" /> 
       
      
             <div className="postText">
