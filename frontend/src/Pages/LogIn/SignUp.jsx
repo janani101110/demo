@@ -35,7 +35,7 @@ return (
   </div>
   <div className="loginTextdiv"> 
         <div className="loginText">  have an account? </div>
-        <Link to="/login"> <button className="loginButton"> Login </button></Link>
+        <Link to="/login"> <button className="loginButton"> Signin </button></Link>
     </div>
 
   </div>

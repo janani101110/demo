@@ -30,7 +30,7 @@ return (
  
 
   <div className="loginTextdiv">
-      <button onClick={ google } className="googleButton"> login with Google <img src={googleIcon} alt="google" className="googleIcon" /> </button>
+      <button onClick={ google } className="googleButton"> Signin with Google <img src={googleIcon} alt="google" className="googleIcon" /> </button>
     </div>
     <div className="loginhr">
     <hr className="hrclass" />
