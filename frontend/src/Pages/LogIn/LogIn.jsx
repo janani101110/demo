@@ -15,7 +15,7 @@ function Login() {
 
   
   const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("http://localhost:5000/api/auth/google/signin", "_self");
 
   }
 return (
