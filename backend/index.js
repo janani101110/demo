@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser=require('body-parser');
 const cors = require('cors');
 const multer=require('multer')
+const path=require("path")
 const passport = require('passport')
 const passportSetup = require('./passport');
 require('dotenv').config();
@@ -14,6 +15,7 @@ const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const postRoutes=require('./routes/posts');
 const commentRoute=require('./routes/comments');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,7 +34,10 @@ const connectDB=async()=>{
         console.log(err.message);
     }
 }
+
+//middlewares
 app.use(express.json());
+app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:3000',

@@ -18,7 +18,7 @@ export const Resources = () => {
   return (
     <div className='resoCollect'>
 
-      <div className='collect' id='collect1'>
+      <div className='rescollect' id='collect1'>
           <div className='resoimg'>
               <img src={sensors} alt="" className='resoimg'/> 
           </div>
@@ -36,7 +36,7 @@ export const Resources = () => {
           </div>
       </div>
 
-      <div className='collect' id='collect2'>
+      <div className='rescollect' id='collect2'>
             <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
             </div>
@@ -54,7 +54,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect3'>
+      <div className='rescollect' id='collect3'>
             <div className='resoimg'>
               <img src={datasheet} alt="" className='resoimg'/> 
             </div>
@@ -72,7 +72,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect4'>
+      <div className='rescollect' id='collect4'>
             <div className='resoimg'>
               <img src={code} alt="" className='resoimg'/> 
             </div>
@@ -89,7 +89,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect5'>
+      <div className='rescollect' id='collect5'>
             <div className='resoimg'>
               <img src={communi} alt="" className='resoimg'/> 
             </div>
@@ -107,7 +107,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect6'>
+      <div className='rescollect' id='collect6'>
             <div className='resoimg'>
               <img src={power} alt="" className='resoimg'/> 
             </div>
@@ -125,7 +125,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect7'>
+      <div className='rescollect' id='collect7'>
           <div className='resoimg'>
               <img src={proto} alt="" className='resoimg'/> 
           </div>
@@ -143,7 +143,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect8'>
+      <div className='rescollect' id='collect8'>
           <div className='resoimg'>
               <img src={cases} alt="" className='resoimg'/> 
           </div>
@@ -161,7 +161,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect9'>
+      <div className='rescollect' id='collect9'>
           <div className='resoimg'>
               <img src={network} alt="" className='resoimg'/> 
           </div>
@@ -179,7 +179,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect10'>
+      <div className='rescollect' id='collect10'>
           <div className='resoimg'>
               <img src={security} alt="" className='resoimg'/> 
           </div>
@@ -197,7 +197,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect11'>
+      <div className='rescollect' id='collect11'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -215,7 +215,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect12'>
+      <div className='rescollect' id='collect12'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -232,7 +232,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect13'>
+      <div className='rescollect' id='collect13'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -249,7 +249,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect14'>
+      <div className='rescollect' id='collect14'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -266,7 +266,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect15'>
+      <div className='rescollect' id='collect15'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -284,7 +284,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect16'>
+      <div className='rescollect' id='collect16'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>
@@ -301,7 +301,7 @@ export const Resources = () => {
           </div>  
       </div>
 
-      <div className='collect' id='collect17'>
+      <div className='rescollect' id='collect17'>
           <div className='resoimg'>
               <img src={pcb} alt="" className='resoimg'/> 
           </div>

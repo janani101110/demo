@@ -14,7 +14,6 @@ export const MotionSen = () => {
   const {user}=useContext(UserContext)
   console.log(user)
 
-
   const fetchPosts=async()=>{
     try{
       const res=await axios.get(URL+"/api/posts")
@@ -33,15 +32,16 @@ export const MotionSen = () => {
   return (
     <div className='sensorsCollect'>
         <Sidebar/>
-      <div className="content-container">
+      <div className="reso-content-container">
+      <div className='resocustom-button'>
       <Link to='/writepost'><Button label="Write" onClick={() => console.log("Button clicked")} /></Link>
+      </div>
         <h1 className = "resoTitle" id='motion'>MOTION SENSORS</h1>
         <div className="res-posts-container">
           {posts.map((post)=>(
-
-         
+            <Link to='/Postdetails.jsx'>
             <Resourcepost key={post.id} post={post}/>
-           
+            </Link>
           ))}
         </div>
           

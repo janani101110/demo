@@ -1,13 +1,14 @@
-.collect {
+.rescollect {
     position: relative; /* Add position relative */
     margin: 0 auto;
     width: 70%;
     min-height: 250px; /* Change height to auto to accommodate variable content */
-    background-color: #C332FB;
+    background-color: white;
     padding: 20px;
     border-radius: 20px;
     justify-content: space-between;
     margin: 3rem auto;
+    box-shadow: 0 8px 16px rgba(195, 50, 251, 0.5);
 }
 
 .resoimg {
@@ -39,13 +40,13 @@
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #C332FB;
-    color: black;
+    background-color: white;
+    color: black;  
 }
 
 /* Media queries for responsiveness */
 @media screen and (max-width: 768px) {
-    .collect {
+    .rescollect {
         width: 90%; /* Adjust width for smaller screens */
         height: auto;
     }

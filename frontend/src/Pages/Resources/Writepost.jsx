@@ -3,6 +3,7 @@ import {useState } from 'react';
 import { URL } from '../../url';
 import axios from 'axios';
 import './Writepost.css'
+import {useNavigate} from 'react-router-dom'
 
 export const Writepost = () => {
 
@@ -10,6 +11,7 @@ export const Writepost = () => {
   const [desc, setDesc] = useState('');
   const [file, setFile] = useState(null);
   
+  const navigate=useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ export const Writepost = () => {
     try {
       const res = await axios.post(URL + "/api/posts/create",post,{withCredential:true});
       console.log(res.data);
+      navigate("/motionsen");
     } 
     catch (err) {
       console.log(err);
@@ -51,9 +54,11 @@ export const Writepost = () => {
         <input onChange={(e) => setFile(e.target.files[0])} type='file' className='file-input' />
         
         <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className='description' placeholder='Enter Post Description' cols={30} rows={15}></textarea>
+        
         <button type='submit' className='publish-btn'>
           Publish
         </button>
+       
       </form>
     </div>
   );

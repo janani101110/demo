@@ -1,19 +1,21 @@
-import React from 'react';
-import axios from "axios"
+import React, {useContext, useEffect, useState } from 'react'
 import './Sensors.css'
 import Sidebar from '../Sidebar';
 import Resourcepost from './Resourcepost';
 import {URL} from "../../../url"
-import {useEffect, useState} from "react"
-import { Link } from 'react-router-dom';
- 
+import axios from "axios"
+import {UserContext} from "../../../Context/UserContext"
 
 export const Sensors = () => {
+
   const [posts,setPosts]=useState([])
+  const {user}=useContext(UserContext)
+  console.log(user)
+
 
   const fetchPosts=async()=>{
     try{
-      const res =await axios.get(URL+"api/posts/")
+      const res=await axios.get(URL+"/api/posts")
       //console.log(res.data)
       setPosts(res.data)
     }
@@ -29,22 +31,20 @@ export const Sensors = () => {
   return (
     <div className='sensorsCollect'>
         <Sidebar/>
-      <div className="content-container">
-        <h1 className = "resoTitle">SENSORS</h1>
+      <div className="reso-content-container">
+     
+        <h1 className = "resoTitle" >SENSORS</h1>
+        <div className="res-posts-container">
+          {posts.map((post)=>(
 
-          <div className="res-posts-container">
-            {posts.map((post)=>(
-              <>
-              <Link to="/Postdetails">
-                <Resourcepost key={post._id} post={post}/>
-            </Link>
-            </>
-            ))}  
-          </div>
+         
+            <Resourcepost key={post.id} post={post}/>
+           
+          ))}
+        </div>
           
       </div>
-      
-    </div>
+   </div>
 
   
   )

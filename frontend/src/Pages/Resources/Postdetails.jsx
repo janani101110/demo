@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios"
-import {URL} from "../../url"
+import {URL,IF} from "../../url"
 import {useParams} from "react-router-dom"
 import { useEffect, useState } from 'react'
 
@@ -27,7 +27,7 @@ export const Postdetails = () => {
   return (
     <div>
       <h1>{post.title}</h1>
-      <img src={post.photo} alt="" className="res-post img" />
+      <img src={IF+post.photo} alt="" className="res-post img" />
       <p>{post.desc}</p>
     </div>
   )

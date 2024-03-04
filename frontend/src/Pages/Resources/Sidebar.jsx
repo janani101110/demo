@@ -8,7 +8,7 @@ export const Sidebar = () => {
           <table>
           <thead>
             <tr>
-              <th>All Categories</th>
+              <Link to='/Sensors' className="nav"><th>All Categories</th></Link>
             </tr>
           </thead>
           <tbody>
