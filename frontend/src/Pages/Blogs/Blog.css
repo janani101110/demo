@@ -179,7 +179,7 @@
     flex-direction:row;
     justify-content: center;
     align-items: center;
-    margin-bottom: auto;
+    margin-bottom: 10px;
 
 }
 
@@ -200,7 +200,6 @@
 .createBlogSubmit{
     height: 40px;
     width: 300px;
-    margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
     border: solid 2px #532f44;
@@ -240,14 +239,13 @@
   font-size: 40px;
   font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
   color: rgb(95, 20, 64);
-  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .createBlogTextbox{
   padding: 5px;
   height: auto;
   width: 800px;
-  margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 0.5px solid ;
