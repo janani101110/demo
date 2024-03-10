@@ -1,47 +1,41 @@
-
-
 import React from 'react';
 import './Profile.css';
 
+
+
+
+
 const Profile = () => {
+  
+  
   return (
     <div className="profile">
-
-            <div className="profile-header">
-                <div className="profile-header-info">
-                </div>
-                <img src="https://www.w3schools.com/howto/img_avatar.png" className="profile-header-img" alt="" />
-                <div className="profile-header-text">
-                    <h4>Username</h4>
-                    <p>email</p>
-                </div>
-                <hr className="header-hr" />
-                <div className="profile-header-text">
-                    <p className="profile-header-text-p">NoBlogs</p>
-                    <p className="profile-header-text-p">NoAds</p>
-                    <p className="profile-header-text-p">NoProjects</p>
-                    <p className="profile-header-text-p">NoResources</p>
-                </div>
-                <hr className="header-hr" />
-                <div className="UserBlogs">
-                    <div className="profile-blog-text">
-                        <h3>BLOGS</h3>
-                    </div>
-                  
-
-                </div>
-                <div className="UserAds">
-
-                </div>
-                <div className="UserProjects">
-
-                </div>
-                <div className="UserResources">
-
-                </div>
-
-            </div>
+        <div className='profileHeader'>
+          <div className='ProfileHeaderImage'>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUs73Mz3FqhV8uy2F5TGw_jGvFdzGirConJA&usqp=CAU" className="profileImg" alt="Profile" /> 
+          </div>
+          <div className='ProfileHeaderText'>
+              <p className='ProfileText'> User Name</p>
+              <p className='ProfileText'> Email</p>
+          </div>
         </div>
+        <div className='profileMessage'>
+          <h3 className='profileWelcomeMessage'>
+          Get ready to spark innovation and forge meaningful connections in the electrifying world of Electronics!
+          </h3>
+        </div>
+        <div className='ProfileDashboard'>
+          <p className='dashboardText'> Resources </p>
+          <p className='dashboardText'> Blogs </p>
+          <p className='dashboardText'> Ads </p>
+          <p className='dashboardText'> Projects </p>
+
+        </div>
+
+        <button onClick={() => { window.location.href = 'http://localhost:5000/logout'; }}> LogOut </button>
+        
+    </div>
+
 
   )
 }

@@ -10,6 +10,7 @@ const path = require("path");
 const passport = require('passport')
 const passportSetup = require('./passport');
 require('dotenv').config();
+require('./passport'); 
 const cookieParser = require('cookie-parser')
 
 const authRoute=require('./routes/auth');
@@ -57,17 +58,19 @@ app.use(cors({
 );
 
 app.get('/loginError', function (req, res) {
-  // Handle login error, such as rendering an error page or providing an error message
+  
   res.status(500).send('Login process encountered an error. Please try again.');
 });
 
 app.get('/auth/google/signin/callback',
   passport.authenticate('google-signin', { failureRedirect: '/loginError' }),
   function (req, res) {
-    // Successful sign-in, redirect or handle accordingly
-    res.redirect('http://localhost:3000/home');
+    
+   res.status(200).redirect('http://localhost:3000/home');
+    
   }
 );
+
 
 app.get('/auth/google/signup',
   passport.authenticate('google-signup', { scope: ['profile', 'email'] })
@@ -76,15 +79,20 @@ app.get('/auth/google/signup',
 app.get('/auth/google/signup/callback',
   passport.authenticate('google-signup', { failureRedirect: '/signupError' }),
   function (req, res) {
-    // Successful sign-up, redirect or handle accordingly
     res.redirect('http://localhost:3000/login');
   }
 );
 
-
-
 app.get("/logout", function (req, res) {
-  res.redirect("http://localhost:3000/");
+  req.logout(); 
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.redirect('http://localhost:3000/');
+    }
+  });
 });
 
 
@@ -93,7 +101,6 @@ app.get("/logout", function (req, res) {
     // Handle the root path (e.g., send a welcome message or render a home page) i put a welcome message but need the home page here
     res.send('express app is running');
   });
-
  
 
 app.use("/api/auth", authRoute);

@@ -1,10 +1,10 @@
 import React from 'react'
 import "./Blog.css";
 import {Link} from "react-router-dom";
-import blogBanner from "../Home/Assets/octopus.png";
 
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
+import Profile from '../Profile/Profile'
 export const Blogs = () => {
   return (
     <div className="BlogHome">
@@ -38,12 +38,12 @@ export const Blogs = () => {
           </div>
 
             <div className='bpost'>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard" > <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
             </div>
           </div>
           

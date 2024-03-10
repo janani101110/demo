@@ -21,6 +21,15 @@
     font-size: 36px;
     font-weight: bolder;
 }
+.profileImg{
+    margin-top: 10px;
+    margin-right: 100px;
+    height: 100px;
+    width: auto;
+    border-radius: 50%;
+    border: 1px solid #B69AFF;
+    cursor: pointer;
+}
 .cover{
     justify-content: center;
     width: 100px;
@@ -75,3 +84,4 @@
     background: rgb(145, 80, 145);
     color: white;
 }
+

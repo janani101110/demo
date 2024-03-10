@@ -11,7 +11,7 @@ import googleIcon from "../LogIn/images/googleIcon.png";
 function Login() {
 
   const {setUser}=useContext(UserContext)
-  const navigate=useNavigate()
+
 
   
   const google = () => {
@@ -36,8 +36,8 @@ return (
     <hr className="hrclass" />
   </div>
   <div className="loginTextdiv"> 
-        <div className="loginText"> Don't have an account? </div>
-        <Link to="/signup"> <button className="loginButton"> Sign Up </button></Link>
+        <div className="loginText"> Don't have an account? </div>  
+        <Link to="/signup"> SignUp </Link>
     </div>
 
   </div>

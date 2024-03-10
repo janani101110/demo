@@ -34,8 +34,8 @@ return (
     <hr className="hrclass" />
   </div>
   <div className="loginTextdiv"> 
-        <div className="loginText">  have an account? </div>
-        <Link to="/login"> <button className="loginButton"> Signin </button></Link>
+        <div className="loginText">  Have an Account? </div>
+        <Link to="/login"> Signin </Link>
     </div>
 
   </div>

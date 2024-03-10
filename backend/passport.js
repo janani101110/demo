@@ -20,7 +20,7 @@ passport.use('google-signin', new GoogleStrategy({
           // User already exists, handle accordingly
           const token = jwt.sign({ userId: existingUser.id }, process.env.SECRET_KEY, { expiresIn: '3h' });
           console.log("Generated Token:", token);
-          return done(null, { user: existingUser, token: token });
+          return done(null, { user: existingUser, token: token  });
         } else {
           return done(null, false, { message: 'User does not exist' });
         }
@@ -59,7 +59,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(async function (id, done) {
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(_id);
     done(null, user);
   } catch (err) {
     done(err, null);
