@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState } from 'react'
 import './Sensors.css'
 import Sidebar from '../Sidebar';
-import Resourcepost from './Resourcepost';
+import Resourcepost from '../Resourcepost';
 import {URL} from "../../../url"
 import axios from "axios"
 import {UserContext} from "../../../Context/UserContext"
@@ -15,7 +15,7 @@ export const Sensors = () => {
 
   const fetchPosts=async()=>{
     try{
-      const res=await axios.get(URL+"/api/posts")
+      const res=await axios.get(URL+"/api/resoposts")
       //console.log(res.data)
       setPosts(res.data)
     }
@@ -36,9 +36,12 @@ export const Sensors = () => {
         <h1 className = "resoTitle" >SENSORS</h1>
         <div className="res-posts-container">
           {posts.map((post)=>(
-
          
-            <Resourcepost key={post.id} post={post}/>
+     
+              <Resourcepost key={post.id} post={post}/>
+     
+
+            
            
           ))}
         </div>

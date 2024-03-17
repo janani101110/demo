@@ -1,7 +1,6 @@
 
 .container {
   padding: 1.5rem;
-  margin-top: 2rem;
 }
 
 .title {
@@ -20,11 +19,13 @@
   margin-bottom: 2rem;
 }
 
-.input {
+.resopostinput {
   width: 100%;
   padding: 0.5rem;
+  margin-top: 10px;
   margin-bottom: 1rem;
-  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .file-input {
@@ -36,16 +37,79 @@
 .description {
   width: 100%;
   padding: 0.5rem;
-  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .publish-btn {
-  background-color: #000;
-  color: #fff;
+  display: block; /* Ensure button is displayed as a block-level element */
+  background: rgb(145, 80, 145);
+  color: white;
+  border-radius: 5px;
+  border: none;
   font-weight: 600;
   width: 20%;
-  margin: 0 auto;
+  margin: 0 auto; /* Center the button horizontally */
   padding: 0.5rem;
   cursor: pointer;
   font-size: 1.25rem;
+  margin-top: 10px;
+}
+
+.publish-btn:hover {
+  background: rgb(77, 37, 77);
+}
+
+
+.reso-post-categories-container {
+  margin-bottom: 20px;
+}
+
+.reso-category-input {
+  display: flex;
+  align-items: center;
+  
+}
+
+.resoaddcategory {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.reso-add-button {
+  padding: 8px 20px;
+  background: rgb(145, 80, 145);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reso-add-button:hover {
+  background: rgb(77, 37, 77);
+}
+
+.reso-category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reso-category-item {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.reso-category-item p {
+  margin-right: 5px;
+}
+
+.reso-delete-button {
+  cursor: pointer;
 }

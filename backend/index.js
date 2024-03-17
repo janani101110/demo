@@ -15,7 +15,8 @@ const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const postRoutes=require('./routes/posts');
 const commentRoute=require('./routes/comments');
-
+const resopostRoutes=require('./routes/resoposts');
+const resocommentRoutes=require('./routes/resocomments');
 
 const app = express();
 app.use(bodyParser.json());
@@ -73,6 +74,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoute);
+app.use("/api/resoposts", resopostRoutes);
+app.use("/api/resocomments", resocommentRoutes);
 
 //image upload
 const storage=multer.diskStorage({

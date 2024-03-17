@@ -21,3 +21,19 @@
     width: 200px;
     height: 300px;
 }
+
+/* CSS */
+@keyframes octopusAnimation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .octopus {
+    animation: octopusAnimation 1s ease infinite;
+  }
+  
+  

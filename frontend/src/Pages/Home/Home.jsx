@@ -7,7 +7,7 @@ export const Home = () => {
     
     <div className='home'>
       <div className='homeimg'>
-        <img src={octopus} alt=''/>
+        <img src={octopus} alt='Octopus' class='octopus'/>
       </div>
       <div className='home-left'>
        <h1>Welcome Tinkers !</h1>

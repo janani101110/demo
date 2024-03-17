@@ -7,8 +7,8 @@ import {Resources} from './Pages/Resources/Resources';
 import {Sensors} from './Pages/Resources/Sensors/Sensors';
 import {MotionSen} from './Pages/Resources/Sensors/MotionSen';
 import {Writepost} from './Pages/Resources/Writepost';
-import {Postdetails} from './Pages/Resources/Postdetails';
-import {Editpost} from './Pages/Resources/Editpost';
+import {ResoPostdetails} from './Pages/Resources/ResoPostdetails';
+import {ResoEditpost} from './Pages/Resources/ResoEditpost';
 import {Projects} from './Pages/Projects/Projects';
 import {Blogs} from './Pages/Blogs/Blogs';
 import {Shopping} from './Pages/Shopping/Shopping';
@@ -34,10 +34,10 @@ function App() {
           <Route path='/home'element={<Home/>}/>
           <Route path='/resources'element={<Resources/>}/>
             <Route path='/sensors' element={<Sensors/>}/>
-              <Route path='/MotionSen' element={<MotionSen/>}/>
-              <Route path='/Writepost' element={<Writepost/>}/>
-              <Route path='/Postdetails' element={<Postdetails/>}/>
-              <Route path='/Editpost' element={<Editpost/>}/>
+              <Route path='/motionSen' element={<MotionSen/>}/>
+              <Route path='/writepost' element={<Writepost/>}/>
+              <Route path='/resopostdetails/:id' element={<ResoPostdetails/>}/>
+              <Route path='/resoeditpost/:id' element={<ResoEditpost/>}/>
           <Route path='/projects'element={<Projects/>}/>
           <Route path='/blogs'element={<Blogs/>}/>
           <Route path='/shopping'element={<Shopping/>}/>
