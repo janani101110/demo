@@ -1,19 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, {  useState, useEffect } from 'react'
 import './Navbar.css'
 //import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../Context/UserContext';
 
 
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
+  const [authenticated, setAuthenticated] = useState(true);
 
-  const{user}=useContext(UserContext)
-  console.log(user)
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
- 
+  useEffect(() => {
+    fetch('/check-auth')
+      .then(response => {
+        if (response.status === 200) {
+          setAuthenticated(false);
+          console.log("authenticated");
+        } else {
+          setAuthenticated(true);
+          console.log(" not authenticated");
+        }
+      })
+      .catch(error => console.error('Error checking authentication:', error));
+  }, []);
 
   return (
     <div className='navbar'>
@@ -31,16 +40,17 @@ export const Navbar = () => {
             <li onClick={()=>{setMenu("forum")}}><Link style={{textDecoration: 'none'}} to='/forum'>Forum</Link>{menu==="forum"?<hr/>:<></>}</li>
             <li onClick={()=>{setMenu("about")}}><Link style={{textDecoration: 'none'}} to='/aboutus'>About Us</Link>{menu==="about"?<hr/>:<></>}</li>
         </ul>'
-        {isLoggedIn ? (
+        {authenticated ? (
         <div>
         <Link to ='/Profile'> <img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /> </Link>
         </div>
-      ) : (
-        <div className='nav-login'>
-            <Link to='/signup'><button>Sign Up</button></Link>
-            <Link to='/login'><button>Sign In</button></Link>
-        </div>
-      )}
+        ) : (
+          <div className='nav-login'>
+           <Link to='/signup'><button>Sign Up</button></Link>
+           <Link to='/login'><button>Sign In</button></Link>
+          </div>
+        )}
+     
         
       
     </div>

@@ -5,36 +5,26 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
 
-
-passport.use('google-signin', new GoogleStrategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:5000/auth/google/signin/callback",
-  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-},
-  function (accessToken, refreshToken, profile, done) {
-    User.findOne({ googleId: profile.id })
-      .then((existingUser) => {
-        if (existingUser) {
-          // User already exists, handle accordingly
-          const token = jwt.sign({ userId: existingUser.id }, process.env.SECRET_KEY, { expiresIn: '3h' });
-          console.log("Generated Token:", token);
-          return done(null, { user: existingUser, token: token  });
-        } else {
-          return done(null, false, { message: 'User does not exist' });
-        }
-      })
-      .catch((err) => {
-        return done(err, null);
-      });
-  }));
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+    .catch(err => {
+      done(err, null);
+    });
+});
 
 passport.use('google-signup', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: "http://localhost:5000/auth/google/signup/callback",
-  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+  scope: ["profile", "email"]
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     const existingUser = await User.findOne({ googleId: profile.id });
@@ -42,8 +32,13 @@ passport.use('google-signup', new GoogleStrategy({
       // User already exists, return an error
       return done(null, existingUser);
     } else {
-      // User doesn't exist, create a new user
-      const newUser = await User.create({ googleId: profile.id, username: profile.displayName });
+      const newUser = await User.create
+      ({ 
+        googleId: profile.id, 
+        username: profile.displayName, 
+        email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : '',
+        profilePicture: profile._json.picture,
+      });
       return done(null, newUser);
     }
   } catch (err) {
@@ -53,18 +48,32 @@ passport.use('google-signup', new GoogleStrategy({
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
+passport.use('google-signin', new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/google/signin/callback",
+  scope: ["profile", "email"],
+},
+  function (accessToken, refreshToken, profile, done) {
+    User.findOne({ googleId: profile.id })
+        .then((existingUser) => {
+        if (existingUser) {
+          const token = jwt.sign({ googleId: existingUser.googleId }, process.env.SECRET_KEY, { expiresIn: '3h' });
+          console.log('generated token : ', token);
+          existingUser.token=token;
+          return done(null,existingUser, token);
+        } else {
+          return done(null, false, { message: 'User does not exist' });
+        }
+      })
+      .catch((err) => {
+        return done(err, null);
+      });
+  }));
 
-passport.deserializeUser(async function (id, done) {
-  try {
-    const user = await User.findById(_id);
-    done(null, user);
-  } catch (err) {
-    done(err, null);
-  }
-});
+
+
+
 
 
 module.exports = passport;

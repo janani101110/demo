@@ -11,10 +11,18 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:false,
     },
-    timespans:{
+    email:{
+        type:String,
+        required:false
+    },
+    profilePicture:{
         type:String,
         required:false,
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      },
     })
 
 UserSchema.plugin(passportLocalMongoose);

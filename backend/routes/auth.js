@@ -4,6 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const CLIENT_URL = "http://localhost:3000/";
@@ -34,9 +35,7 @@ res.redirect('/home');
 }
 );
 
-router.get("/logout", function(req, res){
-  req.logout();
-  res.redirect(CLIENT_URL);
-});
+
+
 
 module.exports=router;

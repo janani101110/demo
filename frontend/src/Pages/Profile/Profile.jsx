@@ -7,7 +7,11 @@ import './Profile.css';
 
 const Profile = () => {
   
-  
+  const logout = () => {
+    window.open("http://localhost:5000/logout", "_self");
+  }
+
+
   return (
     <div className="profile">
         <div className='profileHeader'>
@@ -32,7 +36,7 @@ const Profile = () => {
 
         </div>
 
-        <button onClick={() => { window.location.href = 'http://localhost:5000/logout'; }}> LogOut </button>
+        <button onClick={ logout } className='logoutButton'> LogOut </button>
         
     </div>
 

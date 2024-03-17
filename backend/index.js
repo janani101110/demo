@@ -9,19 +9,22 @@ const multer=require("multer");
 const path = require("path");
 const passport = require('passport')
 const passportSetup = require('./passport');
-require('dotenv').config();
-require('./passport'); 
 const cookieParser = require('cookie-parser')
 
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const postRoutes=require('./routes/posts');
+const verifyToken = require('./middleware/verifyToken');
+
+const moment = require('moment-timezone');
+moment.tz.setDefault('Asia/Colombo');
+
+require('dotenv').config();
+require('./passport'); 
 
 const app = express();
+
 app.use(bodyParser.json());
-app.use(session({ secret: 'cats'}))
-app.use(passport.initialize())
-app.use(passport.session())
 //app.use(bodyParser.urlencoded({extended: false}));
 
 //database connection
@@ -83,17 +86,33 @@ app.get('/auth/google/signup/callback',
   }
 );
 
-app.get("/logout", function (req, res) {
-  req.logout(); 
-  req.session.destroy((err) => {
+
+// Check authentication
+app.get('/check-auth', verifyToken, function(req, res) {
+  // This code will only execute if the user is authenticated
+  console.log(req.headers);
+  if (req.isAuthenticated()) {
+    res.status(200).send({ authenticated: true });
+  } else {
+    res.status(401).send({ authenticated: false });
+  }
+});
+
+
+// Logout route
+app.get('/logout', function(req, res) {
+  req.logout(function(err) {
     if (err) {
-      console.error('Error destroying session:', err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.redirect('http://localhost:3000/');
+      console.error("Error during logout:", err);
+      return res.status(500).send("Error during logout");
     }
+    res.clearCookie('connect.sid'); // Clear session cookie
+    res.redirect('http://localhost:3000/'); // Redirect to homepage
   });
 });
+
+
+
 
 
 
@@ -114,6 +133,7 @@ const storage = multer.diskStorage({
     return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
 })
+
 const upload = multer({storage:storage})
 //creating upload end point for images
 app.use('/images',express.static('upload/images'))
