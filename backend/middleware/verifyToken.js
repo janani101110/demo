@@ -1,33 +1,31 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Middleware function to verify JWT token
-const verifyToken = (req, res, next, ) => {
-    const authHeader = req.headers.authorization;
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  console.log('authHeader:', authHeader);
 
-    if (!authHeader) {
-      return res.status(401).send('Unauthorized: Token missing');
-    }
-  
-    // Ensure the Authorization header has the correct format
-    const tokenParts = authHeader.split(' ');
-    if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
-      return res.status(401).send('Unauthorized: Invalid token format');
-    }
-  
-    const token = tokenParts[1];
+  if (!authHeader) {
+    return res.status(401).send('Unauthorized: Token missing');
+  }
 
-    
-  // Verify the token
+  const tokenParts = authHeader.split(' ');
+  console.log('tokenParts:', tokenParts);
+
+  if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+    return res.status(401).send('Unauthorized: Invalid token format');
+  }
+
+  const token = tokenParts[1];
+
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-    console.log(process.env.SECRET_KEY);
     if (err) {
-      console.error('Token verification failed:', err);
-      // Token is not valid
+      console.error('Token verification:', err);
+      return res.status(401).send('Unauthorized: Token verification failed');
     } else {
       console.log('Token is valid');
-      // Token is valid, decoded contains the decoded payload
       console.log(decoded);
+      req.user = decoded; // Attach the decoded token data to the request
       next();
     }
   });

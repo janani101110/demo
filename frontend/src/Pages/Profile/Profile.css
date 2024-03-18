@@ -5,19 +5,18 @@
     margin: 200px;
     margin-top: 30px;
     margin-bottom: 30px;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUs73Mz3FqhV8uy2F5TGw_jGvFdzGirConJA&usqp=CAU');
     background-size:cover;
     height: auto;
   }
   .ProfileHeaderImage,.profileHeaderText{
     width: auto;
-    height: auto;
+    height: 100px;
     border-radius: 50%;
     margin: 50px;
     
   }
   .profileImg{
-    width:100px;
+    width:150px;
     height:auto;
     opacity: 1.0;
   }

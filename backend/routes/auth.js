@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const cookieParser = require('cookie-parser');
+const verifyToken = require('../middleware/verifyToken');
 require('dotenv').config();
 
 const CLIENT_URL = "http://localhost:3000/";
@@ -34,6 +35,11 @@ function(req, res) {
 res.redirect('/home');
 }
 );
+
+router.get('/protected-route', verifyToken, (req, res) => {
+  // Protected route that requires token verification
+  res.send('This is a protected route');
+});
 
 
 
