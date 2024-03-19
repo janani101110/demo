@@ -27,14 +27,14 @@ passport.use('google-signup', new GoogleStrategy({
   scope: ["profile", "email"]
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    const existingUser = await User.findOne({ googleId: profile.id });
+    const existingUser = await User.findOne({ userId: profile.id });
     if (existingUser) {
       // User already exists, return an error
       return done(null, existingUser);
     } else {
       const newUser = await User.create
       ({ 
-        googleId: profile.id, 
+        userId: profile.id, 
         username: profile.displayName, 
         email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : '',
         profilePicture: profile._json.picture,
@@ -46,7 +46,7 @@ passport.use('google-signup', new GoogleStrategy({
   }
 }));
 
-passport.use(User.createStrategy());
+
 
 passport.use('google-signin', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
@@ -55,22 +55,27 @@ passport.use('google-signin', new GoogleStrategy({
   scope: ["profile", "email"],
 },
   function (accessToken, refreshToken, profile, done) {
-    User.findOne({ googleId: profile.id })
+    User.findOne({ userId: profile.id })
         .then((existingUser) => {
-        if (existingUser) {
-          const token = jwt.sign({ googleId: existingUser.googleId }, process.env.SECRET_KEY, { expiresIn: '3h' });
-          console.log('generated token : ', token);
-          existingUser.token=token;
-          return done(null,existingUser, token);
-        } else {
-          return done(null, false, { message: 'User does not exist' });
-        }
-      })
-      .catch((err) => {
-        return done(err, null);
-      });
+          if (existingUser) {
+            // User exists, generate token
+            accessToken = jwt.sign( { userId: existingUser.userId }, process.env.accessToken_secret, { expiresIn: '5h' });
+            console.log('generated token : ', accessToken);
+            // Save token to user document
+            existingUser.isAuthenticated = true;
+            existingUser.save()
+              .then(() => {
+                return done(null, existingUser);
+              })} else {
+            // User does not exist, you might want to create a new user here
+            return done(null, false, { message: 'User does not exist' });
+          }
+        })
+        .catch((err) => {
+          return done(err, null);
+        });
   }));
-
+  passport.use(User.createStrategy());
 
 
 

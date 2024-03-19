@@ -7,13 +7,15 @@ const UserSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
-    googleId:{
+    userId:{
         type:String,
         required:false,
+        unique:true
     },
     email:{
         type:String,
-        required:false
+        required:false,
+        unique:false
     },
     profilePicture:{
         type:String,
@@ -22,7 +24,12 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-      },
+    },
+    isAuthenticated:{
+        type:Boolean,
+        default: false,
+        required:true
+    }
     })
 
 UserSchema.plugin(passportLocalMongoose);

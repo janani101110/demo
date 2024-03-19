@@ -36,10 +36,6 @@ res.redirect('/home');
 }
 );
 
-router.get('/protected-route', verifyToken, (req, res) => {
-  // Protected route that requires token verification
-  res.send('This is a protected route');
-});
 
 
 

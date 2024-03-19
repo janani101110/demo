@@ -2,14 +2,14 @@ const express = require('express');
 const router=express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const verifyToken=require('../verifyToken');
+const verifyToken = require('../middleware/verifyToken');
 //const Comment=require('../models/Comment');
 //const Post=require('../models/Post');
 
 
 
 //Delete
-router.delete("/:id",verifyToken, async (req, res) => {
+router.delete("/:userId",verifyToken, async (req, res) => {
     try{
         await User.findByIdAndDelete(req.params.id);
         //delete all posts and comments of the user
@@ -26,7 +26,7 @@ router.delete("/:id",verifyToken, async (req, res) => {
 
 
 //Get User
-router.get("/:id", async (req, res) => {
+router.get("/:userId", async (req, res) => {
     try{
         const user = await User.findById(req.params.id)
         res.status(200).json(info);

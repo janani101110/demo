@@ -10,20 +10,6 @@ export const Navbar = () => {
   const [menu,setMenu] = useState("home");
   const [authenticated, setAuthenticated] = useState(true);
 
-  useEffect(() => {
-    fetch('/check-auth')
-      .then(response => {
-        if (response.status === 200) {
-          setAuthenticated(false);
-          console.log("authenticated");
-        } else {
-          setAuthenticated(true);
-          console.log(" not authenticated");
-        }
-      })
-      .catch(error => console.error('Error checking authentication:', error));
-  }, []);
-
   return (
     <div className='navbar'>
         <div className='nav-logo'>

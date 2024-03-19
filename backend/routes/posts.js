@@ -4,7 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const Comment=require('../models/Comment');
 const Post=require('../models/Post');
-const verifyToken = require('../verifyToken');
+const verifyToken = require('../middleware/verifyToken.js');
 
 //Create 
 router.post("/create", async (req, res) => {

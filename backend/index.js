@@ -39,7 +39,7 @@ const connectDB=async()=>{
 }
 // session
 app.use(session({
-  secret: process.env.SECRET_KEY,
+  secret: process.env.accessToken_secret,
   resave: false,
   saveUninitialized: false
 }));
@@ -56,24 +56,6 @@ app.use(cors({
     credentials: true
   }));
 
-  app.get('/auth/google/signin',
-  passport.authenticate('google-signin', { scope: ['profile', 'email'] })
-);
-
-app.get('/loginError', function (req, res) {
-  
-  res.status(500).send('Login process encountered an error. Please try again.');
-});
-
-app.get('/auth/google/signin/callback',
-  passport.authenticate('google-signin', { failureRedirect: '/loginError' }),
-  function (req, res) {
-    
-   res.status(200).redirect('http://localhost:3000/home');
-    
-  }
-);
-
 
 app.get('/auth/google/signup',
   passport.authenticate('google-signup', { scope: ['profile', 'email'] })
@@ -86,17 +68,76 @@ app.get('/auth/google/signup/callback',
   }
 );
 
+app.get('/auth/google/signin',
+passport.authenticate('google-signin', { scope: ['profile', 'email'] })
+);
 
-// Check authentication
-app.get('/check-auth', verifyToken, function(req, res) {
-  // This code will only execute if the user is authenticated
-  console.log(req.headers);
-  if (req.isAuthenticated()) {
-    res.status(200).send({ authenticated: true });
-  } else {
-    res.status(401).send({ authenticated: false });
-  }
+app.get('/loginError', function (req, res) {
+
+res.status(500).send('Login process encountered an error. Please try again.');
 });
+
+app.get('/auth/google/signin/callback',
+passport.authenticate('google-signin', { failureRedirect: '/loginError' }),
+function (req, res) {
+  
+ res.status(200).redirect('http://localhost:3000/home');
+  
+}
+);
+
+const authMiddleware = async (req, res, next) => {
+  try {
+
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ message: 'Authorization token is missing' });
+    }
+  
+    // Assuming you're using JWT and your token contains the user ID
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      req.userId = decodedToken.userId; // Extract user ID from the decoded token
+      next();
+    } catch (err) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    if (!userId) {
+      return res.status(401).json({ message: 'User ID is missing' });
+    }
+
+    // Find the user based on the user ID
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
+    // Check if the user is authenticated
+    if (!user.isAuthenticated) {
+      return res.status(401).json({ message: 'User is not authenticated' });
+    }
+
+    // Attach the user object to the request for further use
+    req.user = user;
+    next(); // Move to the next middleware or route handler
+  } catch (err) {
+    console.error('Error in authMiddleware:', err);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
+
+
+// Endpoint to check authentication
+app.get('/checkAuth', authMiddleware, (req, res) => {
+  res.sendStatus(200);
+})
+
+
 
 
 // Logout route
