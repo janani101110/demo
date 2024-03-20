@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from 'react'
+import React, {  useState } from 'react'
 import './Navbar.css'
 //import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
@@ -8,8 +8,9 @@ import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
-  const [authenticated, setAuthenticated] = useState(true);
+  
 
+    
   return (
     <div className='navbar'>
         <div className='nav-logo'>
@@ -25,17 +26,17 @@ export const Navbar = () => {
             <li onClick={()=>{setMenu("shopping")}}><Link style={{textDecoration: 'none'}} to='/shopping'>Shopping</Link>{menu==="shopping"?<hr/>:<></>}</li>
             <li onClick={()=>{setMenu("forum")}}><Link style={{textDecoration: 'none'}} to='/forum'>Forum</Link>{menu==="forum"?<hr/>:<></>}</li>
             <li onClick={()=>{setMenu("about")}}><Link style={{textDecoration: 'none'}} to='/aboutus'>About Us</Link>{menu==="about"?<hr/>:<></>}</li>
-        </ul>'
-        {authenticated ? (
+        </ul>
+      
         <div>
         <Link to ='/Profile'> <img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /> </Link>
         </div>
-        ) : (
+      
           <div className='nav-login'>
            <Link to='/signup'><button>Sign Up</button></Link>
            <Link to='/login'><button>Sign In</button></Link>
           </div>
-        )}
+
      
         
       
@@ -45,21 +46,3 @@ export const Navbar = () => {
 }
 export default Navbar;
 
-/** 
- 
- useEffect(() => {
-  fetch('http://localhost:5000/check-auth')
-  .then((res) => {
-    if (res===200) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  })
-  .catch((err) => {
-    setIsLoggedIn(false);
-    console.error('Error during authentication check:', err);
-  });
-}, []); 
-
-**/

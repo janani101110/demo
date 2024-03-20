@@ -31,10 +31,12 @@ passport.authenticate('google-signin', { scope: ['profile', 'email'] })
 router.get('/google/signin/callback',
 passport.authenticate('google-signin', { failureRedirect: '/loginError' }),
 function(req, res) {
-// Successful sign-in, redirect or handle accordingly
+console.log("User".user);
 res.redirect('/home');
 }
 );
+
+
 
 
 

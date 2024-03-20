@@ -2,22 +2,22 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require("passport");
 const User = require('./models/User');
 const jwt = require('jsonwebtoken');
+const passportJwt = require("passport-jwt");
+const ExtractJwt = passportJwt.ExtractJwt;
+const StrategyJwt = passportJwt.Strategy;
+const cors = require('cors');
+
+passport.use(cors({
+  origin: 'http://localhost:3000',
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}));
 
 require('dotenv').config();
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
 
-passport.deserializeUser((id, done) => {
-  User.findById(id)
-    .then(user => {
-      done(null, user);
-    })
-    .catch(err => {
-      done(err, null);
-    });
-});
+
+passport.use(User.createStrategy());
 
 passport.use('google-signup', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
@@ -46,8 +46,6 @@ passport.use('google-signup', new GoogleStrategy({
   }
 }));
 
-
-
 passport.use('google-signin', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -62,7 +60,7 @@ passport.use('google-signin', new GoogleStrategy({
             accessToken = jwt.sign( { userId: existingUser.userId }, process.env.accessToken_secret, { expiresIn: '5h' });
             console.log('generated token : ', accessToken);
             // Save token to user document
-            existingUser.isAuthenticated = true;
+            existingUser.token = accessToken;
             existingUser.save()
               .then(() => {
                 return done(null, existingUser);
@@ -75,7 +73,39 @@ passport.use('google-signin', new GoogleStrategy({
           return done(err, null);
         });
   }));
-  passport.use(User.createStrategy());
+
+passport.use(
+  new StrategyJwt(
+    {
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.accessToken_secret,
+    },
+    function (jwtPayload, done) {
+      return User.findOne({ where: { id: jwtPayload.id } })
+        .then((user) => {
+          return done(null, user);
+        })
+        .catch((err) => {
+          return done(err);
+        });
+    }
+  )
+);
+
+  passport.serializeUser(function (user, done) {
+    done(null, user.userId);
+  });
+  
+  passport.deserializeUser(async (userId, done) => {
+    const user = await User.findOne({where : {userId} })
+    
+    .catch((error) =>{
+      console.log("error in deserializeUser", error);
+      done(error, null)
+    })
+    if(user) done(null, user)
+    console.log("deserializeUser", userId); 
+  });
 
 
 

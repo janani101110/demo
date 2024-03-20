@@ -13,7 +13,7 @@ function Login() {
   const {setUser}=useContext(UserContext)
 
 
-  
+  axios.defaults.withCredentials = true;
   const google = () => {
     window.open("http://localhost:5000/api/auth/google/signin", "_self");
 

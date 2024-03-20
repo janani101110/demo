@@ -3,6 +3,7 @@ import "./InsidePost.css";
 import PostImage from "../Blogs/images/postImage.jpg";
 
 export const InsidePost = () => {
+
   return (
     <div className='InsidePost'>
         <div className="Blog">

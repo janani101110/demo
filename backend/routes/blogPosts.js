@@ -1,9 +1,9 @@
 const express = require('express');
 const router=express.Router();
-const User = require('../models/User');
+const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
-const Comment=require('../models/Comment');
-const Post=require('../models/Post');
+const Comment=require('../models/Comment.js');
+const Post=require('../models/blogPost.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
 //Create 

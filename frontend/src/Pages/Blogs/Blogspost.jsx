@@ -4,10 +4,9 @@ import PostImage from "../Blogs/images/postImage.jpg";
 const Blogspost = () => {
   return (
     <div className="postCard">
-            
         
             <img src={PostImage} alt="" className="blogPostImage" /> 
-      
+            
      
             <div className="postText">
             <div className="postTitle">

@@ -13,8 +13,9 @@ const cookieParser = require('cookie-parser')
 
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
-const postRoutes=require('./routes/posts');
+const blogPostRoutes=require('./routes/blogPosts');
 const verifyToken = require('./middleware/verifyToken');
+const User = mongoose.model("User");
 
 const moment = require('moment-timezone');
 moment.tz.setDefault('Asia/Colombo');
@@ -86,57 +87,9 @@ function (req, res) {
 }
 );
 
-const authMiddleware = async (req, res, next) => {
-  try {
-
-    const token = req.headers.authorization;
-
-    if (!token) {
-      return res.status(401).json({ message: 'Authorization token is missing' });
-    }
-  
-    // Assuming you're using JWT and your token contains the user ID
-    try {
-      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      req.userId = decodedToken.userId; // Extract user ID from the decoded token
-      next();
-    } catch (err) {
-      return res.status(401).json({ message: 'Invalid token' });
-    }
-
-    if (!userId) {
-      return res.status(401).json({ message: 'User ID is missing' });
-    }
-
-    // Find the user based on the user ID
-    const user = await User.findOne({ userId });
-
-    if (!user) {
-      return res.status(401).json({ message: 'User not found' });
-    }
-
-    // Check if the user is authenticated
-    if (!user.isAuthenticated) {
-      return res.status(401).json({ message: 'User is not authenticated' });
-    }
-
-    // Attach the user object to the request for further use
-    req.user = user;
-    next(); // Move to the next middleware or route handler
-  } catch (err) {
-    console.error('Error in authMiddleware:', err);
-    return res.status(500).json({ message: 'Internal Server Error' });
-  }
-};
-
-
-
-
-// Endpoint to check authentication
-app.get('/checkAuth', authMiddleware, (req, res) => {
+app.get('/checkAuth', verifyToken, (req, res) => {
   res.sendStatus(200);
 })
-
 
 
 
@@ -165,7 +118,7 @@ app.get('/logout', function(req, res) {
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/posts", postRoutes);
+app.use("/api/posts", blogPostRoutes);
 
 // image storage engine
 const storage = multer.diskStorage({
