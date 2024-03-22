@@ -18,7 +18,7 @@ import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
 import Profile from './Pages/Profile/Profile';
 import SignUp from './Pages/LogIn/SignUp';
 import Login from './Pages/LogIn/LogIn';
-import { UserContextProvider } from './Context/UserContext';
+import { AuthProvider } from './Context/AuthContext';
 import {WriteBlog} from './Pages/Blogs/WriteBlog';
 import {InsidePost} from './Pages/Blogs/InsidePost';
 
@@ -26,22 +26,21 @@ import {InsidePost} from './Pages/Blogs/InsidePost';
 import Productdescription from './Pages/Shopping/Productdescription';
 
 
-
-
 function App() {
+  
+  
   return (
     <div>
-      <UserContextProvider>
+      <AuthProvider>
       <BrowserRouter>
       <Navbar/>
       
       <Routes>
           <Route path='/home'element={<Home/>}/>
           <Route path='/resources'element={<Resources/>}/>
-            <Route path='/writepost'element={<Writepost/>}/>
-            <Route path='/sensors'element={<Sensors/>}/>
-              <Route path='/MotionSen'element={<MotionSen/>}/>
-           
+          <Route path='/writepost'element={<Writepost/>}/>
+          <Route path='/sensors'element={<Sensors/>}/>
+          <Route path='/MotionSen'element={<MotionSen/>}/>
           <Route path='/projects'element={<Projects/>}/>
           <Route path='/blogs'element={<Blogs/>}/>
           <Route path='/shopping'element={<Shopping/>}/>
@@ -52,7 +51,7 @@ function App() {
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
 
           <Route path='/WriteBlog' element={<WriteBlog/>}/>
-          <Route path='/InsidePost' element={<InsidePost/>}/>
+          <Route path='/InsidePost/:id' element={<InsidePost/>}/>
 
        
          
@@ -66,7 +65,7 @@ function App() {
       
       <Footer/>
       </BrowserRouter>
-      </UserContextProvider>
+      </AuthProvider>
       
 
     </div>

@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Blog.css";
 import {Link} from "react-router-dom";
 
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
 import Profile from '../Profile/Profile'
+import axios from "axios";
+//import { UserContext } from "../../Context/UserContext";
+
 export const Blogs = () => {
+  const [posts, setPosts] = useState([]);
+ 
+
+  const fetchPosts=async()=>{
+    try{
+      const res=await axios.get("http://localhost:5000/api/blogPosts")
+      console.log(res.data)
+      setPosts(res.data)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    fetchPosts()
+  },[])
+
+
+
   return (
     <div className="BlogHome">
 
@@ -38,12 +61,15 @@ export const Blogs = () => {
           </div>
 
             <div className='bpost'>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard" > <Blogspost/> </Link>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
-              <Link style={{textDecoration: 'none'}} to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
+            {posts.map((post)=>(
+         
+     
+         <Blogspost key={post.id} post={post}/>
+
+
+       
+      
+         ))}
             </div>
           </div>
           

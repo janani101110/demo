@@ -1,26 +1,26 @@
 import React from 'react'
 import './Blog.css'
 import PostImage from "../Blogs/images/postImage.jpg";
-const Blogspost = () => {
+import { Link } from 'react-router-dom';
+const Blogspost = ({Post}) => {
   return (
     <div className="postCard">
+      <Link to={`/insidePost/${Post._id}`} key={Post.id}>
         
             <img src={PostImage} alt="" className="blogPostImage" /> 
             
      
             <div className="postText">
             <div className="postTitle">
-                what is cloud computing
+                 {Post.title}
             </div>
     
             <div className="postDescription">
-            Explore the latest trends in IT, from cybersecurity to AI advancements. 
-            Discover how cloud computing is revolutionizing businesses and learn about 
-            the potential of blockchain technology in reshaping traditional industries.
+            {Post.desc.slice(0,40)+"...Read more"}
           </div>
             
         </div>
-        
+        </Link>
        </div>
   )
 }

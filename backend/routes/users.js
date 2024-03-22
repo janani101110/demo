@@ -7,7 +7,6 @@ const verifyToken = require('../middleware/verifyToken');
 //const Post=require('../models/Post');
 
 
-
 //Delete
 router.delete("/:userId",verifyToken, async (req, res) => {
     try{
@@ -21,7 +20,9 @@ router.delete("/:userId",verifyToken, async (req, res) => {
     }
 })
 
-
+router.get("/auth/user", verifyToken, (req, res) => {
+    res.json(req.user);
+  });
 
 
 

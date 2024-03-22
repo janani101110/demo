@@ -10,7 +10,6 @@ const path = require("path");
 const passport = require('passport')
 const passportSetup = require('./passport');
 const cookieParser = require('cookie-parser')
-
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const blogPostRoutes=require('./routes/blogPosts');
@@ -118,7 +117,7 @@ app.get('/logout', function(req, res) {
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/posts", blogPostRoutes);
+app.use("/api/blogPosts", blogPostRoutes);
 
 // image storage engine
 const storage = multer.diskStorage({

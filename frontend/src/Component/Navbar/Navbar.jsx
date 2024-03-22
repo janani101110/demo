@@ -3,14 +3,13 @@ import './Navbar.css'
 //import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
-  
-
-    
+  const { isAuthenticated } = useAuth();
   return (
     <div className='navbar'>
         <div className='nav-logo'>
@@ -28,14 +27,16 @@ export const Navbar = () => {
             <li onClick={()=>{setMenu("about")}}><Link style={{textDecoration: 'none'}} to='/aboutus'>About Us</Link>{menu==="about"?<hr/>:<></>}</li>
         </ul>
       
+        {isAuthenticated ? (
         <div>
-        <Link to ='/Profile'> <img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /> </Link>
+          <Link to='/Profile'><img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /></Link>
         </div>
-      
-          <div className='nav-login'>
-           <Link to='/signup'><button>Sign Up</button></Link>
-           <Link to='/login'><button>Sign In</button></Link>
-          </div>
+      ) : (
+        <div className='nav-login'>
+          <Link to='/signup'><button>Sign Up</button></Link>
+          <Link to='/login'><button>Sign In</button></Link>
+        </div>
+      )}
 
      
         
