@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import "./Blog.css";
 import {Link} from "react-router-dom";
 
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
-import Profile from '../Profile/Profile'
 import axios from "axios";
 //import { UserContext } from "../../Context/UserContext";
 
 export const Blogs = () => {
-  const [posts, setPosts] = useState([]);
+  const [blogPost, setPosts] = useState([]);
  
 
   const fetchPosts=async()=>{
@@ -51,24 +50,18 @@ export const Blogs = () => {
             </div>
 
           <div className='blogFilters'> 
-            <div class ="filterButton">
+            <div className ="filterButton">
               Popular
             </div>
 
-            <div class ="filterButton">
+            <div className ="filterButton">
               Latest
             </div>
           </div>
 
             <div className='bpost'>
-            {posts.map((post)=>(
-         
-     
-         <Blogspost key={post.id} post={post}/>
-
-
-       
-      
+            {blogPost.map((blogPost)=>(
+         <Blogspost key={blogPost._id} post={blogPost}/>
          ))}
             </div>
           </div>

@@ -5,12 +5,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export const InsidePost = () => {
-    const PostId = useParams().id;
-    const [post, setPost] = useState({});
+    const blogPostId = useParams().id;
+    const [blogPost, setPost] = useState({});
 
     const fetchPost = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/api/blogPosts/${PostId}`);
+          const res = await axios.get(`http://localhost:5000/api/blogPosts/${blogPostId}`);
           setPost(res.data);
         } catch (err) {
           console.log(err); // Log any errors that occur during fetching
@@ -19,15 +19,15 @@ export const InsidePost = () => {
     
       useEffect(() => {
         fetchPost();
-      }, [PostId]);
+      }, [blogPostId]);
 
   return (
     <div className='InsidePost'>
         <div className="Blog">
-            <h1 className='blogTitle'>  {post.title} </h1>
+            <h1 className='blogTitle'>  {blogPost.title} </h1>
             <img src={PostImage} alt="" className="postImage"/> 
             <p className='blogbody'>
-            {post.desc}
+            {blogPost.desc}
             </p>
 
         </div>
