@@ -8,17 +8,16 @@ import axios from "axios";
 //import { UserContext } from "../../Context/UserContext";
 
 export const Blogs = () => {
-  const [blogPost, setPosts] = useState([]);
+  const [blogPost, setPost] = useState([]);
  
 
   const fetchPosts=async()=>{
-    try{
-      const res=await axios.get("http://localhost:5000/api/blogPosts")
-      console.log(res.data)
-      setPosts(res.data)
-    }
-    catch(err){
-      console.log(err)
+    try {
+      const res = await axios.get('http://localhost:5000/api/blogPosts');
+      console.log(res.data);
+      setPost(res.data);
+    } catch (err) {
+      console.error('Error fetching blog posts:', err);
     }
   }
 
@@ -34,7 +33,7 @@ export const Blogs = () => {
 
       <div className='blogBanner'>
         <div className='bannerSection'>
-         <p classname ="blogQuote"> Join the community, Explore, Learn, Create - Your hub for all things electronic, 
+         <p className ="blogQuote"> Join the community, Explore, Learn, Create - Your hub for all things electronic, 
           empowering every step of your IoT journey with Trivia, and share your own insights with just a click!! </p>
         <br/>
         <div className = "Bannercreate">
@@ -57,16 +56,26 @@ export const Blogs = () => {
             <div className ="filterButton">
               Latest
             </div>
+
+            <div className ="filterButton">
+              A-Z
+            </div>
+
+            <div className ="filterButton">
+              Z-A
+            </div>
+
           </div>
 
             <div className='bpost'>
-            {blogPost.map((blogPost)=>(
-         <Blogspost key={blogPost._id} post={blogPost}/>
-         ))}
+            {blogPost.map((blogPost) => (   
+       <Blogspost style={{textDecoration: 'none'}} key={blogPost._id} blogPost={blogPost}/>
+     ))}
             </div>
           </div>
           
   ) 
 }
+
 
 export default Blogs;

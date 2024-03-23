@@ -13,7 +13,6 @@ import {Shopping} from './Pages/Shopping/Shopping';
 import {Forum} from './Pages/Forum/Forum';
 import {AboutUs} from './Pages/AboutUs/AboutUs';
 import { Footer } from './Component/Footer/Footer';
-
 import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
 import Profile from './Pages/Profile/Profile';
 import SignUp from './Pages/LogIn/SignUp';
@@ -49,9 +48,8 @@ function App() {
           <Route path='/signup'element={<SignUp/>}/>
           <Route path='/login'element={<Login/>}/>
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
-
           <Route path='/WriteBlog' element={<WriteBlog/>}/>
-          <Route path='/InsidePost/:id' element={<InsidePost/>}/>
+          <Route path='/insidePost/:id' element={<InsidePost/>}/>
 
        
          

@@ -10,7 +10,6 @@ import {useNavigate} from 'react-router-dom'
 export const WriteBlog = () => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [file, setFile] = useState(null);
 
 
   const navigate=useNavigate()

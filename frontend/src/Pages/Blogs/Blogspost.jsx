@@ -8,7 +8,7 @@ const Blogspost = ({blogPost}) => {
   }
   return (
     <div className="postCard">
-      <Link to={`/insidePost/${blogPost._id}`} key={blogPost.id}>
+      <Link style={{textDecoration: 'none'}} to={`/InsidePost/${blogPost._id}`} key={blogPost.id}>
         
             <img src={PostImage} alt="" className="blogPostImage" /> 
             

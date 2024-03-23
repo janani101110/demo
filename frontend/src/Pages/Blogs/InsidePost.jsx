@@ -6,18 +6,18 @@ import { useParams } from "react-router-dom";
 
 export const InsidePost = () => {
     const blogPostId = useParams().id;
-    const [blogPost, setPost] = useState({});
+    const [blogPost, setBlogPost] = useState({});
 
-    const fetchPost = async () => {
-        try {
-          const res = await axios.get(`http://localhost:5000/api/blogPosts/${blogPostId}`);
-          setPost(res.data);
-        } catch (err) {
-          console.log(err); // Log any errors that occur during fetching
-        }
-      };
-    
-      useEffect(() => {
+    useEffect(() => {
+        const fetchPost = async () => {
+          try {
+            const res = await axios.get(`http://localhost:5000/api/blogPosts/${blogPostId}`);
+            setBlogPost(res.data);
+          } catch (err) {
+            console.error(err);
+          }
+        };
+        
         fetchPost();
       }, [blogPostId]);
 
