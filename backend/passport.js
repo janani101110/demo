@@ -36,7 +36,7 @@ passport.use('google-signup', new GoogleStrategy({
       ({ 
         userId: profile.id, 
         username: profile.displayName, 
-        email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : '',
+        email: profile.emails,
         profilePicture: profile._json.picture,
       });
       return done(null, newUser);
@@ -57,11 +57,11 @@ passport.use('google-signin', new GoogleStrategy({
         .then((existingUser) => {
           if (existingUser) {
             // User exists, generate token
-            accessToken = jwt.sign( { userId: existingUser.userId }, process.env.accessToken_secret, { expiresIn: '5h' });
-            console.log('generated token : ', accessToken);
+          //  accessToken = jwt.sign( { userId: existingUser.userId }, process.env.accessToken_secret, { expiresIn: '5h' });
+          //  console.log('generated token : ', accessToken);
             // Save token to user document
-            existingUser.token = accessToken;
-            existingUser.save()
+          //  existingUser.token = accessToken;
+          existingUser.save()
               .then(() => {
                 return done(null, existingUser);
               })} else {

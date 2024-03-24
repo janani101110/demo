@@ -41,7 +41,8 @@ const connectDB=async()=>{
 app.use(session({
   secret: process.env.accessToken_secret,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false}
 }));
 
 app.use(passport.initialize());
@@ -86,7 +87,17 @@ function (req, res) {
 }
 );
 
-app.get('/checkAuth', verifyToken, (req, res) => {
+function isLoggedIn(req, res, next) {
+  console.log('Session:', req.session);
+  console.log('User:', req.userId);
+  console.log('Authenticated:', req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return res.sendStatus(401);
+  }
+}
+app.get('/checkAuth', isLoggedIn, (req, res) => {
   res.sendStatus(200);
 })
 
