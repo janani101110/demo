@@ -1,16 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import './Navbar.css'
 //import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../Context/UserContext';
+//import { UserContext } from '../../Context/UserContext';
 
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
 
-  const{user}=useContext(UserContext)
-  console.log(user)
+  /*const{user}=useContext(UserContext)
+  console.log(user)*/
   return (
     <div className='navbar'>
         <div className='nav-logo'>

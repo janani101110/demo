@@ -1,4 +1,4 @@
-/*import { ImCross } from 'react-icons/im';
+import { ImCross } from 'react-icons/im';
 import React, {useState } from 'react';
 
 import { URL } from '../../url';
@@ -91,4 +91,4 @@ export const Writepost = () => {
   );
 };
 
-export default Writepost;*/
+export default Writepost;
