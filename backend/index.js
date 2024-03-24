@@ -53,7 +53,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:3000',
-    methods: "GET, POST, PUT, DELETE",
+    methods: "GET, POST, PUT, DELETE, FETCH",
     credentials: true
   }));
 
@@ -88,8 +88,6 @@ function (req, res) {
 );
 
 function isLoggedIn(req, res, next) {
-  console.log('Session:', req.session);
-  console.log('User:', req.userId);
   console.log('Authenticated:', req.isAuthenticated());
   if (req.isAuthenticated()) {
     return next();
@@ -97,6 +95,7 @@ function isLoggedIn(req, res, next) {
     return res.sendStatus(401);
   }
 }
+
 app.get('/checkAuth', isLoggedIn, (req, res) => {
   res.sendStatus(200);
 })

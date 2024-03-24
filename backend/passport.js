@@ -46,6 +46,8 @@ passport.use('google-signup', new GoogleStrategy({
   }
 }));
 
+
+
 passport.use('google-signin', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -74,38 +76,17 @@ passport.use('google-signin', new GoogleStrategy({
         });
   }));
 
-passport.use(
-  new StrategyJwt(
-    {
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.accessToken_secret,
-    },
-    function (jwtPayload, done) {
-      return User.findOne({ where: { id: jwtPayload.id } })
-        .then((user) => {
-          return done(null, user);
-        })
-        .catch((err) => {
-          return done(err);
-        });
-    }
-  )
-);
+
 
   passport.serializeUser(function (user, done) {
     done(null, user.userId);
   });
   
-  passport.deserializeUser(async (userId, done) => {
-    const user = await User.findOne({where : {userId} })
-    
-    .catch((error) =>{
-      console.log("error in deserializeUser", error);
-      done(error, null)
-    })
-    if(user) done(null, user)
-    console.log("deserializeUser", userId); 
-  });
+  passport.deserializeUser((user, done) => {
+    console.log("deserializeUser : ",user);
+    done(null, user)
+  })
+
 
 
 
