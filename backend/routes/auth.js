@@ -23,6 +23,15 @@ router.get(
   })
 );
 
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    error:true,
+    message: "Log in failure"
+  })
+})
+
+
+
 // Define the route for Google sign-in
 router.get('/google/signin',
 passport.authenticate('google-signin', { scope: ['profile', 'email'] })

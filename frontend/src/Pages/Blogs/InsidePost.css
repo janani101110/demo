@@ -8,6 +8,13 @@
     width: 90%;
 }
 
+.blogDate{
+  margin-top: 20px;
+    font-size: 15px;
+    text-align: justify;
+    padding-left: 120px;
+}
+
 .Blog {
     padding: 100px;
     font-size: 20px;

@@ -7,11 +7,6 @@ const ExtractJwt = passportJwt.ExtractJwt;
 const StrategyJwt = passportJwt.Strategy;
 const cors = require('cors');
 
-passport.use(cors({
-  origin: 'http://localhost:3000',
-  methods: "GET, POST, PUT, DELETE",
-  credentials: true
-}));
 
 require('dotenv').config();
 

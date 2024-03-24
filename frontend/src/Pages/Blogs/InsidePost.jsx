@@ -25,6 +25,9 @@ export const InsidePost = () => {
     <div className='InsidePost'>
         <div className="Blog">
             <h1 className='blogTitle'>  {blogPost.title} </h1>
+            <hr/>
+            <p className='blogDate'> Created at: {new Date(blogPost.createdAt).toLocaleString()} </p>
+
             <img src={PostImage} alt="" className="postImage"/> 
             <p className='blogbody'>
             {blogPost.desc}

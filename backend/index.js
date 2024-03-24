@@ -14,7 +14,7 @@ const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const blogPostRoutes=require('./routes/blogPosts');
 const verifyToken = require('./middleware/verifyToken');
-const User = mongoose.model("User");
+const cookieSession = require("cookie-session")
 
 const moment = require('moment-timezone');
 moment.tz.setDefault('Asia/Colombo');
@@ -53,7 +53,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:3000',
-    methods: "GET, POST, PUT, DELETE, FETCH",
+    methods: "GET, POST, PUT, DELETE",
     credentials: true
   }));
 
@@ -86,6 +86,19 @@ function (req, res) {
   
 }
 );
+
+app.get("/success", (req, res) =>{
+  if(req.user){
+    console.log("login sucess ",user);
+      res.status(200).json({
+        error:false,
+        message:"Successfully loged in",
+        user:req.user
+      })
+  }else{
+    res.status(403).json({error:true, message:"Not Authorized"})
+  }
+})
 
 
 

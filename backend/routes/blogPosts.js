@@ -7,6 +7,7 @@ const Post=require('../models/blogPost.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
 
+
 //Create 
 router.post("/create", async (req, res) => {
     try{
@@ -66,15 +67,24 @@ router.get("/user/:userId", async (req, res) => {
     }
 })
 
-//Get All Posts
+//Get All Posts with pagination route
 router.get("/", async (req, res) => {
     try{
-        const posts=await Post.find()
+        let page = parseInt(req.query.page) || 1; // Convert page to integer, default to 1 if not provided
+        const postsPerPage = 6;
+
+        // Calculate skip value
+        const skip = (page - 1) * postsPerPage;
+
+        // Fetch posts
+        const posts = await Post.find().skip(skip).limit(postsPerPage);
         res.status(200).json(posts);
     }catch(err){
         res.status(500).json(err);
     }
 })
+
+
 
 //Search Posts
 router.get("/search/:prompt", async (req, res) => {
