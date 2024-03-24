@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const mongoose = require('mongoose');
 const blogPostSchema = new mongoose.Schema({
     title: {
@@ -20,6 +22,11 @@ const blogPostSchema = new mongoose.Schema({
     updatedAt:{
         type: Date,
         default: Date.now,
+    },
+    likes: [{type: ObjectId, ref:"User"},],
+    postedBy:{
+        type:ObjectId,
+        ref: "User"
     }
 });
 

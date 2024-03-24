@@ -87,16 +87,9 @@ function (req, res) {
 }
 );
 
-function isLoggedIn(req, res, next) {
-  console.log('Authenticated:', req.isAuthenticated());
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.sendStatus(401);
-  }
-}
 
-app.get('/checkAuth', isLoggedIn, (req, res) => {
+
+app.get('/checkAuth', verifyToken, (req, res) => {
   res.sendStatus(200);
 })
 

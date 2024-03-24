@@ -28,7 +28,7 @@ export const Navbar = () => {
     };
 
     checkAuthentication();
-  }, []);
+  }, [ ]);
 
   
   return (

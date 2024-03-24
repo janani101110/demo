@@ -6,6 +6,7 @@ const Comment=require('../models/Comment.js');
 const Post=require('../models/blogPost.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
+
 //Create 
 router.post("/create", async (req, res) => {
     try{
@@ -84,5 +85,13 @@ router.get("/search/:prompt", async (req, res) => {
         res.status(500).json(err);
     }
 })
+
+/*router.put("/like", verifyToken, (req,res){
+    this.post.findByIdAndUpdate(req.body.postId),{
+        $push:{likes:req.user._id}
+    }
+})*/
+
+
 
 module.exports = router;
