@@ -77,9 +77,9 @@ passport.use('google-signin', new GoogleStrategy({
     done(null, user.userId);
   });
   
-  passport.deserializeUser((user, done) => {
-    console.log("deserializeUser : ",user);
-    done(null, user)
+  passport.deserializeUser((userId, done) => {
+    console.log("deserializeUser : ",userId);
+    done(null, userId)
   })
 
 

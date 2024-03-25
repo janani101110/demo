@@ -12,7 +12,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      const response = await  fetch('http://localhost:5000/checkAuth');
+      const response = await fetch('http://localhost:5000/checkAuth');
       console.log(response);
       try {
         if (response.status === 200) {
@@ -28,7 +28,7 @@ export const Navbar = () => {
     };
 
     checkAuthentication();
-  }, [ ]);
+  }, []);
 
   
   return (
@@ -57,9 +57,7 @@ export const Navbar = () => {
           <Link to='/signup'><button>Sign Up</button></Link>
           <Link to='/login'><button>Sign In</button></Link>
         </div>
-      )}
-
-     
+      )}    
         
       
     </div>

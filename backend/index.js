@@ -88,8 +88,8 @@ function (req, res) {
 );
 
 app.get("/success", (req, res) =>{
-  if(req.user){
-    console.log("login sucess ",user);
+  if(req.userId){
+    console.log("login sucess ",userId);
       res.status(200).json({
         error:false,
         message:"Successfully loged in",
