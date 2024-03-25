@@ -1,0 +1,50 @@
+.card::before,
+.card::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  /*display: grid;*/
+  display: inline-flex;
+  border: box;
+  width: 40%;
+  justify-items: right;
+  overflow: hidden;
+  /*grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));*/
+  /*  gap: 2rem;*/
+  margin: 30px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card__img {
+  max-width: fit-content;
+  /*  height: 12rem;*/
+  width: 100%;
+  object-fit: cover;
+}
+
+.card__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 40rem));
+}
+
+.card__body {
+  margin: 10px;
+}
+
+.card__description {
+  justify-content: space-between;
+}
+
+.card__btn {
+  width: 20%;
+  margin: 10px;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+
+  margin-left: 50%;
+}

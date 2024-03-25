@@ -1,0 +1,71 @@
+.form {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    /*height: 100vh;*/
+  
+    /* margin: 0 auto;*/
+  }
+  
+  
+  .topic{
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .frame_box_center {
+    display: block;
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  /*#para {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    text-decoration: solid;
+  }*/
+  
+  /*.filled .upload{
+      justify-content: space-between;
+      width: 100%;
+      display: flex;
+      display: inline-flex;
+  }*/
+  
+  /*.field {
+      padding: 20px;
+  }*/
+  
+  label {
+    padding-right: 10px;
+    padding-bottom: 15px;
+    position: relative;
+    vertical-align: top;
+    width: 30%;
+    text-align: left;
+  }
+  
+  textarea,
+  input {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  
+  .ui_message_error,
+  .ui_message_success {
+    font-weight: bold;
+    color: red;
+  }
+  
+  .display_error {
+    color: red;
+  }
+  
+  .field label::after,
+  .upload label::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+  }
+  
