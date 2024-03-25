@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 //import ReactDOM from "react-dom";
-//import ReactDOM from "react-dom/client"
+import ReactDOM from "react-dom/client"
 import { Link } from "react-router-dom";
 //import { useState, useEffect } from "react";
 import "./ProjectHome.css";
@@ -9,7 +9,7 @@ import ProjectCard from "./ProjectCard";
 import ProjectPgNavi from "./ProjectPgNavi";
 
 
-function ProjectHome() {
+ function ProjectHome() { 
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (e, page) => {
     setCurrentPage(page);
