@@ -12,8 +12,8 @@ export const Resourcepost = ({post}) => {
         <img src={IF+post.photo} alt="" className="res-post img" /> 
       </div>
       <div className='resuserdetails'> 
-            <p>@chathuabeyrathna</p>
-            <p>{new Date (post.updatedAtDate).toString().slice(0,15)}</p>
+            <p>@chathuabeyrathne</p>
+            <p>{new Date (post.createdAt).toString().slice(0,15)}</p>
       </div>
       <div className='respostcontent'>
           <h3>{post.title}</h3>

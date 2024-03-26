@@ -3,12 +3,10 @@ const ResoCommentSchema = new mongoose.Schema({
     comment: {
         type:String,
         required:true,
-        unique:true,
     },
     author:{
         type:String,
-        required:true,
-        unique:true,
+        required:false,
     },
     postId:{
         type:String,
@@ -16,8 +14,12 @@ const ResoCommentSchema = new mongoose.Schema({
     },
     userId:{
         type:String,
-        required:true,
+        required:false,
     },
-    })
+    createdAt:{
+        type: Date,
+        default:Date.now,
+    }
+},{timestamps:true});
 
 module.exports=mongoose.model('ResoComment',ResoCommentSchema)

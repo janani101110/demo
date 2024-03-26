@@ -1,13 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { URL } from '../../url';
 import axios from 'axios';
 import './Writepost.css';
 import {ImCross} from 'react-icons/im'
+import { useParams } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
+import {UserContext} from '../../Context/UserContext'
 
 export const ResoEditpost = () => {
 
+  const postId=useParams().id
+  const {user}=useContext(UserContext)
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [file, setFile] = useState('');
   const [cat,setCat]=useState("")
   const [cats,setCats]=useState([])
+
+  const fetchPost=async()=>{
+    try{
+      const res=await axios.get(URL+"/api/resoposts/"+postId)
+      setTitle(res.data.title)
+      setDesc(res.data.desc)
+      setFile(res.data.photo)
+      setCats(res.data.categories)
+
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  const navigate=useNavigate()
+
+  const handleUpdate=async (e)=>{
+    
+    e.preventDefault();
+    const post = {
+      title,
+      desc,
+      categories:cats
+    };
+
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append('img', filename);
+      data.append('file', file);
+      post.photo = filename;
+
+      //image upload
+      try {
+        const imgUpload = await axios.post(URL + '/api/upload', data);
+        console.log(imgUpload.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+//post upload
+    try {
+      const res = await axios.put(URL + "/api/resoposts/"+postId,post,{withCredentials:true});
+      console.log(res.data);
+      navigate("/motionsen");
+    } 
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    fetchPost()
+  },[postId])
 
   const deleteCategory=(i)=>{
     let updatedCats=[...cats]
@@ -21,39 +85,12 @@ export const ResoEditpost = () => {
     setCat("")
     setCats(updatedCats)
   }
-
-    const [title, setTitle] = useState('');
-    const [desc, setDesc] = useState('');
-    const [file, setFile] = useState('');
-    
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('desc', desc);
-      formData.append('file', file);
-      
-      try {
-        if (file) {
-          const filename = Date.now() + file.name;
-          formData.append('photo', filename);
-          await axios.post(URL + '/api/upload', formData); // Upload image first
-        }
-        
-        // Create or update post
-        const res = await axios.post(URL + '/api/resoposts/create', formData);
-        console.log('Post created/updated:', res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
   
     return (
       <div className='container'>
       <h1 className='title'>Update Your Post</h1>
-      <form onSubmit={handleSubmit} className='form'>
-        <input onChange={(e) => setTitle(e.target.value)} type='text' placeholder='Enter Post Title' className='resopostinput'value={title} />
+      <form className='form'>
+        <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter Post Title' className='resopostinput'/>
 
 
         <div className="reso-post-categories-container">
@@ -78,7 +115,7 @@ export const ResoEditpost = () => {
         
         <textarea value={desc} onChange={(e) => setDesc(e.target.value)} className='description' placeholder='Enter Post Description' cols={30} rows={15}></textarea>
 
-        <button type='submit' className='publish-btn'>
+        <button onClick={handleUpdate} className='publish-btn'>
           Update
         </button>
        

@@ -19,7 +19,7 @@ router.post("/create", async (req,res)=>{
     }
 })
 //update
-router.put("/:id",verifyToken,async (req,res)=>{
+router.put("/:id",async (req,res)=>{
     try{
 
         const updatedComment=await ResoComment.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
@@ -32,7 +32,7 @@ router.put("/:id",verifyToken,async (req,res)=>{
 
 
 //delete
-router.delete("/:id",verifyToken,async (req,res)=>{
+router.delete("/:id",async (req,res)=>{
     try{
      await ResoComment.findByIdAndDelete(req.params.id)
     

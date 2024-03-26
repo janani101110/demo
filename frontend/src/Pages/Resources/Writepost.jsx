@@ -8,6 +8,10 @@ import {ImCross} from 'react-icons/im'
 
 export const Writepost = () => {
 
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [file, setFile] = useState(null);
+
   const [cat,setCat]=useState("")
   const [cats,setCats]=useState([])
 
@@ -17,16 +21,10 @@ export const Writepost = () => {
     setCats(updatedCats)
   }
 
-  const addCategory=()=>{
-    let updatedCats=[...cats]
-    updatedCats.push(cat)
-    setCat("")
-    setCats(updatedCats)
-  }
-
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-  const [file, setFile] = useState(null);
+  const addCategory = () => {
+    setCats([...cats, cat]);
+    setCat("");
+};
   
   const navigate=useNavigate()
 
@@ -35,6 +33,7 @@ export const Writepost = () => {
     const post = {
       title,
       desc,
+      categories:cats
     };
 
     if (file) {
@@ -54,7 +53,7 @@ export const Writepost = () => {
 
 //post upload
     try {
-      const res = await axios.post(URL + "/api/resoposts/create",post,{withCredential:true});
+      const res = await axios.post(URL + "/api/resoposts/create",post,{withCredentials:true});
       console.log(res.data);
       navigate("/motionsen");
     } 
@@ -68,7 +67,6 @@ export const Writepost = () => {
       <h1 className='title'>Write Your Post</h1>
       <form onSubmit={handleSubmit} className='form'>
         <input onChange={(e) => setTitle(e.target.value)} type='text' placeholder='Enter Post Title' className='resopostinput'value={title} />
-
 
         <div className="reso-post-categories-container">
           <div className="reso-category-input">
