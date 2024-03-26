@@ -51,13 +51,6 @@ function App() {
           <Route path='/login'element={<Login/>}/>
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
 
-          <Route path='/WriteBlog' element={<WriteBlog/>}/>
-          <Route path='/InsidePost' element={<InsidePost/>}/>
-
-       
-         
-
-          <Route path='/productdescription' element={<Productdescription/>}/>
           <Route path='/profile' element={<Profile/>}/>
 
           <Route path='/' element={<Navigate to="/home" />}/>

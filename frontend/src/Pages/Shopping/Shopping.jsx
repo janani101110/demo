@@ -4,10 +4,22 @@ import { Link } from 'react-router-dom'
 import { Search } from '../../Component/Search/Search'
 import Shopcard from './Shopcard'
 
-export const Shopping = () => {
-
+// eslint-disable-next-line no-empty-pattern
+export const Shopping = ({}) => {
+  const [shopposts,setShopposts]=useState([])
   
 
+
+  useEffect(()=>{
+    fetch("http://localhost:5000/getpost",{
+      method:"GET"
+    })
+      .then((res)=>res.json())
+      .then((data)=>{
+        console.log(data, "shoppost");
+        setShopposts(data.data);
+      });
+  },[]);
 
 
   return (
@@ -24,16 +36,11 @@ export const Shopping = () => {
       </div>
       </div>
       <div className='postsection'>
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-
-       <Link to={'/productdescription'}> <Shopcard/></Link>
-
-        
+        {shopposts.map(shoppost => (
+          <Link  to={`/productdescription/${shoppost._id}`}>
+            <Shopcard key={shoppost._id} shoppost={shoppost} />
+          </Link>
+        ))}
       </div>
       
 </div>

@@ -1,36 +1,16 @@
-import React, { useEffect, useState } from 'react'
+
 import './Navbar.css'
 //import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../Context/UserContext';
+//import { UserContext } from '../../Context/UserContext';
 
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      const response = await  fetch('http://localhost:5000/checkAuth');
-      console.log(response);
-      try {
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-        }
-      } catch (error) {
-        if (error.response.status === 401) {
-          setIsLoggedIn(false);
-        } else {
-          console.error('Error checking authentication:', error);
-        }
-      }
-    };
 
-    checkAuthentication();
-  }, [ ]);
-
-  
   return (
     <div className='navbar'>
         <div className='nav-logo'>
