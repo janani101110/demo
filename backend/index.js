@@ -8,7 +8,7 @@ const cookieParser=require('cookie-parser')
 
 
 //database 
-const connectDB=async()=>{
+ const connectDB=async()=>{
     try{
         await mongoose.connect("mongodb+srv://jananilasindu:Trivia2024@cluster0.bic47ow.mongodb.net/")
         console.log("database connected ")
