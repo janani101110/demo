@@ -1,6 +1,6 @@
 import React from 'react';
 import './Sensors/Sensors.css'
-import {IF} from '../../url'
+//import {IF} from '../../url'
 import { Link } from 'react-router-dom';
 
 export const Resourcepost = ({post}) => {
@@ -9,7 +9,7 @@ export const Resourcepost = ({post}) => {
     <div className="res-post">  
 <Link to={`/resopostdetails/${post._id}`} key={post.id}>
       <div className='respostimg'>
-        <img src={IF+post.photo} alt="" className="res-post img" /> 
+        <img src={post.photo} alt="" className="res-post img" /> 
       </div>
       <div className='resuserdetails'> 
             <p>@chathuabeyrathne</p>
