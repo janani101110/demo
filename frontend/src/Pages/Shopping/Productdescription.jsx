@@ -13,7 +13,7 @@ const Productdescription = () => {
     .then((data) => {
       console.log(data, "shoppost");
       setShoppost(data); // Assuming your API returns a single post object
-    })
+    }) 
     .catch((error) => {
       console.error('Error fetching shoppost:', error);
       // Handle error, e.g., set error state or show error message
