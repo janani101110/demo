@@ -13,10 +13,10 @@ export const Blogs = () => {
                 <Search />
             </div>
             <div className = "create">
-                <Link to = "/create" className = "createLink"> Create </Link>
+                <Link to = "/WriteBlog" className = "createLink"> Create </Link>
             </div>
             <div className='bpost'>
-              <Blogspost/>
+             <Link to="/InsidePost" classname="blogcard"> <Blogspost/> </Link>
               <Blogspost/>
 
               <Blogspost/>
@@ -29,6 +29,7 @@ export const Blogs = () => {
               <Blogspost/>
 
             </div>
+
 
     </div>
   ) 
