@@ -17,21 +17,17 @@ const projectpostRoute = require("./routes/projectposts");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(session({ secret: 'cats'}))
-/*app.use(passport.initialize())
-app.use(passport.session())*/
-//app.use(bodyParser.urlencoded({extended: false}));
 
 //database connection
 
 const connectDB=async()=>{
     try{
-        await mongoose.connect(process.env.db);
+        await mongoose.connect("mongodb+srv://jananilasindu:Trivia2024@cluster0.bic47ow.mongodb.net/");
          //project
         console.log('Database connected successfully');
     }catch(err){
-      console.log(err); //project
-        console.log(err.message);
+      
+        console.log(err);
     }
 };
 
@@ -54,10 +50,7 @@ app.use(cors({
  //  res.redirect('/'); // Redirect to home page after successful authentication
  //});
 
- app.get('/', (req, res) => {
-    // Handle the root path (e.g., send a welcome message or render a home page) i put a welcome message but need the home page here
-    res.send('express app is running');
-  });
+
 
  
 
