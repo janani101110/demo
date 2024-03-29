@@ -23,10 +23,12 @@ import { UserContextProvider } from './Context/UserContext';
 import {WriteBlog} from './Pages/Blogs/WriteBlog';
 import {InsidePost} from './Pages/Blogs/InsidePost';
 
-import {ProjectHome} from './Pages/Projects/ProjectHome';
-import {ProjectForm} from './Pages/Projects/ProjectForm';
-import {ProjectCard} from './Pages/Projects/ProjectCard';
-import {ProjectSeeMore} from './Pages/Projects/ProjectSeeMore';
+import Project from "./Pages/Project/Project";
+import {ProjectForm} from './Pages/Project/ProjectForm';
+import {ProjectCard} from './Pages/Project/ProjectCard';
+import {ProjectSeeMore} from './Pages/Project/ProjectSeeMore';
+import {ProjectPgNavi} from './Pages/Project/ProjectPgNavi';
+import ProjectViewAll from "./Pages/Project/ProjectViewAll";
 
 import Productdescription from './Pages/Shopping/Productdescription';
 
@@ -49,7 +51,10 @@ function App() {
           <Route path='/projectseemore' element={<ProjectSeeMore />} />
           <Route path="/projectcard" element={<ProjectCard />} />
           <Route path="/projectform" element={<ProjectForm />} />
-          <Route path="/projecthome" element={<ProjectHome />} />
+          <Route path="/project" element={<Project />} />
+          <Route path="/projectpgnavi" element={<ProjectPgNavi />} />
+          <Route path="/posts/post/:id" element={<ProjectSeeMore />} />
+          <Route path="/projectviewall" element={<ProjectViewAll />} />
          {/* <Route path="/" element={<Navigate to="/projecthome" />} /> */}
         
 
