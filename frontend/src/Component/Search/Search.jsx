@@ -9,5 +9,5 @@ export const Search = () => {
       <input type="text" className="searchBar" placeholder="Search for more.." />   
       <img src={search} className="searchIcon"/>      
     </div>
-  )
+  )    
 }
