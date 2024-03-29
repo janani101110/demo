@@ -28,7 +28,7 @@ export const InsidePost = () => {
             <hr/>
             <p className='blogDate'> Created at: {new Date(blogPost.createdAt).toLocaleString()} </p>
 
-            <img src={PostImage} alt="" className="postImage"/> 
+            <img src={blogPost.photo} alt="" className="postImage"/> 
             <p className='blogbody'>
             {blogPost.desc}
             </p>

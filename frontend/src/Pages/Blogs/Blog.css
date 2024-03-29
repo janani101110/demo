@@ -179,19 +179,20 @@
   .blogPostImage{
     max-width: 100%;
     padding: 0px;
-    height: auto;
+    height: 200px;
     
   }
   .postText{
     width:90%;
+    color: #000;
   }
   .postTitle{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
     justify-content: center;
-    text-align: center;
+    text-align: left;
    
   }
 
@@ -204,7 +205,13 @@
     text-decoration: none;
     color: inherit;
   }
-    
+  .likedislikeDiv{
+    display: flex;
+    color: #532f40;
+    gap: 25px;
+
+  }
+  
 
   /**--------------create blog posts -------------------------**/
   .createBlog{
@@ -306,4 +313,42 @@
 }
 .createBlogTextArea:hover{
   border: #532f44 solid 2px;
+}
+
+
+
+
+
+
+
+
+
+/* pagination */
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin-left: 500px;
+}
+
+.pagination-previous,
+.pagination-next,
+.pagination-page {
+  margin: 0 5px; /* Adjust as needed */
+}
+
+.pagination-link {
+  padding: 5px 10px; /* Adjust as needed */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-link:hover {
+  background-color: #f0f0f0;
+}
+
+.active .pagination-link {
+  background-color: #007bff;
+  color: #fff;
 }

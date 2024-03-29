@@ -19,6 +19,7 @@ router.post("/create", async (req, res) => {
     }
 })
 
+
 //Update
 router.put("/:id",verifyToken, async (req, res) => {
     try{
@@ -70,14 +71,9 @@ router.get("/user/:userId", async (req, res) => {
 //Get All Posts with pagination route
 router.get("/", async (req, res) => {
     try{
-        let page = parseInt(req.query.page) || 1; // Convert page to integer, default to 1 if not provided
-        const postsPerPage = 6;
-
-        // Calculate skip value
-        const skip = (page - 1) * postsPerPage;
 
         // Fetch posts
-        const posts = await Post.find().skip(skip).limit(postsPerPage);
+        const posts = await Post.find();
         res.status(200).json(posts);
     }catch(err){
         res.status(500).json(err);
@@ -96,12 +92,33 @@ router.get("/search/:prompt", async (req, res) => {
     }
 })
 
-/*router.put("/like", verifyToken, (req,res){
-    this.post.findByIdAndUpdate(req.body.postId),{
+router.put("/like", verifyToken, (req,res) => {
+    Post.findByIdAndUpdate(req.body.postId,{
         $push:{likes:req.user._id}
-    }
-})*/
+    },{
+        new:true
+    }).execute((err, result)=>{
+        if(err){
+            return res.status(422).json({error:error})
+        }else{
+            res.json(result)
+        }
+    })
+})
 
+router.put("/unlike", verifyToken, (req,res) => {
+    Post.findByIdAndUpdate(req.body.postId,{
+        $pull:{likes:req.user._id}
+    },{
+        new:true
+    }).execute((err, result)=>{
+        if(err){
+            return res.status(422).json({error:error})
+        }else{
+            res.json(result)
+        }
+    })
+})
 
 
 module.exports = router;

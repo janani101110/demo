@@ -2,23 +2,38 @@ import React from 'react';
 import "./Blog.css";
 import {useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
-
+import {useNavigate} from 'react-router-dom';
+import { imageDb } from "../../firebase";
+import { v4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 
 
 export const WriteBlog = () => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  const [file, setFile] = useState('');
+  const [downloadURL, setDownloadURL] = useState('');
+  const navigate = useNavigate();
+  
 
-
-  const navigate=useNavigate()
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    const imgsBlog = ref(imageDb, `blogImages/${v4()}`); // Corrected v4() usage
+    await uploadBytes(imgsBlog, file);
+    const url = await getDownloadURL(imgsBlog);
+    setDownloadURL(url);
+  };
+    
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const blogPost = {
       title,
       desc,
+      photo: downloadURL,
     };
    //image upload firebase
     try {
@@ -44,7 +59,7 @@ export const WriteBlog = () => {
           <br/>
           <label className='createBlogTextLabel'> Image: </label>
           <br/>
-          <input type="file"  className='createBlogEnterImage'/>
+          <input type="file" onChange={(e) => handleUpload(e)} className='createBlogEnterImage'/>
           <br/>
           <label className='createBlogTextLabel'> Blog Body: </label>
           <br/>

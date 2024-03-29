@@ -1,6 +1,5 @@
-import React, { useEffect,  useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Navbar.css'
-//import {FaBars} from "react-icons/fa";
 import logo from '../Assets/logo.png'
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -8,27 +7,22 @@ import axios from "axios";
 
 export const Navbar = () => {
   const [menu,setMenu] = useState("home");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const checkAuthentication = async () => {
-      const response = await fetch('http://localhost:5000/checkAuth');
-      console.log(response);
+    // Fetch authentication status
+    const fetchAuthenticationStatus = async () => {
       try {
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-        }
+        const response = await axios.get('http://localhost:5000/success');
+        setIsAuthenticated(response.data.error === false);
+        console.log(setIsAuthenticated)
       } catch (error) {
-        if (error.response.status === 401) {
-          setIsLoggedIn(false);
-        } else {
-          console.error('Error checking authentication:', error);
-        }
+        setIsAuthenticated(false);
       }
     };
 
-    checkAuthentication();
-  }, []);
+    fetchAuthenticationStatus();
+  }, []); // Fetch authentication status on component mount
 
   
   return (
@@ -48,9 +42,9 @@ export const Navbar = () => {
             <li onClick={()=>{setMenu("about")}}><Link style={{textDecoration: 'none'}} to='/aboutus'>About Us</Link>{menu==="about"?<hr/>:<></>}</li>
         </ul>
       
-        {isLoggedIn ? (
+        {isAuthenticated ? (
         <div>
-          <Link to='/Profile'><img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /></Link>
+          <Link to='/Profile'> <img src="https://www.w3schools.com/howto/img_avatar.png" className="profileImg" alt="" /> </Link>
         </div>
       ) : (
         <div className='nav-login'>

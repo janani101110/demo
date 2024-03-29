@@ -10,12 +10,12 @@ import googleIcon from "../LogIn/images/googleIcon.png";
 
 function Login() {
 
+  
   const {setUser}=useContext(UserContext)
-
-
   axios.defaults.withCredentials = true;
   const google = () => {
-    window.open("http://localhost:5000/api/auth/google/signin", "_self");
+    window.open("http://localhost:5000/api/auth/google", "_self");
+
 
   }
 return (
@@ -27,17 +27,34 @@ return (
     </div>
 
   <div className="logindiv"> 
- 
 
   <div className="loginTextdiv">
-      <button onClick={ google } className="googleButton"> Signin with Google <img src={googleIcon} alt="google" className="googleIcon" /> </button>
+  <form >
+        <div>
+          <input type="text" name="username"  placeholder="Username" required className="loginInput" />
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" required  className="loginInput"/>
+        </div>
+        <br/>
+        <div>
+          <button type="submit" className="loginButton">Sign Up</button>
+        </div>
+      </form>
+  </div>
+  <br/>
+  <div className="loginTextdiv">
+      <button onClick={ google } className="loginButton"> Signin with Google 
+      
+       </button>
     </div>
     <div className="loginhr">
     <hr className="hrclass" />
   </div>
-  <div className="loginTextdiv"> 
-        <div className="loginText"> Don't have an account? </div>  
-        <Link to="/signup"> SignUp </Link>
+
+  <div className="loginTextdiv" style={{display:"flex"}}> 
+        <div className="loginText"> Dont't Have an Account? </div>
+        <Link to="/signup" style={{textDecoration: 'none'}} className="loginLink"> Signup </Link>
     </div>
 
   </div>

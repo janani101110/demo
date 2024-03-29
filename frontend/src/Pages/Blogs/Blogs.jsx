@@ -5,24 +5,18 @@ import {Link} from "react-router-dom";
 import { Search } from "../../Component/Search/Search";
 import Blogspost from './Blogspost';
 import axios from "axios";
-import ReactDOM from 'react-dom';
-import ReactPaginate from 'react-paginate';
 //import { UserContext } from "../../Context/UserContext";
 
 export const Blogs = () => {
   const [blogPost, setPost] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
 
  
 
-  const fetchPosts=async(selectedPage)=>{
+  const fetchPosts=async()=>{
     try {
-      const res = await axios.get(`http://localhost:5000/api/blogPosts?page=${selectedPage}&limit=6`);
+      const res = await axios.get(`http://localhost:5000/api/blogPosts`);
       setPost(res.data);
-    const totalPosts = res.data.totalPosts; // Assuming your API response includes totalPosts
-    const postsPerPage = 6; // Assuming 6 posts per page
-    const calculatedPageCount = Math.ceil(totalPosts / postsPerPage);
-    setPageCount(calculatedPageCount);
+      console.log(res);
     } catch (err) {
       console.error('Error fetching blog posts:', err);
     }
@@ -33,10 +27,7 @@ export const Blogs = () => {
   },[])
 
   
-  const handlePageClick = (data) => {
-    const selectedPage = data.selected;
-    fetchPosts(selectedPage);
-  };
+ 
 
   return (
     <div className="BlogHome">
@@ -84,20 +75,6 @@ export const Blogs = () => {
      ))}
             </div>
 
-            <div className="pagination-container">
-        <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          activeClassName={'active'}
-        />
-      </div>
          
      
           </div>

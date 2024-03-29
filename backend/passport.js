@@ -2,9 +2,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require("passport");
 const User = require('./models/User');
 const jwt = require('jsonwebtoken');
-const passportJwt = require("passport-jwt");
-const ExtractJwt = passportJwt.ExtractJwt;
-const StrategyJwt = passportJwt.Strategy;
 const cors = require('cors');
 
 
@@ -14,6 +11,45 @@ require('dotenv').config();
 
 passport.use(User.createStrategy());
 
+
+
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/google/callback",
+  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ 
+      userId: profile.id, 
+        username: profile.displayName,
+        profilePicture: profile._json.picture 
+    
+    }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+  module.exports = passport;
+
+  
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+
+passport.deserializeUser(async function(id, done) {
+  try {
+    const user = await User.findById(id);
+    console.log("deserializeUser: ", user);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+/*
 passport.use('google-signup', new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -81,10 +117,4 @@ passport.use('google-signin', new GoogleStrategy({
     console.log("deserializeUser : ",userId);
     done(null, userId)
   })
-
-
-
-
-
-
-module.exports = passport;
+*/

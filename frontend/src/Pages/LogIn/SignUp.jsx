@@ -7,14 +7,10 @@ import LoginImage from "../LogIn/images/loginImage.jpg";
 import googleIcon from "../LogIn/images/googleIcon.png";
 
 const Signup=() => {
-
- 
-
   const google = () => {
     window.open("http://localhost:5000/api/auth/google/signup", "_self");
-    
-
   }
+
 
 return (
     <div className="login"> 
@@ -25,17 +21,42 @@ return (
     </div>
 
   <div className="logindiv"> 
- 
 
   <div className="loginTextdiv">
-      <button onClick={google} className="googleButton"> Signup with Google <img src={googleIcon} alt="google" className="googleIcon" /> </button>
+  <form >
+        <div>
+          <input type="text" name="username"  placeholder="Username" required className="loginInput" />
+        </div>
+        <div>
+          <input type="email" name="email"  placeholder="Email" required  className="loginInput"/>
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" required  className="loginInput"/>
+        </div>
+        <div>
+          <input type="password" name="confirmPassword"placeholder="Confirm Password" required  className="loginInput"/>
+        </div>
+        <div>
+          <br/>
+          <button type="submit" className="loginButton">Sign Up</button>
+        </div>
+      </form>
+  </div>
+ 
+  <br/>
+  <div className="loginTextdiv">
+      <button onClick={google} className="loginButton"> Signup with Google 
+      <i className="material-icons"> </i>
+       </button>
     </div>
     <div className="loginhr">
     <hr className="hrclass" />
   </div>
-  <div className="loginTextdiv"> 
+
+
+  <div className="loginTextdiv" style={{display:"flex"}}> 
         <div className="loginText">  Have an Account? </div>
-        <Link to="/login"> Signin </Link>
+        <Link to="/login" style={{textDecoration: 'none'}} className="loginLink"> Signin </Link>
     </div>
 
   </div>

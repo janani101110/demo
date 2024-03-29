@@ -4,7 +4,6 @@
     background-color: #f5f5f5;
     display: flex;
     flex-direction:row;
-    margin-bottom: auto;
 
 }
 
@@ -24,37 +23,60 @@
     margin-left: 50px;
     margin-top: 20px;
 }
-
-.loginInput{
-    height: 40px;
+.loginInput {
+    height: 30px;
     width: 300px;
     margin-top: 10px;
     margin-bottom: 0px;
     border-radius: 10px;
     border: solid 2px #532f44;
-    font-size: 20px;
+    font-size: 13px;
     font-family: cursive;
-    
-}
-.LoginTextdiv{
+    padding-left: 20px;
+  }
+  
+  .LoginTextdiv {
     margin-left: 250px;
     display: flex;
     flex-direction: row;
-    
-}
-.LoginText{
-    font-size: 35px;
-    margin-top: 20px;
+  }
+  
+  .loginText {
+    font-size: 15px;
     color: #532f44;
-    display: flex;
-    flex-direction: row;
-}
+    text-align: left;
+  }
+  
+  .loginLink{
+    font-size: 15px;
+    text-decoration: none;
+    color: #532f44;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .loginLink:hover {
+    color: #854c65;
+  }
 
-.loginButton:hover{
+  .loginButton {
+    width: 300px;
+    background-color: #532f44;
+    border: 2px solid #532f44;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+ /* .loginButton:hover {
     background-color: #532f44;
     color: #fff;
-}
-
+  }
+*/
 .hrdiv{
     margin-left: 50px;
     margin-top: 20px;
