@@ -126,3 +126,9 @@
     padding-bottom: 25px;
     
 }
+.pdetails img{
+    display: block;
+    max-width: 100%;
+    margin: o auto;
+    height: auto;
+}
