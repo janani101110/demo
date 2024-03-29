@@ -1,35 +1,30 @@
-const express = require('express');
-const router = express.Router();
-const session = require('express-session')
-const mongoose = require('mongoose');
-const jwt = require("jsonwebtoken");
-const bodyParser=require('body-parser');
+
+const express =require('express')
+const mongoose  = require('mongoose')
+const app=express()
 const cors = require('cors');
+const dotenv = require('dotenv')
+const cookieParser=require('cookie-parser')
+const bodyParser=require('body-parser');
 const multer=require("multer");
-const path = require("path");
-const passport = require('passport')
-const passportSetup = require('./passport');
-const dotenv = require("dotenv");
 //require('dotenv').config();
 //const cookieParser = require('cookie-parser')
 
 const projectpostRoute = require("./routes/projectposts");
 
-const app = express();
 app.use(bodyParser.json());
 
 //database connection
 
 const connectDB=async()=>{
-    try{
-        await mongoose.connect("mongodb+srv://jananilasindu:Trivia2024@cluster0.bic47ow.mongodb.net/");
-         //project
-        console.log('Database connected successfully');
-    }catch(err){
-      
-        console.log(err);
-    }
-};
+  try{
+      await mongoose.connect("mongodb+srv://jananilasindu:Trivia2024@cluster0.bic47ow.mongodb.net/")
+      console.log("database connected ")
+  }
+  catch(err){
+      console.log(err)
+  }
+}
 
 //middlewares
 dotenv.config();
