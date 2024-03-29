@@ -7,8 +7,9 @@ import LoginImage from "../LogIn/images/loginImage.jpg";
 import googleIcon from "../LogIn/images/googleIcon.png";
 
 const Signup=() => {
+
   const google = () => {
-    window.open("http://localhost:5000/api/auth/google/signup", "_self");
+    window.open("http://localhost:5000/api/auth/google", "_self");
   }
 
 
