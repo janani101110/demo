@@ -6,7 +6,7 @@ const Projectpost = require ('../models/Projectpost')
 router.post("/create",async(req,res) =>  {
     try{
         const newProjectpost = new Projectpost(req.body)
-        const savedProjectost = await newProjectpost.save()
+        const savedProjectpost = await newProjectpost.save()
         res.status(200).json(savedProjectpost)
     }
     catch(err){

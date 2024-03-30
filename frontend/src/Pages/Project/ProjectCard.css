@@ -1,15 +1,16 @@
-/*.project_inline_cards {
-  display: flex;
+.project_inline_cards {
+ /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-}*/
+  justify-content: space-around;*/
+  margin: 10px;
+}
 
 .project_card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 14px;
-  /*margin: 10px;
-  width: 22%;*/
+  /*margin: 10px;*/
+  /*width: 22%;*/
   background-color: rgb(235, 200, 235);
 }
 
@@ -31,18 +32,21 @@
 }
 
 .project_container {
-  padding: 2px 16px;
+  padding: 20px 16px;
 }
 
 .project_card_title{
   font-weight: bold;
   font-size: larger;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 5px;
 }
 
 .project_description{
   text-align: justify;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .project_card__btn{
@@ -56,6 +60,7 @@
   outline: none;
   border:none;
   padding: 5px;
+  margin-top:5px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -68,7 +73,16 @@
   background-color: rgb(104, 19, 183);
 }
 
-.project_details{
+/*.project_details{
+  line-height: 0px;
+  text-align: right;
+  padding-top: 20px;
+  color: rgb(104, 103, 103);
+  font-size: smaller;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}*/
+
+.project_details .project_published_details{
   line-height: 0px;
   text-align: right;
   padding-top: 20px;

@@ -10,7 +10,7 @@ export const ProjectSeeMore = () => {
   const [projectpost, setprojectPost] = useState({});
   const fetchproPost = async () => {
     try {
-      const res = await axios.get(`${URL}/api/posts/${projectpostId}`);
+      const res = await axios.get(`${URL}/api/projectposts/${projectpostId}`);
       //console.log(res.data)
       setprojectPost(res.data);
     } catch (err) {

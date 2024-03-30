@@ -82,7 +82,7 @@ export const  ProjectForm=() =>{
       //const res=await axios.post(URL+"/api/posts/create", post, {withCredentials:true})
       const res = await axios.post(URL+"/api/projectposts/create", projectpost, { withCredentials: true })
      console.log(res.data)
-     navigate("/project")
+     navigate("/Project")
     }
     catch(err){
       console.log(err)

@@ -83,20 +83,20 @@ export const ProjectCard = ({ projectpost }) => {
           </div>
 
           <div className="project_details">
-            <p className="project_published_details">
+        {  /*  <p className="project_published_details">
               {new Date(projectpost.updatedAt).toLocaleDateString()}{" "}
               {new Date(projectpost.updatedAt).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
               })}
-            </p>
-            {/*<p className="project_published_details">
+            </p>*/}
+            <p className="project_published_details">
               {new Date(projectpost.updatedAt).toString().slice(0, 15)}
             </p>
             <p className="project_published_details">
               {new Date(projectpost.updatedAt).toString().slice(16, 24)}
-            </p>*/}
+            </p>
             <p className="project_published_details">by Athilan Kandamby</p>
           </div>
         </div>

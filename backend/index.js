@@ -7,10 +7,11 @@ const dotenv = require('dotenv')
 const cookieParser=require('cookie-parser')
 const bodyParser=require('body-parser');
 const multer=require("multer");
+const projectpostRoute = require("./routes/projectposts");
 //require('dotenv').config();
 //const cookieParser = require('cookie-parser')
 
-const projectpostRoute = require("./routes/projectposts");
+
 
 app.use(bodyParser.json());
 
@@ -35,6 +36,7 @@ app.use(cors({
     methods: "GET, POST, PUT, DELETE",
     credentials: true
   }));
+app.use("/api/projectposts", projectpostRoute);
 
   // Set up passport strategies (e.g., GoogleStrategy) using passportSetup
 
@@ -52,7 +54,7 @@ app.use(cors({
 //app.use("/api/auth", authRoute);
 //app.use("/api/users", userRoute);
 //app.use("/api/posts", postRoutes);
-app.use("/api/projectposts", projectpostRoute);
+
 //app.use("/api/comments", commentRoute);
 
 // image storage engine
@@ -71,7 +73,7 @@ const storage = multer.diskStorage({
   filename:(req,file,cb)=>{
     return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }*/
-})
+});
 const upload = multer({storage:storage})
 //creating upload end point for images
 /*app.use('/images',express.static('upload/images'))*/
