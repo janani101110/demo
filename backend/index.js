@@ -76,45 +76,13 @@ res.status(500).send('Login process encountered an error. Please try again.');
 
 
 
-app.get("/success", (req, res) =>{
-  if(req.user){
-    console.log("login success ", req.user);
-    res.status(200).json({
-      error: false,
-      message: "Successfully logged in",
-      user: req.user
-    });
-  } else {
-    res.status(403).json({ error: true, message: "Not Authorized" });
-  }
-});
+
 
 
 
 app.get('/checkAuth', verifyToken, (req, res) => {
   res.sendStatus(200);
 })
-
-
-
-// Logout route
-app.get('/logout', function(req, res) {
-  req.logout(function(err) {
-    if (err) {
-      console.error("Error during logout:", err);
-      return res.status(500).send("Error during logout");
-    }
-    res.clearCookie('connect.sid'); // Clear session cookie
-    res.redirect('http://localhost:3000/'); // Redirect to homepage
-  });
-});
-
-
-
-
-
-
-
 
  app.get('/', (req, res) => {
     // Handle the root path (e.g., send a welcome message or render a home page) i put a welcome message but need the home page here

@@ -16,6 +16,7 @@ export const WriteBlog = () => {
   const [downloadURL, setDownloadURL] = useState('');
   const navigate = useNavigate();
   
+  
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -35,7 +36,6 @@ export const WriteBlog = () => {
       desc,
       photo: downloadURL,
     };
-   //image upload firebase
     try {
       const res = await axios.post("http://localhost:5000/api/blogPosts/create",blogPost,{withCredential:true});
       console.log(res.data);

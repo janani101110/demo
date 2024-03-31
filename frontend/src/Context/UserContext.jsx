@@ -1,36 +1,46 @@
-/* eslint-disable react/prop-types */
-
-
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-//import { URL } from "../url";
-//import{ useContext } from React;
-
 export const UserContext=createContext({})
 
 
 export function UserContextProvider({children}){
-    const [user,setUser]=useState(null)
+  
+  const [user, setUser] = useState(null);
 
-    useEffect(()=>{
-      getUser()
+  useEffect(() => {
+    // Fetch authentication status
+    const fetchAuthenticationStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login/success', {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          }
+        });
 
-    },[])
-
-    const getUser=async()=>{
-      try{
-        const res=await axios.get("http://localhost:5000/api/auth/refetch",{withCredentials:true})
-        // console.log(res.data)
-        setUser(res.data)
-
+        if (response.status === 200) {
+          const resObject = await response.json();
+          setUser(resObject.user);
+        } else {
+          throw new Error("Authentication has failed");
+        }
+      } catch (err) {
+        console.log(err);
       }
-      catch(err){
-        console.log(err)
-      }
-    }
-    
-    return (<UserContext.Provider value={{user,setUser}}>
+    };
+
+    fetchAuthenticationStatus();
+  }, []); // Fetch authentication status on component mount
+
+  console.log("user who logged in", user);
+
+  return (
+    <UserContext.Provider value={user}>
       {children}
-    </UserContext.Provider>)
+    </UserContext.Provider>
+  );
 }
+
 export default UserContext;

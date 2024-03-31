@@ -15,19 +15,15 @@ const UserSchema = new mongoose.Schema({
     email:{
         type:String,
         required:false,
+        unique: false
     },
     profilePicture:{
         type:String,
-        required:false
+        required:false,
     },
     createdAt: {
         type: Date,
         default: Date.now,
-    },
-    token:{
-        type: String,
-        default:' ',
-        required:true
     }
     })
 

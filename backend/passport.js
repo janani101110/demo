@@ -22,16 +22,16 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ 
-      userId: profile.id, 
+        userId: profile.id, 
         username: profile.displayName,
-        profilePicture: profile._json.picture 
+        profilePicture: profile.photos[0].value
     
     }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
-  module.exports = passport;
+  
 
   
 passport.serializeUser(function(user, done) {
@@ -48,6 +48,8 @@ passport.deserializeUser(async function(id, done) {
     done(err, null);
   }
 });
+
+module.exports = passport;
 
 /*
 passport.use('google-signup', new GoogleStrategy({

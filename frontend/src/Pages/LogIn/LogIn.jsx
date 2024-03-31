@@ -38,7 +38,7 @@ return (
         </div>
         <br/>
         <div>
-          <button type="submit" className="loginButton">Sign Up</button>
+          <button type="submit" className="loginButton">Sign In</button>
         </div>
       </form>
   </div>

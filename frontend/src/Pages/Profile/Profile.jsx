@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useContext} from 'react'
+import {UserContext} from '../../Context/UserContext';
 import './Profile.css';
 
 
@@ -6,9 +7,12 @@ import './Profile.css';
 
 
 const Profile = () => {
+  const user = useContext(UserContext);
+  console.log("user Context", user)
   
+
   const logout = () => {
-    window.open("http://localhost:5000/logout", "_self");
+    window.open("http://localhost:5000/api/auth/logout", "_self");
   }
 
 
@@ -16,11 +20,11 @@ const Profile = () => {
     <div className="profile">
         <div className='profileHeader'>
           <div className='ProfileHeaderImage'>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUs73Mz3FqhV8uy2F5TGw_jGvFdzGirConJA&usqp=CAU" className="profileImg" alt="Profile" /> 
+              <img src={user.profilePicture} className="profileImg" alt="Profile" /> 
           </div>
           <div className='ProfileHeaderText'>
-              <p className='ProfileText'> User Name</p>
-              <p className='ProfileText'> Email</p>
+              <p className='ProfileText'> User Name: {user.username} </p>
+              <p className='ProfileText'> Email:  </p>
           </div>
         </div>
         <div className='profileMessage'>

@@ -12,7 +12,7 @@ export const Blogs = () => {
 
  
 
-  const fetchPosts=async()=>{
+  const fetchBlogPosts=async()=>{
     try {
       const res = await axios.get(`http://localhost:5000/api/blogPosts`);
       setPost(res.data);
@@ -23,7 +23,7 @@ export const Blogs = () => {
   }
 
   useEffect(()=>{
-    fetchPosts(0)
+    fetchBlogPosts(0)
   },[])
 
   
