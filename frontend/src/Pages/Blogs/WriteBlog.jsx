@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import { imageDb } from "../../firebase";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-
+const token = localStorage.getItem('token');
 
 
 export const WriteBlog = () => {
@@ -37,7 +37,12 @@ export const WriteBlog = () => {
       photo: downloadURL,
     };
     try {
-      const res = await axios.post("http://localhost:5000/api/blogPosts/create",blogPost,{withCredential:true});
+      const res = await axios.post("http://localhost:5000/api/blogPosts/create",
+      blogPost,{
+        headers: {
+          Authorization: `Bearer ${token}`, // Include JWT token in headers
+        },
+      });
       console.log(res.data);
       navigate("/Blogs");
     } 
@@ -45,6 +50,7 @@ export const WriteBlog = () => {
       console.log(err);
     }
   };
+
 
     return (
     <div className="createBlog"> 

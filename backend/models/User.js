@@ -9,13 +9,20 @@ const UserSchema = new mongoose.Schema({
     },
     userId:{
         type:String,
-        required:false,
-        unique:true
+        required:false
     },
     email:{
         type:String,
-        required:false,
+        required: function () {
+            return !this.userId; // Require password if userId doesn't exist (Google authentication)
+        },
         unique: false
+    },
+    password: {
+        type: String,
+        required: function () {
+            return !this.userId; // Require password if userId doesn't exist (Google authentication)
+        }
     },
     profilePicture:{
         type:String,

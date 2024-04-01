@@ -92,7 +92,7 @@ router.get("/search/:prompt", async (req, res) => {
     }
 })
 
-router.put("/like", verifyToken, (req,res) => {
+router.put("/like", (req,res) => {
     Post.findByIdAndUpdate(req.body.postId,{
         $push:{likes:req.user._id}
     },{
@@ -106,7 +106,7 @@ router.put("/like", verifyToken, (req,res) => {
     })
 })
 
-router.put("/unlike", verifyToken, (req,res) => {
+router.put("/unlike", (req,res) => {
     Post.findByIdAndUpdate(req.body.postId,{
         $pull:{likes:req.user._id}
     },{

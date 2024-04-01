@@ -9,15 +9,34 @@ import LoginImage from "../LogIn/images/loginImage.jpg"
 import googleIcon from "../LogIn/images/googleIcon.png";
 
 function Login() {
-
-  
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+  const [error,setError]=useState(false)
   const {setUser}=useContext(UserContext)
+  const navigate=useNavigate()
+
   axios.defaults.withCredentials = true;
   const google = () => {
     window.open("http://localhost:5000/api/auth/google", "_self");
-
-
   }
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const User = {
+      email,
+      password
+    };
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login",User);
+      console.log(res.data);
+      navigate("/home");
+    } 
+    catch (err) {
+      console.log(err);
+    }
+  };
+
 return (
     <div className="login"> 
     <div className="logindiv"> 
@@ -29,12 +48,12 @@ return (
   <div className="logindiv"> 
 
   <div className="loginTextdiv">
-  <form >
+  <form onSubmit={handleLogin}>
         <div>
-          <input type="text" name="username"  placeholder="Username" required className="loginInput" />
+          <input  onChange={(e)=>setEmail(e.target.value)}  type="text" name="email"  placeholder="email" autoComplete="new-email"  required className="loginInput" />
         </div>
         <div>
-          <input type="password" name="password" placeholder="Password" required  className="loginInput"/>
+          <input onChange={(e)=>setPassword(e.target.value)}  type="password" name="password" placeholder="Password" autoComplete="new-password"  required  className="loginInput"/>
         </div>
         <br/>
         <div>

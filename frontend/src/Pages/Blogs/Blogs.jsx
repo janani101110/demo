@@ -7,16 +7,43 @@ import Blogspost from './Blogspost';
 import axios from "axios";
 //import { UserContext } from "../../Context/UserContext";
 
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className='pagination'>
+        {pageNumbers.map(number => (
+          <li key={number} className='page-item'>
+            <a onClick={() => paginate(number)} className='page-link'>
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+
+
+  
+
 export const Blogs = () => {
   const [blogPost, setPost] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
 
- 
+
 
   const fetchBlogPosts=async()=>{
     try {
       const res = await axios.get(`http://localhost:5000/api/blogPosts`);
       setPost(res.data);
-      console.log(res);
     } catch (err) {
       console.error('Error fetching blog posts:', err);
     }
@@ -26,6 +53,12 @@ export const Blogs = () => {
     fetchBlogPosts(0)
   },[])
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPost.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   
  
 
@@ -46,9 +79,8 @@ export const Blogs = () => {
       </div>
 
 
-            <div className='blog-post'>
                 <Search />
-            </div>
+            
 
           <div className='blogFilters'> 
             <div className ="filterButton">
@@ -69,15 +101,21 @@ export const Blogs = () => {
 
           </div>
 
-            <div className='bpost'>
-            {blogPost.map((blogPost) => (   
-       <Blogspost style={{textDecoration: 'none'}} key={blogPost._id} blogPost={blogPost}/>
-     ))}
-            </div>
+          <div className='bpost'>
+        {currentPosts.map((blogPost) => (
+          <Blogspost style={{ textDecoration: 'none' }} key={blogPost._id} blogPost={blogPost} />
+        ))}
+      </div>
 
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={blogPost.length}
+        paginate={paginate}
+      />
+    </div>
          
      
-          </div>
+      
           
   ) 
 }

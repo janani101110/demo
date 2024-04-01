@@ -4,13 +4,36 @@ import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from "../LogIn/images/loginImage.jpg";
-import googleIcon from "../LogIn/images/googleIcon.png";
 
 const Signup=() => {
+  const [username,setUsername]=useState("")
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+  const [error,setError]=useState(false)
+  const navigate=useNavigate()
 
   const google = () => {
     window.open("http://localhost:5000/api/auth/google", "_self");
   }
+
+
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    const User = {
+      username,
+      email,
+      password
+    };
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/signup",User);
+      console.log(res.data);
+      navigate("/login");
+    } 
+    catch (err) {
+      console.log(err);
+    }
+  };
 
 
 return (
@@ -24,18 +47,18 @@ return (
   <div className="logindiv"> 
 
   <div className="loginTextdiv">
-  <form >
+  <form onSubmit={handleSignup}>
         <div>
-          <input type="text" name="username"  placeholder="Username" required className="loginInput" />
+          <input onChange={(e)=>setUsername(e.target.value)} type="text" name="username"  placeholder="Username" required   autoComplete="new-username" className="loginInput" />
         </div>
         <div>
-          <input type="email" name="email"  placeholder="Email" required  className="loginInput"/>
+          <input onChange={(e)=>setEmail(e.target.value)} type="email" name="email"  placeholder="Email" required autoComplete="new-email" className="loginInput"/>
         </div>
         <div>
-          <input type="password" name="password" placeholder="Password" required  className="loginInput"/>
+          <input onChange={(e)=>setPassword(e.target.value)}  type="password" name="password" placeholder="Password" required  autoComplete="new-password" className="loginInput"/>
         </div>
         <div>
-          <input type="password" name="confirmPassword"placeholder="Confirm Password" required  className="loginInput"/>
+          <input  type="password" name="confirmPassword"placeholder="Confirm Password" required autoComplete="new-confirm-password" className="loginInput"/>
         </div>
         <div>
           <br/>

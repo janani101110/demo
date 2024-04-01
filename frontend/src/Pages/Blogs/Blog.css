@@ -37,7 +37,7 @@
 }
 
 .blogQuote{
-  color:#fff;
+  color:#000;
 }
 
 .bannerSection img {
@@ -130,6 +130,34 @@
     border-radius: 40px;
     
   }
+
+  .pagination {
+    margin-bottom: 10px;
+    margin-left: 15px;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .page-item {
+    margin: 0 5px;
+  }
+  
+  .page-link {
+    color: #532f44; /* Text color */
+    background-color: #d3d3d3; /* Background color */
+    border: 1px solid #532f44; /* Border color */
+    padding: 8px 12px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .page-link:hover {
+    color: #fff; /* Text color on hover */
+    background-color: #532f44; /* Background color on hover */
+  }
   
   
   /*
@@ -174,6 +202,12 @@
     cursor: pointer;
     margin-bottom: 20px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s;
+  }
+
+  .postCard:hover {
+    transform: scale(1.05); /* Enlarge the card on hover */
   }
   
   .blogPostImage{
@@ -182,8 +216,33 @@
     height: 200px;
     
   }
+
+  .postDetails {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .postCard:hover .postDetails {
+    opacity: 1; /* Show post details on hover */
+  }
+  
+  .postDescription {
+    
+    padding: 20px;
+    text-align: center;
+  }
   .postText{
-    width:90%;
+    
     color: #000;
   }
   .postTitle{
@@ -306,6 +365,7 @@
   
 }
 .createBlogTextArea{
+  padding: 5px;
   height: auto;
   width: 800px;
   margin-bottom: 10px;

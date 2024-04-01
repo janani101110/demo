@@ -46,22 +46,28 @@ const Blogspost = ({blogPost}) => {
         
             <img src={blogPost.photo} alt="" className="blogPostImage" /> 
             
-     
+            
             <div className="postText">
             <div className="postTitle">
                  {blogPost.title}
             </div>
-            <hr/>
             <br/>
+            <div className="postDetails">
+            <div className="postDescription">
+            {blogPost.desc.split(' ').slice(0, 60).join(' ')+ '... See more'}
+          </div>
+          <br/>
         </div>
-        
+        </div>
         </Link>
         <div className='likedislikeDiv'>
               <i className="material-icons" onClick={()=>{likePost(blogPost._id)}}> thumb_up </i> 
               <i className="material-icons" onClick={()=>{unlikePost(blogPost._id)}}> thumb_down </i>
             <h5> Likes:  {blogPost.likes.length} </h5>
             </div>
+       
        </div>
+
   )
 }
 
