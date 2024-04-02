@@ -1,18 +1,13 @@
 import "./LogIn.css";
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useContext} from "react"
 import axios from "axios"
-import UserContext from '../../Context/UserContext';
 import LoginImage from "../LogIn/images/loginImage.jpg"
-import googleIcon from "../LogIn/images/googleIcon.png";
 
 function Login() {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
-  const [error,setError]=useState(false)
-  const {setUser}=useContext(UserContext)
   const navigate=useNavigate()
 
   axios.defaults.withCredentials = true;

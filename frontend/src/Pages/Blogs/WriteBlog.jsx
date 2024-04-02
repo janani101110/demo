@@ -16,7 +16,6 @@ export const WriteBlog = () => {
   const [downloadURL, setDownloadURL] = useState('');
   const navigate = useNavigate();
   
-  
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -36,18 +35,26 @@ export const WriteBlog = () => {
       desc,
       photo: downloadURL,
     };
+  
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(blogPost),
+    };
+  
     try {
-      const res = await axios.post("http://localhost:5000/api/blogPosts/create",
-      blogPost,{
-        headers: {
-          Authorization: `Bearer ${token}`, // Include JWT token in headers
-        },
-      });
-      console.log(res.data);
+      const res = await fetch("http://localhost:5000/api/blogPosts/create", requestOptions);
+      if (!res.ok) {
+        throw new Error('Failed to create blog post');
+      }
+      const data = await res.json();
+      console.log(data);
       navigate("/Blogs");
-    } 
-    catch (err) {
-      console.log(err);
+    } catch (err) {
+      console.error(err);
     }
   };
 

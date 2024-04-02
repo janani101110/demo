@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
-export const UserContext=createContext({})
+export const UserContext=createContext({
+})
 
 
 export function UserContextProvider({children}){
   
   const [user, setUser] = useState(null);
+
 
   useEffect(() => {
     // Fetch authentication status
@@ -34,11 +36,11 @@ export function UserContextProvider({children}){
     fetchAuthenticationStatus();
   }, []); // Fetch authentication status on component mount
 
-  console.log("user who logged in", user);
-
+  console.log(user);
   return (
     <UserContext.Provider value={user}>
       {children}
+      <profile/>
     </UserContext.Provider>
   );
 }

@@ -21,6 +21,8 @@ export const InsidePost = () => {
         fetchPost();
       }, [blogPostId]);
 
+      
+
   return (
     <div className='InsidePost'>
         <div className="Blog">

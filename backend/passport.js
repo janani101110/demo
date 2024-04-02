@@ -22,12 +22,14 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ 
-        userId: profile.id, 
-        username: profile.displayName,
-        profilePicture: profile.photos[0].value
-    
+      userId: profile.id, 
+      username: profile.displayName,
+      profilePicture: profile.photos[0].value
     }, function (err, user) {
-      return cb(err, user);
+      if (err) { return cb(err); }
+      // Generate JWT token
+      const token=jwt.sign({_id:user._id},process.env.accessToken_secret,{expiresIn:"1h"})
+      return cb(null, user, token);
     });
   }
 ));

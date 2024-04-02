@@ -121,7 +121,7 @@ export const Navbar = () => {
 
       {user ? (
         <div>
-          <Link to="/Profile">
+         <Link to={{pathname: "/Profile", state: { user: user }}}>
             <img
               src={user.profilePicture} 
               className="profilenavImg"

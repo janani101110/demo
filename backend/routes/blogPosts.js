@@ -6,10 +6,8 @@ const Comment=require('../models/Comment.js');
 const Post=require('../models/blogPost.js');
 const verifyToken = require('../middleware/verifyToken.js');
 
-
-
 //Create 
-router.post("/create",verifyToken,  async (req, res) => {
+router.post("/create",verifyToken ,async (req, res) => {
     try{
         const newPost = new Post(req.body);
         const savedPost=await newPost.save();

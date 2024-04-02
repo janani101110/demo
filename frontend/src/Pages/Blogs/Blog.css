@@ -274,15 +274,15 @@
 
   /**--------------create blog posts -------------------------**/
   .createBlog{
-    height: 150vh;
+    height: 1vh;
     width: 100vw;
-    background-color: #f5f5f5;
+    color: #fff;
     display: flex;
     flex-direction:row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    background-image: url(https://images.unsplash.com/photo-1629196914168-3a2652305f9f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D);
+    background-image: url(https://i.pinimg.com/236x/b2/c8/15/b2c81552593fea43777eeb1367b142bb.jpg);
+    background-size: cover;
 
 }
 
@@ -305,21 +305,21 @@
     width: 300px;
     margin-bottom: 20px;
     border-radius: 10px;
-    border: solid 2px #532f44;
+    border: solid 2px #0b0035;
     font-size: 20px;
     font-family: cursive;
-    color: #000;
+    color: #0b0035;
     cursor: pointer;
 
 }
 
 
 .createBlogSubmit:hover{
-    background-color: #532f44;
+    background-color: #0b0035;
     color: #fff;
 }
 .WriteBlog{
-  border: 1px solid purple;
+  border: 1px solid #0b0035;
   border-radius: 20px;
   height: fit-content;
   width: 900px;
@@ -341,7 +341,7 @@
   text-align: center;
   font-size: 40px;
   font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
-  color: rgb(95, 20, 64);
+  color: #fff;
   margin-bottom: 30px;
 }
 
