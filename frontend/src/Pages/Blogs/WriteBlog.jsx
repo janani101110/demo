@@ -61,7 +61,7 @@ export const WriteBlog = () => {
 
     return (
     <div className="createBlog"> 
-  <div className="CreateBlogTextdiv">
+  <div className="CreateBlogInnerdiv">
   <h1 className='createBlogTitle'>Create a Blog Post</h1>
         
         <form onSubmit={handleSubmit} className='createBlogFormBody'>
@@ -92,5 +92,4 @@ export const WriteBlog = () => {
 );
 
 }
-//onClick={handleCreate}
 export default WriteBlog;

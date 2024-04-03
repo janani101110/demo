@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CommentSchema = new mongoose.Schema({
+const blogCommentSchema = new mongoose.Schema({
     comment: {
         type:String,
         required:true,
@@ -10,14 +10,14 @@ const CommentSchema = new mongoose.Schema({
         required:true,
         unique:true,
     },
-    postId:{
+    blogPostId:{
         type:String,
         required:true,
     },
     userId:{
         type:String,
         required:true,
-    },
+    }
     })
 
-module.exports=mongoose.model('Comment',CommentSchema)
+module.exports=mongoose.model('blogComment',blogCommentSchema)

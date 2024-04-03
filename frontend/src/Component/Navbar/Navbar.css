@@ -2,13 +2,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  
 }
 .navbar{
     display: flex;
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px  -2px black;
-    
+       
 }
 .nav-logo{
     display: flex;
@@ -30,6 +31,7 @@
     border: 1px solid #B69AFF;
     cursor: pointer;
 }
+
 .cover{
     justify-content: center;
     width: 100px;
@@ -47,6 +49,7 @@
     font-weight: bold;
     color: black;
     list-style: none;
+    
 }
 .nav-menu li{
     display: flex;
@@ -85,4 +88,6 @@
     background: rgb(145, 80, 145);
     color: white;
 }
+
+
 

@@ -11,6 +11,7 @@ const passportSetup = require('./passport');
 const cookieParser = require('cookie-parser')
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
+const blogCommentRoutes = require('./routes/blogComment');
 const blogPostRoutes=require('./routes/blogPosts');
 const verifyToken = require('./middleware/verifyToken');
 const cookieSession = require("cookie-session")
@@ -53,31 +54,10 @@ app.use(cors({
     credentials: true
   }));
 
-
-app.get("/auth/google",
-  passport.authenticate("google", { scope: ['profile'] })
-);
-
-
-app.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/loginError" }),//http://localhost:3000/
-  function(req, res) {
-    // Successful authentication, redirect secrets.
-    res.redirect("http://localhost:3000");
-  }
-);
-
-
-
 app.get('/loginError', function (req, res) {
 
 res.status(500).send('Login process encountered an error. Please try again.');
 });
-
-
-
-
-
 
 
 app.get('/checkAuth', verifyToken, (req, res) => {
@@ -93,6 +73,7 @@ app.get('/checkAuth', verifyToken, (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/blogPosts", blogPostRoutes);
+app.use("/api/blogComments",blogCommentRoutes)
 
 
 

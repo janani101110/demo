@@ -7,37 +7,8 @@ const Blogspost = ({blogPost}) => {
     return null;
   }
 
-  const likePost = (id) =>{
-     fetch('http://localhost:5000/api/blogPosts/like',{
-        method: "put",
-        headers:{
-          "Content-Type":"application/json"
-        },
-          body:JSON.stringify({
-            postId:id
-          })
-        
-     }).then(res => res.json())
-     .then(result=>{
-      console.log(result)
-     })
-  }
-
-  const unlikePost = (id) =>{
-    fetch('http://localhost:5000/api/blogPosts/unlike',{
-       method: "put",
-       headers:{
-         "Content-Type":"application/json"
-       },
-         body:JSON.stringify({
-           postId:id
-         })
-       
-    }).then(res => res.json())
-    .then(result=>{
-     console.log(result)
-    })
- }
+  const createdAtDate = new Date(blogPost.createdAt);
+  const createdDate = createdAtDate.toDateString(); 
 
 
   return (
@@ -47,23 +18,23 @@ const Blogspost = ({blogPost}) => {
             <img src={blogPost.photo} alt="" className="blogPostImage" /> 
             
             
-            <div className="postText">
-            <div className="postTitle">
+            <div className="blogPostText">
+            <div className="blogPostTitle">
                  {blogPost.title}
             </div>
+
+            
             <br/>
-            <div className="postDetails">
-            <div className="postDescription">
+            <div className="blogPostostDetails">
+            <div className="blogPostDescription">
             {blogPost.desc.split(' ').slice(0, 60).join(' ')+ '... See more'}
           </div>
           <br/>
         </div>
         </div>
         </Link>
-        <div className='likedislikeDiv'>
-              <i className="material-icons" onClick={()=>{likePost(blogPost._id)}}> thumb_up </i> 
-              <i className="material-icons" onClick={()=>{unlikePost(blogPost._id)}}> thumb_down </i>
-            <h5> Likes:  {blogPost.likes.length} </h5>
+        <div className="blogPostdate">
+                 {createdDate}
             </div>
        
        </div>

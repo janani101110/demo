@@ -41,7 +41,7 @@ function App() {
       <Routes>
           <Route path='/home'element={<Home/>}/>
           <Route path='/resources'element={<Resources/>}/>
-          <Route path='/writepost'element={<Writepost/>}/>
+          {/* <Route path='/writepost'element={<Writepost/>}/> */}
           <Route path='/sensors'element={<Sensors/>}/>
           <Route path='/MotionSen'element={<MotionSen/>}/>
           <Route path='/projects'element={<Projects/>}/>

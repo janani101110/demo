@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import logo from '../Assets/logo.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import DropdownMenu from "./DropdownMenu";
 
 
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const [user, setUser] = useState(null);
+  const navigation = useNavigate();
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
+
+
+  // function gotoProfile() {
+  //   navigation.navigate("/Profile", { user: user });
+  // }
 
   useEffect(() => {
     // Fetch authentication status
@@ -120,15 +136,18 @@ export const Navbar = () => {
       </ul>
 
       {user ? (
-        <div>
-         <Link to={{pathname: "/Profile", state: { user: user }}}>
+        <div className="menu"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}>
             <img
               src={user.profilePicture} 
               className="profilenavImg"
               alt=""
             />
-          </Link> 
+          
+          {isDropdownVisible && <DropdownMenu />}
         </div>
+        
       ) : (
         <div className="nav-login">
           <Link to="/signup">
@@ -139,6 +158,7 @@ export const Navbar = () => {
           </Link>
         </div>
       )}
+      
     </div>
   );
 }

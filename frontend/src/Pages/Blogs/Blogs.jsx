@@ -37,21 +37,41 @@ export const Blogs = () => {
   const [blogPost, setPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+  const [sortOrder, setSortOrder] = useState('desc');
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  const sortPosts = async (order) => {
+    try {
+      let sortedPosts = [...blogPost];
+      if (order === 'asc') {
+        sortedPosts.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (order === 'desc') {
+        sortedPosts.sort((a, b) => b.title.localeCompare(a.title));
+      }
+      setPost(sortedPosts);
+      setSortOrder(order);
+      setActiveFilter(order);
+    } catch (err) {
+      console.error('Error sorting blog posts:', err);
+    }
+  };
+  
 
 
 
   const fetchBlogPosts=async()=>{
     try {
-      const res = await axios.get(`http://localhost:5000/api/blogPosts`);
+      const res = await axios.get(`http://localhost:5000/api/blogPosts?sort=${sortOrder}`);
       setPost(res.data);
     } catch (err) {
       console.error('Error fetching blog posts:', err);
     }
   }
 
-  useEffect(()=>{
-    fetchBlogPosts(0)
-  },[])
+  useEffect(() => {
+    fetchBlogPosts('desc'); // Fetch latest posts on component mount
+    setActiveFilter('latest');
+  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -60,10 +80,16 @@ export const Blogs = () => {
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
   
+  const showLatestPosts = () => {
+    fetchBlogPosts('-createdAt'); // Fetch blog posts sorted by createdAt in descending order
+    setActiveFilter('latest');
+  };
+
+
  
 
   return (
-    <div className="BlogHome">
+    <div className={`blogHome ${getBackgroundClass()}`}>
 
 
       <div className='blogBanner'>
@@ -83,21 +109,21 @@ export const Blogs = () => {
             
 
           <div className='blogFilters'> 
-            <div className ="filterButton">
+            <button className ="filterButton">
               Popular
-            </div>
+            </button>
 
-            <div className ="filterButton">
+            <button className = {`filterButton ${activeFilter === 'latest' ? 'activeFilterButton' : ''}`} onClick={showLatestPosts}>
               Latest
-            </div>
+            </button>
 
-            <div className ="filterButton">
+            <button className={`filterButton ${activeFilter === 'asc' ? 'activeFilterButton' : ''}`} onClick={() => sortPosts('asc')}>
               A-Z
-            </div>
+            </button>
 
-            <div className ="filterButton">
+            <button className ={`filterButton ${activeFilter === 'desc' ? 'activeFilterButton' : ''}`}  onClick={() => sortPosts('desc')}>
               Z-A
-            </div>
+            </button>
 
           </div>
 

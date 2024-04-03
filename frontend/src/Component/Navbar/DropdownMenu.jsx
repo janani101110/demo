@@ -1,16 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
-import Profile from "../Pages/Profile/Profile";
-export const UserContext=createContext({
-})
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './DropdownMenue.css'
 
-
-export function UserContextProvider({children}){
-  
+const DropdownMenu = () => {
   const [user, setUser] = useState(null);
 
-
   useEffect(() => {
-    // Fetch authentication status
     const fetchAuthenticationStatus = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/auth/login/success', {
@@ -37,13 +32,29 @@ export function UserContextProvider({children}){
     fetchAuthenticationStatus();
   }, []); // Fetch authentication status on component mount
 
-  console.log(user);
-  return (
-    <UserContext.Provider value={user}>
-      {children}
-      <Profile user={user}/>
-    </UserContext.Provider>
-  );
-}
 
-export default UserContext;
+  console.log(user);
+
+  const logout = () => {
+    window.open("http://localhost:5000/api/auth/logout", "_self");
+  }
+
+  return (
+    <div className="dropdown-menu">
+      <ul className='dropdownMenuul'>
+      <li className='dropdownMenuli'>
+        <Link style={{ textDecoration: "none" }} to={{ pathname: "/Profile", user: user }}> 
+           Profile
+        </Link>
+        </li>
+        <li className='dropdownMenuli'>
+          <Link style={{ textDecoration: "none" }} to="#" onClick={logout}>
+            Log Out
+          </Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default DropdownMenu;
