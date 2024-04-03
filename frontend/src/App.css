@@ -1,27 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
 }
-@media (max-width: 600px) {
-  .App-header {
-    font-size: 16px;
-  }
-}
-
-/* Adjust layout for smaller screens 
-@media (max-width: 768px) {
-  .App-header {
-    padding: 20px;
-  }
-}
-
-/* Responsive styling for larger screens 
-@media (min-width: 1200px) {
-  .App-header {
-    font-size: 24px;
-  }
-}*/
-
 
 .App-logo {
   height: 40vmin;

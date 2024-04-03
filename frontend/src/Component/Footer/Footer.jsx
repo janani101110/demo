@@ -15,7 +15,7 @@ export const Footer = () => {
             <div className="email">  <a href="#"> <img src={EmailIcon} className="emailIcon" /> </a>  </div>
             <div className="location"> <a href="#"> <img src={LocationIcon}  className="locationIcon" /> </a>    </div>
             <div className="facebook">  <a href="#"> <img src={FacebookIcon} className="facebookIcon" /> </a>   </div>
-            <div className="twitter">  <a href="#"> <img src={TwitterIcon} className="twitterIcon"/> </a>  </div>
+            <div className="twitter">  <a href="#"> <img src={TwitterIcon} className="twitterIcon" /> </a>  </div>
 
         </div>
         <div className="footerText">
