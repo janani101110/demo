@@ -85,7 +85,18 @@ export const Blogs = () => {
     setActiveFilter('latest');
   };
 
-
+  const getBackgroundClass = () => {
+    switch (activeFilter) {
+      case 'latest':
+        return 'latestBackground';
+      case 'asc':
+        return 'ascBackground';
+      case 'desc':
+        return 'descBackground';
+      default:
+        return 'defaultBackground';
+    }
+  };
  
 
   return (
