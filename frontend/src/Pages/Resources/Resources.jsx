@@ -1,6 +1,5 @@
 import React from 'react'
 import './Resources.css'
-import './Sensors/Sensors'
 
 import sensors from '../Resources/Assets/sensors.png'
 import pcb from '../Resources/Assets/pcb.png'
@@ -11,12 +10,11 @@ import power from '../Resources/Assets/power.png'
 import proto from '../Resources/Assets/proto.png'
 
 import { Link } from 'react-router-dom';
-import { Search } from '../../Component/Search/Search'
 
 export const Resources = () => {
   return (
     <div className='resoCollect'>
-        <Search/>
+
       <div className='collect' id='collect1'>
           <div className='resoimg'>
               <img src={sensors} alt="" className='resoimg'/> 
