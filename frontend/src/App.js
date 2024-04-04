@@ -26,17 +26,16 @@ import {InsidePost} from './Pages/Blogs/InsidePost';
 
 
 import Productdescription from './Pages/Shopping/Productdescription';
-import UserContext from './Context/UserContext';
+import {UserContextProvider} from './Context/UserContext';
 
 
 
 function App() {
-  const user = useContext(UserContext); 
-  console.log(user);
   return (
     <div>
-      <UserContext.Provider value={user}>
+      
       <BrowserRouter>
+      <UserContextProvider>
       <Navbar/>
       
       <Routes>
@@ -66,8 +65,9 @@ function App() {
       </Routes>
       
       <Footer/>
+      </UserContextProvider>
       </BrowserRouter>
-      </UserContext.Provider>
+      
       
 
     </div>

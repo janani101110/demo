@@ -1,14 +1,17 @@
 import React,{ useEffect, useState} from 'react'
 import './Profile.css';
 import { useLocation } from 'react-router-dom';
+import  { useUsers } from '../../Context/UserContext';
 
 
 
 
+const Profile = () => {
 
-const Profile = (props) => {
-  const { state } = useLocation();
-  const user = state && state.user; // Check if state exists before accessing user property
+const {
+  user,
+  fetchUsers
+} = useUsers();
 
   if (!user) {
     // Handle case where user data is not available
@@ -16,33 +19,6 @@ const Profile = (props) => {
   }
 
   console.log(user);
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const getProfile = async () => {
-  //     debugger;
-  //     try {
-  //       const response = await fetch('http://localhost:5000/api/auth/login/success', {
-  //         method: "GET",
-  //         credentials: "include",
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //           "Access-Control-Allow-Credentials": true,
-  //         }
-  //       });
-  //       debugger;
-  //       setUser(response.user);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-    
-  //   getProfile();
-  // },
-  //  [user]);
-  
-
   const logout = () => {
     window.open("http://localhost:5000/api/auth/logout", "_self");
   }
@@ -52,10 +28,10 @@ const Profile = (props) => {
     <div className="profile">
         <div className='profileHeader'>
           <div className='ProfileHeaderImage'>
-              <img src={props.user.profilePicture} className="profileImg" alt="Profile" /> 
+              <img src={user.profilePicture} className="profileImg" alt="Profile" /> 
           </div>
           <div className='ProfileHeaderText'>
-              <p className='ProfileText'> User Name: {props.user.username} </p>
+              <p className='ProfileText'> User Name: {user.username} </p>
               <p className='ProfileText'> Email:  </p>
           </div>
         </div>
@@ -72,7 +48,7 @@ const Profile = (props) => {
 
         </div>
 
-        <button onClick={ logout } className='logoutButton'> LogOut </button>
+      
         
     </div>
 

@@ -381,12 +381,16 @@
 }
 
 /* --------------pagination ----------------------------- */
-/* Pagination */
 .pagination {
   display: flex;
   list-style: none;
   padding: 0;
-  justify-content: center; /* Center pagination horizontally */
+  justify-content: center;
+  text-align: center;
+  margin-left: 600px;
+  margin-bottom: 20px;
+  gap: 20px;
+  
 }
 
 .pagination li {

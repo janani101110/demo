@@ -1,27 +1,35 @@
-import React, { createContext, useEffect, useState } from "react";
-import Profile from "../Pages/Profile/Profile";
-export const UserContext=createContext({
-})
+import React, { createContext, useEffect, useState,useContext } from "react";
 
 
-export function UserContextProvider({children}){
-  
+export const UserContext = createContext(null);
+
+export const useUsers = ()=>{
+  const context =useContext(UserContext);
+  if(!context){
+    throw new Error("useUsers must be used within a userProvider")
+  }
+  return context;
+}
+
+export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
-
-  useEffect(() => {
+  
     // Fetch authentication status
-    const fetchAuthenticationStatus = async () => {
+    const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/login/success', {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
+        const response = await fetch(
+          "http://localhost:5000/api/auth/login/success",
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
+            },
           }
-        });
+        );
 
         if (response.status === 200) {
           const resObject = await response.json();
@@ -30,18 +38,24 @@ export function UserContextProvider({children}){
           throw new Error("Authentication has failed");
         }
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching authentication status:", err);
       }
     };
+    useEffect(() => {
 
-    fetchAuthenticationStatus();
+      fetchUsers();
   }, []); // Fetch authentication status on component mount
 
-  console.log(user);
+const value = {
+  user,
+  fetchUsers
+}
+
+
+  // Return the user context provider
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={value}>
       {children}
-      <Profile user={user}/>
     </UserContext.Provider>
   );
 }
