@@ -17,10 +17,12 @@ const DropdownMenu = () => {
             "Access-Control-Allow-Credentials": true,
           }
         });
+        
 
         if (response.status === 200) {
           const resObject = await response.json();
           setUser(resObject.user);
+          console.log("User",resObject.user);
         } else {
           throw new Error("Authentication has failed");
         }

@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 
 
 //database connection
-
 const connectDB=async()=>{
     try{
         await mongoose.connect(process.env.db);

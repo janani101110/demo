@@ -141,10 +141,12 @@
     list-style: none;
     padding: 0;
     justify-content: center;
+    text-align:center;
   }
   
   .page-item {
     margin: 0 5px;
+   
   }
   
   .page-link {
@@ -152,9 +154,10 @@
     background-color: #d3d3d3; /* Background color */
     border: 1px solid #532f44; /* Border color */
     padding: 8px 12px;
-    border-radius: 50%;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
+    justify-content: center;
+    align-items: center;
   }
   
   .page-link:hover {
@@ -162,15 +165,7 @@
     background-color: #532f44; /* Background color on hover */
   }
   
-  
-  /*
-  <img src={addIcon} className="addIcon"/> 
-  .addIcon{
-    height: 70px;
-    width: 70px;
-  }
-  
-  */
+
   
   
   
@@ -287,7 +282,7 @@
     flex-direction:row;
     justify-content: center;
     align-items: center;
-    background-image: url(https://media.istockphoto.com/id/1308683679/vector/violet-purple-and-navy-blue-defocused-blurred-motion-gradient-abstract-background.jpg?s=612x612&w=0&k=20&c=4wpzRK3SV0jOaqMOWTs1YOs9GN3CY21Z0BB67VHAjUM=);
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpBbG7xVvoxhL7ZYNX36DHYw63z-aMAkKK_z4D09rC0SLK56Q3NJ5COTgeH09HILyaUw4&usqp=CAU);
     background-size: cover;
 
 }
@@ -385,33 +380,26 @@
   border: #532f44 solid 2px;
 }
 
-
-
-
-
-
-
-
-
-/* pagination */
+/* --------------pagination ----------------------------- */
+/* Pagination */
 .pagination {
   display: flex;
   list-style: none;
   padding: 0;
-  margin-left: 500px;
+  justify-content: center; /* Center pagination horizontally */
 }
 
-.pagination-previous,
-.pagination-next,
-.pagination-page {
-  margin: 0 5px; /* Adjust as needed */
+.pagination li {
+  margin: 0 5px;
 }
 
 .pagination-link {
-  padding: 5px 10px; /* Adjust as needed */
-  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border: 1px solid #7d6888;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
+  color: #333;
 }
 
 .pagination-link:hover {

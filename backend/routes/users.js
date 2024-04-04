@@ -3,8 +3,6 @@ const router=express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const verifyToken = require('../middleware/verifyToken');
-//const Comment=require('../models/Comment');
-//const Post=require('../models/Post');
 
 
 //Delete
