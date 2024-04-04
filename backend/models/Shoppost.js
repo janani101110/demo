@@ -33,4 +33,6 @@ const ShoppostSchema=new mongoose.Schema({
     
 },{timestamps:true})
 
+ShoppostSchema.index({ name: 'text', price: 'text' });
+
 module.exports=mongoose.model("Shoppost",ShoppostSchema)

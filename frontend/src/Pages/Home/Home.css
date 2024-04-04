@@ -1,6 +1,6 @@
 .home{
-    display:flex;
-    margin-bottom: 225px;
+    display: flex;
+    margin-bottom: 150px;
 }
 .home-right{
     margin-left: 100px;
@@ -10,14 +10,29 @@
 .mainsearch{
     width: 500px;
     height: 60px;
-    border-radius: 25px;
+    border-radius: 25px; 
     border-color: purple;
+    margin-top: 50px;
+    
+    margin-left: 150px;
 }
-.home-left h1{
-    margin-left: 300px;
-    margin-top: 180px;
+.home-right h1{
+    margin-left: 250px;
+    
 }
-.homeimg{
-    width: 200px;
-    height: 300px;
+.home-left{
+    animation: home-leftAnimation 3s ease alternate infinite;
+    margin-left: 250px;
+    margin-top: 150px;
+}
+@keyframes home-leftAnimation{
+0%{
+    transform: translateY(0) scaleX(1);
+}
+50%{
+    transform: translateY(-40px) scaleX(-1);
+}
+100%{
+    transform: ranslateY(0) scaleX(1);
+}
 }

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import './Shoppingpost.css';
 import axios from 'axios';
-//import { Link } from 'react-router-dom';
+
 import { imageDb } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {v4} from "uuid";
+
+
 
 export const Shoppingpost = () => {
   
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [contact, setContact] = useState('');
-  //const [file, setFile] = useState(null);
+  const [contact, setContact] = useState(''); 
   const [photoURL, setPhotoURL] = useState(null);
   const [,setPhoto]=useState(null);
   const[image,setImage] = useState('');
-  //const[imageUrl,setImageUrl]=useState('');
+  
 
   const [input, setInput]=useState({
     name:'',
@@ -30,7 +31,7 @@ export const Shoppingpost = () => {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
-    setPhotoURL(URL.createObjectURL(file));
+    setPhotoURL(URL.createObjectURL(file));//function to upload photo for preview post
   }
  
   //post upload
@@ -51,7 +52,7 @@ export const Shoppingpost = () => {
   function handleClick(event) {
     event.preventDefault();
   
-    // Assuming 'input' and 'image' are defined elsewhere in your code
+    
     const imgRef = ref(imageDb, `shoppingimages/${v4()}`);
     
     // Upload the image to Firebase Storage
@@ -70,7 +71,7 @@ export const Shoppingpost = () => {
           description: input.description,
           price: input.price,
           contact: input.contact,
-          imageUrl: downloadURL // Add the image URL to the shop post object
+          imageUrl: downloadURL // Add the image URL to the shop post object(firebase)
         };
         
         // Send the shop post data to your backend
@@ -84,6 +85,7 @@ export const Shoppingpost = () => {
         // Handle errors
         console.error('Error creating shop post:', error);
       });
+      
   }
   
 
@@ -107,6 +109,15 @@ export const Shoppingpost = () => {
           </div>
           <table className="shoptable">
             <tbody>
+            <tr className="shoprow">
+                <th>Add a photo</th>
+                <td >
+                  <input type="file" onChange={(e) =>{setImage(e.target.files[0]);handlePhotoChange(e)}}  style={{border:'none'}}/>
+                {/*handlePhotoChange is for the preview and this function will be called only here. then handleSubmit is on the form tag
+                it is for the whole form submission. These two won't conflict each other. we can call two functions in same from. one on the
+                form tag and other one inside the form*/ }    
+                </td>
+              </tr>
               <tr className="shoprow">
                 <th>Component Name</th>
                 <td>
@@ -114,21 +125,8 @@ export const Shoppingpost = () => {
                     type="text"
                     name="name"
                     value={input.name}
-                    onChange={(e) => {setName(e.target.value); handleChange(e)}}
+                    onChange={(e) => {setName(e.target.value); handleChange(e)}} //recieving data
                     placeholder=" Enter the component name with correct spellings"
-                  />
-                </td>
-              </tr>
-              <tr className="shoprow">
-                <th>Description</th>
-                <td>
-                  <textarea
-                    name="description"
-                    value={input.description}
-                    onChange={(e) => {setDescription(e.target.value);handleChange(e)}}
-                    cols={50}
-                    rows={18}
-                    placeholder="  Write a description about the component you wish to sell.Include all the necessary details including any constraints"
                   />
                 </td>
               </tr>
@@ -139,11 +137,26 @@ export const Shoppingpost = () => {
                     type="text"
                     name="price"
                     value={input.price}
-                    onChange={(e) => {setPrice(e.target.value); handleChange(e)}}
+                    onChange={(e) => {setPrice(e.target.value); handleChange(e)}}//recieving data
                     placeholder=" Enter the price in Sri Lankan currency"
                   />
                 </td>
               </tr>
+              <tr className="shoprow">
+                <th>Description</th>
+                <td>
+                  <textarea
+                    name="description"
+                    value={input.description}
+                    onChange={(e) => {setDescription(e.target.value);handleChange(e)}}//recieving data
+                    cols={50}
+                    rows={18}
+                    placeholder="  Write a description about the component you wish to sell.Include all the necessary details including any constraints"
+
+                  />
+                </td>
+              </tr>
+              
               <tr className="shoprow">
                 <th>Contact Number</th>
                 <td>
@@ -151,26 +164,20 @@ export const Shoppingpost = () => {
                     type="text"
                     name="contact"
                     value={input.contact}
-                    onChange={(e) => {setContact(e.target.value); handleChange(e)}}
+                    onChange={(e) => {setContact(e.target.value); handleChange(e)}}//recieving data
                     placeholder=" Enter a contact number containing 10 digits"
                   />
                 </td>
               </tr>
-              <tr className="shoprow">
-                <th>Add a photo</th>
-                <td>
-                  <input type="file" onChange={(e) =>{setImage(e.target.files[0]);handlePhotoChange(e)}}/>
-                {/*handlePhotoChange is for the preview and this function will be called only here. then handleSubmit is on the form tag
-                it is for the whole form submission. These two won't conflict each other. we can call two functions in same from. one on the
-                form tag and other one inside the form*/ }    
-                </td>
-              </tr>
+              
             </tbody>
           </table>
-             
-          <button className="shopbutton" type="submit" onClick={handleClick}>
-            Add
-          </button>
+          
+  <button className="shopbutton" type="submit" onClick={handleClick}>
+    Add
+  </button>
+
+
           
         </form>
         
@@ -178,28 +185,33 @@ export const Shoppingpost = () => {
 
 
         <table className="shoptable2">
-          <h3>See your Post</h3>
+          
           <tbody>
-            <tr>
+            <tr className='shoppostup'>
               
               <td className="shopphoto">
-                {photoURL ? <img src={photoURL} alt="Selected" /> : ""}
+                {photoURL ? <img src={photoURL} alt="Selected" /> : ""} {/*assign data for given variable */}
               </td>
-            </tr>
-            <tr>
+              <td className='shoptext'>
               
-              <td className="comname">{name}</td>
-            </tr>
-            <tr>
+              <tr className="comname">{name}</tr>{/*assign data for given variable */}
               
-              <td className="comdesc">{description}</td>
+              <tr className="comprice">{price}</tr>{/*assign data for given variable */}
+            
+            </td>
             </tr>
-            <tr>
-              <td className="comprice">{price}</td>
+            <hr style={{color:'black'}}/>
+            <div className='shoppostdown'>
+            <tr className="comdesc" style={{fontSize:'18px', textAlign:'justify'}}>              
+              
+              <td>{description}</td>{/*assign data for given variable */}
             </tr>
-            <tr>
-              <td className="concontact">{contact}</td>
+            <hr style={{color:'black'}}/>
+            <tr className="concontact" style={{fontSize:'18px',color:'purple'}}>
+               
+              <td> Contact for more information:&nbsp;   {contact}</td>{/*assign data for given variable */}
             </tr>
+            </div>
           </tbody>
         </table>
       </div>
@@ -207,4 +219,4 @@ export const Shoppingpost = () => {
   );
 };
 
-export default Shoppingpost;
+export default Shoppingpost; 

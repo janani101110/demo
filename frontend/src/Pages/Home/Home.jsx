@@ -1,18 +1,18 @@
 import React from 'react'
 import './Home.css'
-import octopus from '../Home/Assets/octopus.png'
+import blob from '../Home/Assets/blob.jpeg'
 
 export const Home = () => {
   return (  
     
     <div className='home'>
-      <div className='homeimg'>
-        <img src={octopus} alt=''/>
+      <div className='home-left'> 
+        <img src={blob} alt='' style={{width:'320px',height:'320px'}}/>
       </div>
-      <div className='home-left'>
+      <div className='home-right'> 
        <h1>Welcome Tinkers !</h1>
-      </div>
-      <div className='home-right'>
+      
+      
         <input type='text' className='mainsearch' placeholder='     Search your problem' />
       </div>
     </div>

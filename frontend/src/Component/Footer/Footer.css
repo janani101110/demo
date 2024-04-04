@@ -1,20 +1,16 @@
 .footer{
-    justify-content: center;
-    align-items: center;
-    background-color: #494454;
-    height: fit-content;
-    width: 100%;
-    margin-bottom: 0px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    bottom: 0;
-    left: 0;
+  display: flex;
+  flex-direction: column; /* Ensure vertical alignment for mobile devices */
+  justify-content: center;
+  align-items: center;
+  background-color: #494454;
+  padding: 20px;
   }
   .footerIcon{
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 0;
+   
   }
   
   .callIcon, .facebookIcon, .twitterIcon, .emailIcon, .locationIcon{
@@ -26,12 +22,22 @@
   
   .footerText , .footerNav{
     color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 12px;
     font-family: 'Times New Roman', Times, serif;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    bottom: 0;
+    margin: 5px 0;
   }
+  @media (min-width: 768px) {
+    .footer {
+        flex-direction: row; /* Change layout to horizontal for larger screens */
+    }
+    
+    .footerText,
+    .footerNav {
+        margin: 0 10px; /* Add horizontal margin for better spacing */
+    }
+}
+@media (min-width: 992px) {
+  .footer {
+      padding: 20px 50px; /* Increase padding for larger screens */
+  }
+}

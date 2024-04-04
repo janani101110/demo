@@ -24,7 +24,7 @@ export const Footer = () => {
         </div>
 
         <div className="footerNav"> 
-           here i will put some navigation links
+           
         </div>
     </div>
   )
