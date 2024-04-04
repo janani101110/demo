@@ -1,25 +1,25 @@
-import React from 'react';
-import './Sensors/Sensors.css'
-//import {IF} from '../../url'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const Resourcepost = ({post}) => {
- 
+const Resourcepost = ({ resoPost }) => {
+
   return (
-    <div className="res-post">  
-<Link to={`/resopostdetails/${post._id}`} key={post.id}>
-      <div className='respostimg'>
-        <img src={post.photo} alt="" className="res-post img" /> 
-      </div>
-      <div className='resuserdetails'> 
-            <p>@chathuabeyrathne</p>
-            <p>{new Date (post.createdAt).toString().slice(0,15)}</p>
-      </div>
-      <div className='respostcontent'>
-          <h3>{post.title}</h3>
-          <p>{post.desc.slice(0,200)+"...Read more"}</p>
-      </div>
-</Link>
+    <div className="res-post">
+      <Link to={`/resopostdetails/${resoPost._id}`} key={resoPost.id}>
+        <div className="respostimg">
+          <img src={resoPost.photo} alt="" className="res-post img" />
+        </div>
+        <div className="resuserdetails">
+          <p>@chathuabeyrathne</p>
+          <p>{new Date(resoPost.createdAt).toString().slice(0, 15)}</p>
+        </div>
+        <div className="respostcontent">
+          <h3>{resoPost.title}</h3>
+          <p>{resoPost.desc.slice(0, 200) + '...Read more'}</p>
+        </div>
+      </Link>
+
+      
     </div>
   );
 };

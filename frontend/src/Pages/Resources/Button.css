@@ -15,3 +15,12 @@
 .custom-button:hover {
     background: rgb(216, 216, 216);
 }
+
+  
+.button-icon {
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    margin-right: 5px; /* Adjust as needed */
+
+}
+  

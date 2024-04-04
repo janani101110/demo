@@ -44,7 +44,7 @@ export const Writepost = () => {
         const downloadURL = await getDownloadURL(imgRef);
         console.log('Download URL:', downloadURL);
 
-        const post = {
+        const resoPost = {
           title,
           desc,
           categories: cats,
@@ -52,7 +52,7 @@ export const Writepost = () => {
         };
 
         // Post upload
-        const res = await axios.post(URL + '/api/resoposts/create', post, { withCredentials: true });
+        const res = await axios.post(URL + '/api/resoposts/create', resoPost, { withCredentials: true });
         console.log(res.data);
         navigate('/motionsen');
       } catch (err) {
@@ -71,7 +71,7 @@ export const Writepost = () => {
 
         <div className="reso-post-categories-container">
           <div className="reso-category-input">
-            <input value={cat} onChange={(e) => setCat(e.target.value)} type="text" placeholder="Enter Post Category" className="resoaddcategory" />
+            <input value={cat} onChange={(e) => setCat(e.target.value)} type="text" placeholder="Enter Post Categories" className="resoaddcategory" />
             <div onClick={addCategory} className="reso-add-button">
               Add
             </div>

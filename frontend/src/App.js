@@ -6,6 +6,13 @@ import {Home} from './Pages/Home/Home';
 import {Resources} from './Pages/Resources/Resources';
 import {Sensors} from './Pages/Resources/Sensors/Sensors';
 import {MotionSen} from './Pages/Resources/Sensors/MotionSen';
+import {TempSen} from './Pages/Resources/Sensors/TempSen';
+import {EnvirSen} from './Pages/Resources/Sensors/EnvirSen';
+import {GasSen} from './Pages/Resources/Sensors/GasSen';
+import {ImageSen} from './Pages/Resources/Sensors/ImageSen';
+import {LightSen} from './Pages/Resources/Sensors/LightSen';
+import {ProxiSen} from './Pages/Resources/Sensors/ProxiSen';
+import {SoundSen} from './Pages/Resources/Sensors/SoundSen';
 import {Writepost} from './Pages/Resources/Writepost';
 import {ResoPostdetails} from './Pages/Resources/ResoPostdetails';
 import {ResoEditpost} from './Pages/Resources/ResoEditpost';
@@ -35,6 +42,13 @@ function App() {
           <Route path='/resources'element={<Resources/>}/>
             <Route path='/sensors' element={<Sensors/>}/>
               <Route path='/motionSen' element={<MotionSen/>}/>
+              <Route path='/tempSen' element={<TempSen/>}/>
+              <Route path='/envirSen' element={<EnvirSen/>}/>
+              <Route path='/gasSen' element={<GasSen/>}/>
+              <Route path='/imageSen' element={<ImageSen/>}/>
+              <Route path='/lightSen' element={<LightSen/>}/>
+              <Route path='/proxiSen' element={<ProxiSen/>}/>
+              <Route path='/soundSen' element={<SoundSen/>}/>
               <Route path='/writepost' element={<Writepost/>}/>
               <Route path='/resopostdetails/:id' element={<ResoPostdetails/>}/>
               <Route path='/resoeditpost/:id' element={<ResoEditpost/>}/>

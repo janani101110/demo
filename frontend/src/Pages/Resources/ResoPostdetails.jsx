@@ -7,113 +7,142 @@ import { MdDelete } from 'react-icons/md';
 import './ResoPostdetails.css'
 import { ResoComment } from './ResoComment';
 import { useNavigate } from "react-router-dom";
+import { FaStar } from 'react-icons/fa';
 
 export const ResoPostdetails = () => {
-  const postId = useParams().id;
-  const [post, setPost] = useState({});
-  const navigate =useNavigate()
-  const [comments,setComments]=useState([])
-  const [comment,setComment]=useState("")
 
-  const fetchPost = async () => {
+  const [resorating, setResoRating] = useState(null);
+  const [resohover, setResoHover] = useState(null);
+
+  const handleStarClick = (rating) => {
+    if (resorating === rating) {
+      // If the user clicks on the already selected rating, deselect it (set to 0)
+      setResoRating(null);
+    } else {
+      setResoRating(rating);
+    }
+  };
+
+  const { id: resoPostId } = useParams();
+  const navigate = useNavigate();
+  const [resoPost, setResoPost] = useState({});
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+
+  const fetchResoPost = async () => {
     try {
-      const res = await axios.get(`${URL}/api/resoposts/${postId}`);
-      setPost(res.data);
+      const res = await axios.get(`${URL}/api/resoposts/${resoPostId}`);
+      setResoPost(res.data);
     } catch (err) {
-      console.log(err); // Log any errors that occur during fetching
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchResoPost();
+  }, [resoPostId]);
+
+  const fetchPostComments = async () => {
+    try {
+      const res = await axios.get(`${URL}/api/resocomments/post/${resoPostId}`);
+      setComments(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPostComments();
+  }, [resoPostId]);
+
+  const postComment = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${URL}/api/resocomments/create`, { comment, postId: resoPostId }, { withCredentials: true });
+      fetchPostComments(); // Refresh comments after posting
+      setComment(""); // Clear comment input
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const handleDeletePost = async () => {
     try {
-      const res = await axios.delete(`${URL}/api/resoposts/${postId}`, { withCredentials: true });
-      console.log(res.data);
+      await axios.delete(`${URL}/api/resoposts/${resoPostId}`, { withCredentials: true });
       navigate("/motionSen");
     } catch (error) {
       console.error("Error deleting post:", error);
     }
   };
-  
-  
-
-  useEffect(() => {
-    fetchPost();
-  }, [fetchPost, postId]);
-
-  const fetchPostComments=async()=>{
-    try{
-      const res=await axios.get(URL+"/api/resocomments/post/"+postId)
-      setComments(res.data)
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    fetchPostComments()
-  },[postId])
-
-  const postComment=async(e)=>{
-    e.preventDefault()
-    try{
-      const res=await axios.post(URL+"/api/resocomments/create",
-      {comment:comment,postId:postId},
-      {withCredentials:true})
-      
-      fetchPostComments()
-      setComment("")
-      window.location.reload(true)
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
 
   return (
     <div className='reso-post-details-container'>
-     
       <div className="reso-post-title-wrapper">
-          <h1 className='reso-post-title'>{post.title}</h1>
-          <div className="reso-edit-delete-wrapper">
-            <BiEdit className='reso-edit-icon' onClick={()=>navigate("/resoeditpost/"+postId)}/>
-            <MdDelete className='reso-delete-icon' onClick={handleDeletePost}/>
-          </div>
+        <h1 className='reso-post-title'>{resoPost.title}</h1>
+        <div className="reso-edit-delete-wrapper">
+          <BiEdit className='reso-edit-icon' onClick={() => navigate("/resoeditpost/" + resoPostId)} />
+          <MdDelete className='reso-delete-icon' onClick={handleDeletePost} />
+        </div>
       </div>
 
       <div className='reso-post-info'>
         <p>@chathuabeyrathne</p>
-        <p>{new Date (post.createdAt).toString().slice(0,15)}</p>
+        <p>{new Date(resoPost.createdAt).toString().slice(0, 15)}</p>
       </div>
 
-      <img src={IF+post.photo}  alt="" className='reso-post-image' />
-      <p className='reso-post-content'>{post.desc}</p>
+      <img src={resoPost.photo} alt="" className='reso-post-image' />
+      <p className='reso-post-content'>{resoPost.desc}</p>
 
       <div className='reso-post-categories'>
         <p>Categories:</p>
         <div>
-          {post.categories?.map((c,i)=>(
-        
+          {resoPost.categories?.map((c, i) => (
             <div key={i}>{c}</div>
-           
           ))}
-          
         </div>
       </div>
+
+      <div className="resoStarRating">
+        {[0, ...Array(4)].map((_, index) => {
+          const currentResoRating = index + 1;
+          return (
+            <label key={index}>
+              <input
+                type="radio"
+                name="resorating"
+                value={currentResoRating}
+                checked={currentResoRating === resorating}
+                onChange={() => handleStarClick(currentResoRating)}
+              />
+              <FaStar
+                className="resoStar"
+                size={20}
+                color={
+                  currentResoRating <= (resohover || resorating)
+                    ? '#ffc107'
+                    : '#e4e5e9'
+                }
+                onMouseEnter={() => setResoHover(currentResoRating)}
+                onMouseLeave={() => setResoHover(null)}
+              />
+            </label>
+          );
+        })}
+        <p>{resorating === null ? '0' : resorating} Star Rating</p>
+      </div>
+
 
       <div className='reso-comments-section'>
         <h3>Comments:</h3>
 
-        {comments.map((c)=>(
-        <ResoComment key={c.id} c={c}/>
-        ))}
-
-
+      <div className='reso-write-comment'>
+        <input onChange={(e) => setComment(e.target.value)} type="text" placeholder='Write a comment' className='resocomsection' />
+        <button onClick={postComment}>Add Comment</button>
       </div>
 
-      <div className='reso-write-comment'>
-        <input onChange={(e)=>setComment(e.target.value)} type="text" placeholder='Write a comment' className='resocomsection'/>
-        <button onClick={postComment}>Add Comment</button>
+        {comments.map((c) => (
+          <ResoComment key={c._id} c={c} />
+        ))}
       </div>
 
       

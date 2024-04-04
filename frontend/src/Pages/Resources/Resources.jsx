@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import './Resources.css'
+
 
 import sensors from '../Resources/Assets/sensors.png'
 import pcb from '../Resources/Assets/pcb.png'
@@ -15,8 +16,56 @@ import security from '../Resources/Assets/security.png'
 import { Link } from 'react-router-dom';
 
 export const Resources = () => {
+
+    useEffect(() => {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5 // Change this threshold as needed for the desired effect
+        };
+    
+        const handleIntersect = (entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            } else {
+              entry.target.classList.remove('active');
+            }
+          });
+        };
+    
+        const observer = new IntersectionObserver(handleIntersect, options);
+    
+        const elements = document.querySelectorAll('.rescollect');
+        elements.forEach(element => {
+          observer.observe(element);
+        });
+    
+        // Clean up
+        return () => {
+          observer.disconnect();
+        };
+      }, []);
+  
+      const scrollToContent = () => {
+        const content = document.getElementById('resobanner-content');
+        if (content) {
+          const scrollOffset = content.getBoundingClientRect().height * 2.8; // Adjust the scroll offset as needed
+          window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
+        }
+      };
+
   return (
     <div className='resoCollect'>
+
+    <div className="resobanner">
+      <div className="resobanner-content" id="resobanner-content">
+        <h1>Welcome to Our Resource Hub</h1>
+        <p>Explore a vast collection of resources to enhance your electronic projects</p>
+        <button onClick={scrollToContent}>Get Started</button>
+      </div>
+    </div>
 
       <div className='rescollect' id='collect1'>
           <div className='resoimg'>

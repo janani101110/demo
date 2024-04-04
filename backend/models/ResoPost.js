@@ -24,15 +24,15 @@ const ResoPostSchema = new mongoose.Schema({
         required: false,
     },
     categories:{
-        type: [String], // Change the type to an array of strings
+        type: [String],
         required: false,
     },
     createdAt:{
         type: Date,
-        default:Date.now,
+        default: Date.now,
     }
-},{timestamps:true});
+},{timestamps: true});
 
 const ResoPost = mongoose.model('ResoPost', ResoPostSchema); 
 
-module.exports = ResoPost; 
+module.exports = ResoPost;

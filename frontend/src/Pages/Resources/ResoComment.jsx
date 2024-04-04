@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { MdDelete } from 'react-icons/md';
 import axios from "axios";
 
-export const ResoComment = ({ c }) => {
-  const deleteComment = async (id) => { // Accept id as a parameter
+export const ResoComment = ({ c, fetchPostComments }) => {
+  const deleteComment = async (id) => {
     try {
-      await axios.delete(URL + "/api/resocomments/" + id, { withCredentials: true });
-      window.location.reload(true);
+      await axios.delete(`${URL}/api/resocomments/${id}`, { withCredentials: true });
+      fetchPostComments(); // Refresh comments after deletion
     } catch (err) {
       console.log(err);
     }
@@ -20,8 +20,7 @@ export const ResoComment = ({ c }) => {
           <div className='resocomdate'><p>{new Date(c.createdAt).toString().slice(0, 15)}</p></div>
         </div>
         <div className='reso-comment-actions'>
-          {/* Pass c._id as a parameter */}
-          <MdDelete onClick={() => deleteComment(c._id)} />
+        <MdDelete onClick={() => deleteComment(c._id)} />
         </div>
       </div>
       <p>{c.comment}</p>

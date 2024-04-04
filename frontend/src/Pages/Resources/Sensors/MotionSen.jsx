@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Sensors.css';
 import Button from '../Button';
 import Sidebar from '../Sidebar';
@@ -6,25 +6,30 @@ import Resourcepost from '../Resourcepost';
 import { Link } from 'react-router-dom';
 import { URL } from "../../../url";
 import axios from "axios";
-import { UserContext } from "../../../Context/UserContext";
 
 export const MotionSen = () => {
-  const [posts, setPosts] = useState([]);
-  const { user } = useContext(UserContext);
-  //console.log(user);
+  const [resoPosts, setResoPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
 
-  const fetchPosts = async () => {
+  const fetchResoPosts = async () => {
     try {
       const res = await axios.get(URL + "/api/resoposts"); 
-      setPosts(res.data);
+      setResoPosts(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchPosts();
+    fetchResoPosts();
   }, []);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = resoPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className='sensorsCollect'>
@@ -35,13 +40,38 @@ export const MotionSen = () => {
         </div>
         <h1 className="resoTitle" id='motion'>MOTION SENSORS</h1>
         <div className="res-posts-container">
-          {posts.map((post) => (
-
-            <Resourcepost key={post.id} post={post}/>
-         
+          {currentPosts.map((resoPost) => (
+            <Resourcepost key={resoPost.id} resoPost={resoPost}/>
           ))}
         </div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={resoPosts.length}
+          paginate={paginate}
+        />
       </div>
     </div>
+  );
+};
+
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <button onClick={() => paginate(number)} className="page-link">
+              {number}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };

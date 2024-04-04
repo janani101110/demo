@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
+
 const ResoCommentSchema = new mongoose.Schema({
     comment: {
-        type:String,
-        required:true,
+        type: String,
+        required: true,
     },
-    author:{
-        type:String,
-        required:false,
+    author: {
+        type: String,
+        required: false,
     },
-    postId:{
-        type:String,
-        required:true,
+    postId: {
+        type: String,
+        required: true,
     },
-    userId:{
-        type:String,
-        required:false,
+    userId: {
+        type: String,
+        required: false,
     },
-    createdAt:{
+    createdAt: {
         type: Date,
-        default:Date.now,
+        default: Date.now,
     }
-},{timestamps:true});
+}, { timestamps: true });
 
-module.exports=mongoose.model('ResoComment',ResoCommentSchema)
+module.exports = mongoose.model('ResoComment', ResoCommentSchema);

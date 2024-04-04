@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const Comment = require('../models/Comment');
+const ResoComment = require('../models/ResoComment');
 const ResoPost = require('../models/ResoPost'); // Import the ResoPost model
 const verifyToken = require('../verifyToken');
 
@@ -60,22 +60,18 @@ router.get("/user/:userId", async (req, res) => {
 
 // Get All Posts
 router.get("/", async (req, res) => {
+    const query=req.query
     try {
-        const posts = await ResoPost.find(); // Use ResoPost model instead of Post
+        const searchFilter={
+            title:{$regex:query.search, $options: "i"}
+        }
+        const posts = await ResoPost.find(query.search?searchFilter:null); // Use ResoPost model instead of Post
         res.status(200).json(posts);
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-// Search Posts
-router.get("/search/:prompt", async (req, res) => {
-    try {
-        const posts = await ResoPost.find({ title: { $regex: req.params.prompt, $options: "i" } }); // Use ResoPost model instead of Post
-        res.status(200).json(posts);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-})
+
 
 module.exports = router;

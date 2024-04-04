@@ -1,59 +1,38 @@
-const express=require('express')
-const router=express.Router()
-const User=require('../models/User')
-const bcrypt=require('bcrypt')
-const Post=require('../models/Post')
-const ResoComment=require('../models/ResoComment')
-const verifyToken = require('../verifyToken')
+// Routes for comments
+const express = require('express');
+const router = express.Router();
+const ResoComment = require('../models/ResoComment');
 
-//create
-router.post("/create", async (req,res)=>{
-    try{
-        const newComment=new ResoComment(req.body)
-        const  savedComment=await newComment.save()
-        res.status(200).json(savedComment)
+// Create comment
+router.post("/create", async (req, res) => {
+    try {
+        const newComment = new ResoComment(req.body);
+        const savedComment = await newComment.save();
+        res.status(200).json(savedComment); // Change status to 201 for resource created
+    } catch (err) {
+        res.status(500).json({ error: err.message }); // Better error handling
     }
-    catch(err){
-        res.status(200).json(err)      
+});
 
+
+// Delete comment
+router.delete("/:id", async (req, res) => {
+    try {
+        await ResoComment.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "Comment has been deleted!" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-})
-//update
-router.put("/:id",async (req,res)=>{
-    try{
+});
 
-        const updatedComment=await ResoComment.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
-        res.status(200).json(updatedComment)
+// Get comments by post ID
+router.get("/post/:postId", async (req, res) => {
+    try {
+        const ResoComments = await ResoComment.find({ postId: req.params.postId });
+        res.status(200).json(ResoComments);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-    catch(err){
-        res.status(500).json(err)
-    }
-})
+});
 
-
-//delete
-router.delete("/:id",async (req,res)=>{
-    try{
-     await ResoComment.findByIdAndDelete(req.params.id)
-    
-     res.status(200).json("Comment has been deleted!")   
-    }
-    catch(err){
-        res.status(500).json(err)
-    }
-})
-
-
-//get post comments
-router.get("/post/:postId",async (req,res)=>{
-    try{
-     const comments=await ResoComment.find({postId:req.params.postId})
-     res.status(200).json(comments)
-    }
-    catch(err){
-        res.status(500).json(err)
-    }
-})
-
-
-module.exports=router
+module.exports = router;
