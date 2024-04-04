@@ -26,6 +26,7 @@ export const Navbar = () => {
             <li onClick={()=>{setMenu("shopping")}}><Link style={{textDecoration: 'none'}} to='/shopping'>Shopping</Link>{menu==="shopping"?<hr/>:<></>}</li>
             <li onClick={()=>{setMenu("forum")}}><Link style={{textDecoration: 'none'}} to='/forum'>Forum</Link>{menu==="forum"?<hr/>:<></>}</li>
             <li onClick={()=>{setMenu("about")}}><Link style={{textDecoration: 'none'}} to='/aboutus'>About Us</Link>{menu==="about"?<hr/>:<></>}</li>
+            <li onClick={()=>{setMenu("admin")}}><Link style={{textDecoration: 'none'}} to='/admin'>Admin</Link>{menu==="admin"?<hr/>:<></>}</li>
         </ul>'
         <div className='nav-login'>
             <Link to='/signup'><button>Sign Up</button></Link>

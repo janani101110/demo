@@ -83,3 +83,23 @@ input {
   transform: translateY(4px);
   background-color: rgb(104, 19, 183);
 }
+
+.project_percentage {
+  color: grey;
+}
+
+.project_ui_message_error {
+  font-weight: bold;
+  color: red;
+}
+
+.project_error {
+  color: red;
+}
+
+.project_field label::after,
+.project_upload label::after {
+  content: "*";
+  color: red;
+  margin-left: 4px;
+}
