@@ -11,9 +11,11 @@ import { FaStar } from 'react-icons/fa';
 
 export const ResoPostdetails = () => {
 
+  // State variables for rating
   const [resorating, setResoRating] = useState(null);
   const [resohover, setResoHover] = useState(null);
 
+  // Function to handle star click
   const handleStarClick = (rating) => {
     if (resorating === rating) {
       // If the user clicks on the already selected rating, deselect it (set to 0)
@@ -23,12 +25,18 @@ export const ResoPostdetails = () => {
     }
   };
 
+  // Get the resource post ID from URL params
   const { id: resoPostId } = useParams();
+  
+  // Hook for programmatic navigation
   const navigate = useNavigate();
+  
+  // State variables for resource post and comments
   const [resoPost, setResoPost] = useState({});
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
+  // Function to fetch resource post details
   const fetchResoPost = async () => {
     try {
       const res = await axios.get(`${URL}/api/resoposts/${resoPostId}`);
@@ -38,10 +46,7 @@ export const ResoPostdetails = () => {
     }
   };
 
-  useEffect(() => {
-    fetchResoPost();
-  }, [resoPostId]);
-
+  // Function to fetch comments for the post
   const fetchPostComments = async () => {
     try {
       const res = await axios.get(`${URL}/api/resocomments/post/${resoPostId}`);
@@ -51,10 +56,13 @@ export const ResoPostdetails = () => {
     }
   };
 
+  // Effect to fetch post details and comments when component mounts or resoPostId changes
   useEffect(() => {
+    fetchResoPost();
     fetchPostComments();
   }, [resoPostId]);
 
+  // Function to post a comment
   const postComment = async (e) => {
     e.preventDefault();
     try {
@@ -66,10 +74,11 @@ export const ResoPostdetails = () => {
     }
   };
 
+  // Function to handle post deletion
   const handleDeletePost = async () => {
     try {
       await axios.delete(`${URL}/api/resoposts/${resoPostId}`, { withCredentials: true });
-      navigate("/motionSen");
+      navigate("/motionSen"); // Navigate to motionSen page after successful deletion
     } catch (error) {
       console.error("Error deleting post:", error);
     }
@@ -77,22 +86,25 @@ export const ResoPostdetails = () => {
 
   return (
     <div className='reso-post-details-container'>
+      {/* Post title and edit/delete icons */}
       <div className="reso-post-title-wrapper">
         <h1 className='reso-post-title'>{resoPost.title}</h1>
         <div className="reso-edit-delete-wrapper">
-          <BiEdit className='reso-edit-icon' onClick={() => navigate("/resoeditpost/" + resoPostId)} />
-          <MdDelete className='reso-delete-icon' onClick={handleDeletePost} />
+          <BiEdit className='reso-edit-icon' onClick={() => navigate("/resoeditpost/" + resoPostId)} /> {/* Edit icon */}
+          <MdDelete className='reso-delete-icon' onClick={handleDeletePost} /> {/* Delete icon */}
         </div>
       </div>
 
+      {/* Post information */}
       <div className='reso-post-info'>
-        <p>@chathuabeyrathne</p>
-        <p>{new Date(resoPost.createdAt).toString().slice(0, 15)}</p>
+        <p>@chathuabeyrathne</p> {/* Author */}
+        <p>{new Date(resoPost.createdAt).toString().slice(0, 15)}</p> {/* Creation date */}
       </div>
 
-      <img src={resoPost.photo} alt="" className='reso-post-image' />
-      <p className='reso-post-content'>{resoPost.desc}</p>
+      <img src={resoPost.photo} alt="" className='reso-post-image' /> {/* Post image */}
+      <p className='reso-post-content'>{resoPost.desc}</p> {/* Post content */}
 
+      {/* Categories */}
       <div className='reso-post-categories'>
         <p>Categories:</p>
         <div>
@@ -102,6 +114,7 @@ export const ResoPostdetails = () => {
         </div>
       </div>
 
+      {/* Star rating */}
       <div className="resoStarRating">
         {[0, ...Array(4)].map((_, index) => {
           const currentResoRating = index + 1;
@@ -128,24 +141,24 @@ export const ResoPostdetails = () => {
             </label>
           );
         })}
-        <p>{resorating === null ? '0' : resorating} Star Rating</p>
+        <p>{resorating === null ? '0' : resorating} Star Rating</p> {/* Display selected star rating */}
       </div>
 
-
+      {/* Comments section */}
       <div className='reso-comments-section'>
         <h3>Comments:</h3>
 
-      <div className='reso-write-comment'>
-        <input onChange={(e) => setComment(e.target.value)} type="text" placeholder='Write a comment' className='resocomsection' />
-        <button onClick={postComment}>Add Comment</button>
-      </div>
+        {/* Input field for writing a comment */}
+        <div className='reso-write-comment'>
+          <input onChange={(e) => setComment(e.target.value)} type="text" placeholder='Write a comment' className='resocomsection' />
+          <button onClick={postComment}>Add Comment</button> {/* Button to add a comment */}
+        </div>
 
+        {/* Display comments */}
         {comments.map((c) => (
-          <ResoComment key={c._id} c={c} />
+          <ResoComment key={c._id} c={c} fetchPostComments={fetchPostComments} />
         ))}
       </div>
-
-      
     </div>
   );
 };
