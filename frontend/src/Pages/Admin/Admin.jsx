@@ -85,7 +85,7 @@ export const Admin = () => {
       <div className="admin_content">
         <div className="admin_griditem1">Projects</div>
         <div className="admin_griditem2">
-        <Link to={'/projectsadmin'}><div className="admin_box">Project to be commented</div></Link>
+        <Link to={'/projectsadmin'}><div className="admin_box">Pending Approval</div></Link>
         <Link to={'/projectsadmin'}><div className="admin_box">Approved project</div></Link>
         <Link to={'/projectsadmin'}><div className="admin_box">Rejected project</div></Link>
         </div>

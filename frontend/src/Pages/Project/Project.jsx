@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 export const Projects = () => {
   const [projectposts, setProjectposts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(4); //number of posts to display per page.
   const [orderBy, setOrderBy] = useState("latest"); // Default order by latest
 
   const [posts, setPosts] = useState([]);
@@ -60,6 +60,7 @@ export const Projects = () => {
       .reverse()
       .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
   } else {
+    //oldest first
     currentPosts = projectposts.slice(
       (currentPage - 1) * postsPerPage,
       currentPage * postsPerPage
@@ -79,7 +80,7 @@ export const Projects = () => {
 
   return (
     <div>
-      
+
       <div>
         <label htmlFor="orderBy">Order By:</label>
         <select id="orderBy" value={orderBy} onChange={handleOrderByChange}>

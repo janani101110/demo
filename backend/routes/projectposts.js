@@ -1,8 +1,9 @@
+//import express to create web servers and defien routed for handling HTTP requests.
 const express = require("express");
 const router = express.Router();
-const Projectpost = require("../models/Projectpost");
+const Projectpost = require("../models/Projectpost"); //import Mongoose model 'Projectpost'
 
-//create
+//create a new project post
 router.post("/create", async (req, res) => {
   try {
     const newProjectpost = new Projectpost(req.body);
@@ -13,7 +14,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-//GET post details(see more)
+//retrieving a specific project post by its ID(uses HTTP get method and expects the ID as a parameter in the URL 'req.params.id')
 router.get("/:id", async (req, res) => {
   try {
     const projectpost = await Projectpost.findById(req.params.id);
@@ -23,7 +24,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//GET posts
+//route for retrieving all project posts
 router.get("/", async (req, res) => {
   try {
     const projectposts = await Projectpost.find();

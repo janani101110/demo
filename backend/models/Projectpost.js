@@ -1,5 +1,7 @@
+//imports Mongoose library
 const mongoose = require("mongoose");
 
+//define the structure of documents (key, value pairs) in MongoDB database
 const projectpostSchema = new mongoose.Schema(
   {
     name: {
@@ -47,7 +49,8 @@ const projectpostSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
-);
+  { timestamps: true } // additional 2 fields fore createdAt and updatedAt
+); 
 
+//Create Mongoose model as Projectpost based on the projectpostSchema
 module.exports = mongoose.model("Projectpost", projectpostSchema);
