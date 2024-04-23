@@ -16,13 +16,13 @@ import {Forum} from './Pages/Forum/Forum';
 import {AboutUs} from './Pages/AboutUs/AboutUs';
 import { Footer } from './Component/Footer/Footer';
 import {Shoppingpost} from './Pages/Shopping/Shoppingpost';
-import Profile from './Pages/Profile/Profile';
 import SignUp from './Pages/LogIn/SignUp';
 import Login from './Pages/LogIn/LogIn';
-import { AuthProvider } from './Context/AuthContext';
 import {WriteBlog} from './Pages/Blogs/WriteBlog';
 import {InsidePost} from './Pages/Blogs/InsidePost';
-
+import MySaves from './Pages/Profile/MySaves';
+import MyCollections from "./Pages/Profile/MyCollections";
+import MyQuestions from './Pages/Profile/MyQuestions'
 
 
 import Productdescription from './Pages/Shopping/Productdescription';
@@ -54,11 +54,10 @@ function App() {
           <Route path='/shoppingpost' element={<Shoppingpost/>}/>
           <Route path='/WriteBlog' element={<WriteBlog/>}/>
           <Route path='/insidePost/:id' element={<InsidePost/>}/>
-       
-         
-
+          <Route path='/MySaves' element={<MySaves/>}/>
+          <Route path='/MyCollections' element={<MyCollections/>}/>
+          <Route path='/MyQuestions' element={<MyQuestions/>}/>
           <Route path='/productdescription' element={<Productdescription/>}/>
-          <Route path='/profile'  element={<Profile/>}/>
 
           <Route path='/' element={<Navigate to="/home" />}/>
           

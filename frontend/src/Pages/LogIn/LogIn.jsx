@@ -36,24 +36,18 @@ function Login() {
         user
       );
       console.log(res.data);
-      navigate("/home"); // Redirect to the home page upon successful login
+      navigate("/home"); 
     } catch (err) {
-      // Handling errors
       if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        alert(err.response.data); // Display the error message from the server
+        alert(err.response.data); 
       } else if (err.request) {
-        // The request was made but no response was received
         console.error(err.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error("Error:", err.message);
       }
     }
   };
 
-  // JSX for the login form
   return (
     <div className="login">
       <div className="logindiv">

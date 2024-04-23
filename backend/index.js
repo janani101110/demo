@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser')
 const authRoute=require('./routes/auth');
 const userRoute=require('./routes/users');
 const blogPostRoutes=require('./routes/blogPosts');
+const blogCommentRoutes=require('./routes/blogComments')
 const verifyToken = require('./middleware/verifyToken');
 const cookieSession = require("cookie-session")
 
@@ -58,7 +59,7 @@ app.use(cors({
 
 
 app.get("/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/loginError" }),//http://localhost:3000/
+  passport.authenticate("google", { failureRedirect: "/loginError" }),
   function(req, res) {
     // Successful authentication, redirect secrets.
     res.redirect("http://localhost:3000");
@@ -76,7 +77,6 @@ app.get('/checkAuth', verifyToken, (req, res) => {
 })
 
  app.get('/', (req, res) => {
-    // Handle the root path (e.g., send a welcome message or render a home page) i put a welcome message but need the home page here
     res.send('express app is running');
   });
  
@@ -84,6 +84,7 @@ app.get('/checkAuth', verifyToken, (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/blogPosts", blogPostRoutes);
+app.use("/api/blogComments", blogCommentRoutes);
 
 
 

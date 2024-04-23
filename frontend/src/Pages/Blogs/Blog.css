@@ -1,4 +1,4 @@
-/** -----------------------------banner-------------------------------**/
+/** -----------------------------banner-------------------------------*/
 
 .blogBanner {
   display: flex;
@@ -26,6 +26,7 @@
 .Bannercreate {
   margin-top: 10px;
   margin-left: 120px;
+  
 }
 
 .Bannercreate .createLink {
@@ -116,9 +117,10 @@
   }
   .createLink{
     color: rgb(83, 47, 68);
+    background-color: #dddddd;
     text-decoration: none;
     font-size: 25px;
-
+    cursor: pointer;
     font-family: 'https://fonts.googleapis.com/css?family=PT Sans';
 
   
@@ -214,8 +216,25 @@
     
   }
   .blogPostdate{
+    margin-top: 20px;
     font-size: 12px;
   }
+
+  .authorProfilePicture{
+    width:40px;
+    height: auto;
+    border: #000;
+    border-radius: 50%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .blogCardFooter{
+    display: flex;
+    gap: 10px;
+  }
+
 
   .blogPostostDetails {
     position: absolute;
@@ -414,3 +433,5 @@
   background-color: #007bff;
   color: #fff;
 }
+
+

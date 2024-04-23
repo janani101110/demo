@@ -14,9 +14,8 @@ const UserSchema = new mongoose.Schema({
     email:{
         type:String,
         required: function () {
-            return !this.userId; // Require password if userId doesn't exist (Google authentication)
-        },
-        unique: false
+            return !this.userId; // Require email if userId doesn't exist (Google authentication)
+        }
     },
     password: {
         type: String,

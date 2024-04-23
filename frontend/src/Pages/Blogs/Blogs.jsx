@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import "./Blog.css";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Search } from "../../Component/Search/Search"; 
 import Blogspost from './Blogspost';
 import axios from "axios";
+import { useUsers } from "../../Context/UserContext"; // Import user context
 
 // Pagination component for rendering pagination controls
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
@@ -39,6 +39,8 @@ export const Blogs = () => {
   const [postsPerPage] = useState(6);
   const [sortOrder, setSortOrder] = useState('desc');
   const [activeFilter, setActiveFilter] = useState(null); 
+  const { user } = useUsers(); // Access user data from context
+  const navigate = useNavigate(); // Use useNavigate hook
 
   // Function to sort posts based on order
   const sortPosts = async (order) => {
@@ -101,10 +103,27 @@ export const Blogs = () => {
         return 'defaultBackground';
     }
   };
+
+  // Function to handle create button click
+  const handleCreateClick = () => {
+    if (!user) {
+      setTimeout(() => {
+        window.alert('Please login to create a blog post.'); // Show error message in alert box
+      }, 100);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } else {
+      // If user is logged in, navigate to create blog page
+      navigate("/WriteBlog");
+    }
+  };
  
   // Rendering the component
   return (
+    
     <div className={`blogHome ${getBackgroundClass()}`}>
+
       {/* Banner section */}
       <div className='blogBanner'>
         <div className='bannerSection'>
@@ -113,7 +132,8 @@ export const Blogs = () => {
         <br/>
         {/* Link to create a new blog */}
         <div className = "Bannercreate">
-                <Link to = "/WriteBlog" className = "createLink"> Create </Link>
+                <button onClick={handleCreateClick} className="createLink"> Create </button>
+                
             </div>
         </div>
       </div>
@@ -148,6 +168,7 @@ export const Blogs = () => {
           <Blogspost style={{ textDecoration: 'none' }} key={blogPost._id} blogPost={blogPost} />
         ))}
       </div>
+
 
       {/* Pagination component */}
       <Pagination

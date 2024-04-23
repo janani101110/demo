@@ -1,46 +1,80 @@
-import React from 'react';
-import './Blog.css'; 
-import { Link } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import "./Blog.css";
+import { Link } from "react-router-dom";
 
 const Blogspost = ({ blogPost }) => {
   // Check if blogPost is available, if not return null
+  const [author, setAuthor] = useState(null);
+
+  const fetchUserData = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/auth/details/${userId}`
+      );
+      return response;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    const fetchAuthor = async () => {
+      try {
+        const response = await fetchUserData(blogPost.postedBy);
+        const userData = await response.json();
+        setAuthor(userData); // Set author data
+        console.log("the author is", userData); // Log userData instead of author
+      } catch (error) {
+        console.error("Error fetching author:", error);
+      }
+    };
+
+    fetchAuthor();
+  }, [blogPost.postedBy]);
+
   if (!blogPost) {
     return null;
   }
 
-  // Extracting creation date of the post
   const createdAtDate = new Date(blogPost.createdAt);
-  const createdDate = createdAtDate.toDateString(); 
+  const createdDate = createdAtDate.toDateString();
 
   // Rendering the component
   return (
     <div className="postCard">
       {/* Link to view full blog post */}
-      <Link style={{ textDecoration: 'none' }} to={`/InsidePost/${blogPost._id}`} key={blogPost.id}>
-        {/* Blog post image */}
-        <img src={blogPost.photo} alt="" className="blogPostImage" /> 
+      <Link
+        style={{ textDecoration: "none" }}
+        to={`/InsidePost/${blogPost._id}`}
+        key={blogPost.id}
+      >
+        <img src={blogPost.photo} alt="" className="blogPostImage" />
         <div className="blogPostText">
-          {/* Blog post title */}
-          <div className="blogPostTitle">
-            {blogPost.title}
-          </div>
-          <br/>
+          <div className="blogPostTitle">{blogPost.title}</div>
+          <br />
           <div className="blogPostostDetails">
-            {/* Blog post description with "See more" link */}
             <div className="blogPostDescription">
-              {blogPost.desc.split(' ').slice(0, 60).join(' ')+ '... See more'}
+              {blogPost.desc.split(" ").slice(0, 60).join(" ") + "... See more"}
             </div>
-            <br/>
+            <br />
           </div>
         </div>
       </Link>
-      {/* Rendering the creation date of the post */}
-      <div className="blogPostdate">
-        {createdDate}
+      <div className='blogCardFooter'>
+        {author && (
+          <div className="authorInfo">
+            <img
+              src={author.profilePicture}
+              alt=""
+              className="authorProfilePicture"
+            />
+          </div>
+        )}
+        <div className="blogPostdate">{createdDate}</div>
       </div>
     </div>
   );
-}
+};
 
-export default Blogspost; // Exporting the component
+export default Blogspost;
